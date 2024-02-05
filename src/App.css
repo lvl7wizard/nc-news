@@ -1,0 +1,28 @@
+.search-bar {
+    width: 100%;
+    margin: auto;
+    border: solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-display {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.article-card {
+    text-align: center;
+    border: solid black;
+    border-radius: 25px;
+    margin: 10px;
+    width: 300px;
+
+}
+
+.article-card img {
+    width: 250px; 
+}
