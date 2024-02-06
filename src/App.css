@@ -1,7 +1,23 @@
+body {
+    position: relative; top: 60px;
+}
+
+nav {
+    background-color:lightslategrey;
+    width: 100%;
+    padding: 20px;
+    display: flex; 
+	gap: 1.5rem;
+    position: fixed;
+    top: 0px;
+}
+
 .search-bar {
+
     width: 100%;
     margin: auto;
     border: solid black;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,9 +36,22 @@
     border-radius: 25px;
     margin: 10px;
     width: 300px;
-
+    color: black;
 }
 
 .article-card img {
     width: 250px; 
+}
+
+.full-article {
+    display: block;
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.full-article img {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
 }
