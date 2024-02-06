@@ -1,4 +1,4 @@
-import ArticleCard from "../ArticleCard";
+import ArticleCardMini from "../ArticleCardMini";
 import { getArticles } from "../../utils/apiRequest";
 import { useEffect, useState } from "react";
 
@@ -27,7 +27,7 @@ const SearchResults = (() => {
             {searchResults.map((article) => {
                 return (
                 <div id={article.author + article.article_id}>
-                    <ArticleCard article={article}/>
+                    <ArticleCardMini article={article}/>
                 </div>)
             })}
         </main>

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { toDaysMonthsYears } from "../utils/formatTimeStamp"
+import { toDaysMonthsYears } from "../utils/formatTimeStamp";
 
-const ArticleCard = ({ article }) => {
+const ArticleCardMini = ({ article }) => {
   const articleUrl = `/articles/${article.article_id}`;
   return (
-          <Link to={articleUrl}>
+    <Link to={articleUrl}>
       <div className="article-card">
         <h4>{article.title}</h4>
         <p>author: {article.author}</p>
@@ -18,4 +18,4 @@ const ArticleCard = ({ article }) => {
   );
 };
 
-export default ArticleCard;
+export default ArticleCardMini;
