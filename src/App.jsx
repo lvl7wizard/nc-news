@@ -1,9 +1,10 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Search from './components/Search'
-import ViewArticle from './components/search_components/ViewArticle';
+import ViewArticle from './components/ViewArticle';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
       <Route path="/articles" element={<Search />} />
       <Route path="/articles/:article_id" element={<ViewArticle />} />
     </Routes>
+    <Footer/>
     </>
   )
 }
 
-export default App
+export default App;
