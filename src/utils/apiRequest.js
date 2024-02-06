@@ -29,3 +29,13 @@ export const fetchUserAvatar = (username) => {
         return repsonse.data.user.avatar_url;
     })
 }
+
+export const patchArticleLikes = (article_id, amount) => {
+    return newsApi.patch(`/articles/${article_id}`, {"inc_votes": amount})
+    .then((repsonse) => {
+        return repsonse
+    })
+    .catch((error) => {
+        return error
+    })
+}
