@@ -8,3 +8,10 @@ export const getArticles = () => {
         return repsonse.data.articles
     })
 }
+
+export const fetchArticleById = (article_id) => {
+    return newsApi.get(`https://news-app-mk4i.onrender.com/api/articles/${article_id}`)
+    .then((repsonse) => {
+        return repsonse.data.article
+    })
+}
