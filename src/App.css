@@ -67,6 +67,17 @@ nav {
     height: auto;
 }
 
+.full-article button {
+    background-color:lightslategrey;
+}
+
+.full-article .votes {
+    border-top: black solid;
+    border-bottom: black solid;
+    padding-bottom: 20px;
+    border-width: thin;
+}
+
 .comment-card {
     border: solid black;
     margin: 10px;
@@ -76,5 +87,9 @@ nav {
 .comment-card img {
     width: 50px;
     height: auto;
+}
+
+.error-text {
+    color: red;
 }
 

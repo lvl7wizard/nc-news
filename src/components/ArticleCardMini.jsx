@@ -12,7 +12,7 @@ const ArticleCardMini = ({ article }) => {
         <p>Topic: {article.topic}</p>
         <p>Created: {toDaysMonthsYears(article.created_at)}</p>
         <p>Votes: {article.votes}</p>
-        <p>Comments: {article.votes}</p>
+        <p>Comments: {article.comment_count}</p>
       </div>
     </Link>
   );
