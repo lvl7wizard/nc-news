@@ -26,7 +26,7 @@ const SearchResults = (() => {
         <main className="results-display">
             {searchResults.map((article) => {
                 return (
-                <div id={article.author + article.article_id}>
+                <div key={article.author + article.article_id}>
                     <ArticleCardMini article={article}/>
                 </div>)
             })}

@@ -1,11 +1,34 @@
-body {
-    padding-top: 70px;
-    padding-bottom: 70px;
+h1 {
+    text-align: center;
 }
 
-footer {
-    background-color:lightslategrey;
+.carousel {
+    margin: auto;
+    max-width: 500px;
+    padding: 20px;;
+}
+
+body {
+    padding-top: 70px;
+    padding-bottom: 90px;
+    margin: 0;
+}
+
+.carousel-captions {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 25px;
+    color: white;
+}
+
+.carousel-captions a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer {
+    background-color: lightslategrey !important;
     width: 100%;
+    height: 4%;
     padding: 20px;
     display: flex; 
 	gap: 1.5rem;
@@ -16,6 +39,7 @@ footer {
 nav {
     background-color:lightslategrey;
     width: 100%;
+    height: 4%;
     padding: 20px;
     display: flex; 
 	gap: 1.5rem;
@@ -81,11 +105,13 @@ nav {
 .comment-card {
     border: solid black;
     margin: 10px;
-    display: flex;
+    padding: 10px;
+    display: block;
 }
 
 .comment-card img {
     width: 50px;
+    max-height: 50px;
     height: auto;
 }
 
