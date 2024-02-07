@@ -5,6 +5,7 @@ import ViewArticle from './components/ViewArticle';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Footer from './components/Footer';
+import MyAccount from './components/MyAccount';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <Route path="/" element={<Home />} />
       <Route path="/articles" element={<Search />} />
       <Route path="/articles/:article_id" element={<ViewArticle />} />
+      <Route path="/myaccount" element={<MyAccount />} />
     </Routes>
     <Footer/>
     </>

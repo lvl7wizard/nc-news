@@ -39,3 +39,10 @@ export const patchArticleLikes = (article_id, amount) => {
         return error
     })
 }
+
+export const fetchUsers = () => {
+    return newsApi.get(`/users`)
+        .then((repsonse) => {
+            return repsonse.data.users
+        })
+}
