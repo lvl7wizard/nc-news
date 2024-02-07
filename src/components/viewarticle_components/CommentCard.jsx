@@ -21,15 +21,14 @@ const CommentCard = ({ comment }) => {
   } else {
     return (
       <div className="comment-card">
-      <div>
+      <div className="comment-card-1">
           <img src={userAvatar}/>
-          {comment.author}
+          <strong>{comment.author}</strong> <em>{toRelativeTime(comment.created_at)}</em>
       </div>
-        <div>
+        <div className="comment-card-1">
           <div>{comment.body}</div>
         </div>
-        <div>
-          {toRelativeTime(comment.created_at)} <br/>
+        <div className="comment-card-1">
           Votes = {comment.votes} <br/>
         </div>
       </div>
