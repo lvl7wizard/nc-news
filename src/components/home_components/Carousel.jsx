@@ -6,7 +6,7 @@ import {
   CImage,
   CCarouselCaption,
 } from "@coreui/react";
-import "../carousel-styles.min.css";
+import "./carousel-styles.min.css";
 import { toRelativeTime } from "../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
 
