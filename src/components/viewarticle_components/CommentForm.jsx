@@ -9,28 +9,33 @@ const CommentForm = ({ article_id, setTriggerFetch }) => {
   const [commentText, setCommentText] = useState("");
   const [feedback, setFeedback] = useState("");
   const [feedbackStyle, setFeedbackStyle] = useState("");
+  const validUserComment = /(.|\s)*\S(.|\s)*/;
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    setIsLoading(true);
-    setFeedback("");
-    const requestBody = {
-      username: currentUser.username,
-      body: commentText,
-    };
-
-    postComment(article_id, requestBody).then((response) => {
-      setIsLoading(false);
-      if (response.name === "AxiosError") {
-        setFeedback(`Error: ${response.message}`);
-        setFeedbackStyle("error-text");
-      } else {
-        setFeedback("Post Successful");
-        setFeedbackStyle("success-text");
-        setCommentText("");
-        setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-      }
-    });
+    if (!commentText.match(validUserComment)) {
+      setFeedback("Comment cannot be blank");
+      setFeedbackStyle("error-text");
+    } else {
+      setIsLoading(true);
+      setFeedback("");
+      const requestBody = {
+        username: currentUser.username,
+        body: commentText,
+      };
+      postComment(article_id, requestBody).then((response) => {
+        setIsLoading(false);
+        if (response.name === "AxiosError") {
+          setFeedback(`Error: ${response.message}`);
+          setFeedbackStyle("error-text");
+        } else {
+          setFeedback("Post Successful");
+          setFeedbackStyle("success-text");
+          setCommentText("");
+          setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
+        }
+      });
+    }
   };
 
   const onChangeHandler = (event) => {
