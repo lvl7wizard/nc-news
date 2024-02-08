@@ -2,10 +2,17 @@ import axios from 'axios';
 
 const newsApi = axios.create({baseURL: "https://news-app-mk4i.onrender.com/api"})
 
-export const getArticles = () => {
-    return newsApi.get(`/articles`)
+export const getArticles = (topicName) => {
+    return newsApi.get(`/articles${topicName}`)
     .then((repsonse) => {
         return repsonse.data.articles
+    })
+}
+
+export const getTopics = () => {
+    return newsApi.get(`/topics`)
+    .then((response) => {
+        return response.data.topics
     })
 }
 
@@ -52,7 +59,11 @@ export const postComment = (article_id, requestBody) => {
     .then((response) => {
         return response
     })
-    .catch((error) => {
-        return error
+}
+
+export const deleteCommentById = (comment_id) => {
+    return newsApi.delete(`/comments/${comment_id}`)
+    .then((repsonse) => {
+        return repsonse
     })
 }

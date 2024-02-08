@@ -44,6 +44,7 @@ const CommentSection = ({ article_id }) => {
               <CommentCard
                 key={comment.author + comment.comment_id}
                 comment={comment}
+                setTriggerFetch={setTriggerFetch}
               />
             );
           })
