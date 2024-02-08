@@ -25,15 +25,14 @@ const CommentForm = ({ article_id, setTriggerFetch }) => {
       };
       postComment(article_id, requestBody).then((response) => {
         setIsLoading(false);
-        if (response.name === "AxiosError") {
-          setFeedback(`Error: ${response.message}`);
-          setFeedbackStyle("error-text");
-        } else {
           setFeedback("Post Successful");
           setFeedbackStyle("success-text");
           setCommentText("");
           setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-        }
+      }).catch((error) => {
+        setIsLoading(false);
+        setFeedback(`Error: ${error.message}`);
+        setFeedbackStyle("error-text");
       });
     }
   };
