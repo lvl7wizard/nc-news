@@ -56,3 +56,13 @@ export const postComment = (article_id, requestBody) => {
         return error
     })
 }
+
+export const deleteCommentById = (comment_id) => {
+    return newsApi.delete(`/comments/${comment_id}`)
+    .then((repsonse) => {
+        return repsonse
+    })
+    .catch((error) => {
+        return error
+    })
+}

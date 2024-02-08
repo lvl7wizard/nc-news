@@ -1,10 +1,15 @@
 import { toRelativeTime } from "../../utils/formatTimeStamp";
-import { fetchUserAvatar } from "../../utils/apiRequest";
+import { deleteCommentById, fetchUserAvatar } from "../../utils/apiRequest";
 import { useEffect, useState } from "react";
+import { useContext} from 'react';
+import { UserContext } from "../../contexts/User";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, setTriggerFetch }) => {
   const [userAvatar, setUserAvatar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useContext(UserContext);
+  const [processingDeleteRequest, setProcessingDeleteRequest] = useState(false)
+  const [feedback, setFeedback] = useState("")
 
   useEffect(() => {
     setIsLoading(true);
@@ -15,6 +20,19 @@ const CommentCard = ({ comment }) => {
       setIsLoading(false);
     })
   }, [])
+
+  const deleteOnClickHandler = () => {
+    setProcessingDeleteRequest(true);
+    deleteCommentById(comment.comment_id).then((response) => {
+      if (response.name === "AxiosError") {
+        setFeedback(`Error: ${response.message}`);
+        setProcessingDeleteRequest(false);
+      } else {
+        setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
+      }
+
+    })
+  }
 
   if (isLoading) {
     return <p className="comment-card">Loading Comment...</p>
@@ -31,6 +49,8 @@ const CommentCard = ({ comment }) => {
         <div className="comment-card-1">
           Votes = {comment.votes} <br/>
         </div>
+        {comment.author === currentUser.username ? <button disabled={processingDeleteRequest} onClick={deleteOnClickHandler}>Delete comment</button> : <></>}
+        <p className="error-text">{feedback}</p>
       </div>
     );
   }
