@@ -30,6 +30,13 @@ export const fetchUserAvatar = (username) => {
     })
 }
 
+export const fetchUsers = () => {
+    return newsApi.get(`/users`)
+        .then((repsonse) => {
+            return repsonse.data.users
+        })
+}
+
 export const patchArticleLikes = (article_id, amount) => {
     return newsApi.patch(`/articles/${article_id}`, {"inc_votes": amount})
     .then((repsonse) => {
@@ -40,9 +47,12 @@ export const patchArticleLikes = (article_id, amount) => {
     })
 }
 
-export const fetchUsers = () => {
-    return newsApi.get(`/users`)
-        .then((repsonse) => {
-            return repsonse.data.users
-        })
+export const postComment = (article_id, requestBody) => {
+    return newsApi.post(`/articles/${article_id}/comments`, requestBody)
+    .then((response) => {
+        return response
+    })
+    .catch((error) => {
+        return error
+    })
 }
