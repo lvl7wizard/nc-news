@@ -4,23 +4,22 @@ import { UserContext } from "../contexts/User";
 
 const NavBar = () => {
     const { currentUser } = useContext(UserContext)
-    return (<nav>
-        <div className="nav-item">
-        <Link id="home-link" to="/">🏠 Home</Link>
+    return (
+    <>
+    <nav>
+        <div>
+        <Link id="home-link" className="nav-item" to="/">Home</Link>
         </div>
-        <div className="nav-item">
-        <Link id="search-link" to="/articles/topics/all">🔍 Search</Link>
+        <div>
+        <Link id="search-link" className="nav-item" to="/articles/topics/all?sort_by=created_at&order=desc">Search</Link>
         </div>
-        <div className="nav-item">
-        <Link id="account-link" to="/myaccount">⚙️ My Account</Link>
+        <div>
+        <Link id="account-link" className="nav-item" to="/myaccount">My Account</Link>
         </div>
         <div className="nav-avatar">
-            <div>
-        <img src={currentUser.avatar_url}/>
-        <>logged in as: {currentUser.username}</>
-            </div>
         </div>
-    </nav>)
+    </nav>
+    </>)
 }
 
 export default NavBar;

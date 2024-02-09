@@ -24,8 +24,8 @@ const MyAccount = () => {
     }
     else {
     return (<div>
-    <p>Currently Logged in as: <strong>{currentUser.username}</strong></p>
-    <p>Click below to change account</p>
+    <p className="logged-in-as">You are currently logged in as <strong>{currentUser.username}</strong>.</p>
+    <p className="logged-in-as">Click below to change account</p>
     <></>
     <div className="user-card-container">
     {users.map((user) => {
