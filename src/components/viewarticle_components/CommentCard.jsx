@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/User";
 
-const CommentCard = ({ comment, setTriggerFetch }) => {
+const CommentCard = ({ setTriggerFetch, comment, comments, setComments }) => {
   const [userAvatar, setUserAvatar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
-  const [processingDeleteRequest, setProcessingDeleteRequest] = useState(false);
-  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,14 +21,14 @@ const CommentCard = ({ comment, setTriggerFetch }) => {
   }, []);
 
   const deleteOnClickHandler = () => {
-    setProcessingDeleteRequest(true);
+    const updatedComments = comments.filter((item) => {
+      return item.comment_id !== comment.comment_id;
+    })
+    setComments(updatedComments);
     deleteCommentById(comment.comment_id)
-      .then(() => {
-        setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-      })
       .catch((error) => {
-        setFeedback(`Error: ${error.message}`);
-        setProcessingDeleteRequest(false);
+        window.alert(`Delete request was unsuccessful. Press okay to refresh.`);
+        setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
       });
   };
 
@@ -52,7 +50,6 @@ const CommentCard = ({ comment, setTriggerFetch }) => {
         </div>
         {comment.author === currentUser.username ? (
           <button
-            disabled={processingDeleteRequest}
             onClick={deleteOnClickHandler}
           >
             Delete comment
@@ -60,7 +57,6 @@ const CommentCard = ({ comment, setTriggerFetch }) => {
         ) : (
           <></>
         )}
-        <p className="error-text">{feedback}</p>
       </div>
     );
   }

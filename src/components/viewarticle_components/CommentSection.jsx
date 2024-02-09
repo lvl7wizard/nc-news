@@ -17,7 +17,10 @@ const CommentSection = ({ article_id }) => {
       })
       .then(() => {
         setIsLoading(false);
-      });
+      })
+      .catch((error) => {
+        window.alert(`${error.message}. Could not connect to server`)
+      })
   };
 
   useEffect(() => {
@@ -43,8 +46,10 @@ const CommentSection = ({ article_id }) => {
             return (
               <CommentCard
                 key={comment.author + comment.comment_id}
-                comment={comment}
                 setTriggerFetch={setTriggerFetch}
+                comment={comment}
+                setComments={setComments}
+                comments={comments}
               />
             );
           })

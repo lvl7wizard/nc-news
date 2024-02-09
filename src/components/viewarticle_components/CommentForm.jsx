@@ -14,7 +14,7 @@ const CommentForm = ({ article_id, setTriggerFetch }) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (!commentText.match(validUserComment)) {
-      setFeedback("Comment cannot be blank");
+      setFeedback("Error: Comments cannot be blank");
       setFeedbackStyle("error-text");
     } else {
       setIsLoading(true);
@@ -25,7 +25,7 @@ const CommentForm = ({ article_id, setTriggerFetch }) => {
       };
       postComment(article_id, requestBody).then((response) => {
         setIsLoading(false);
-          setFeedback("Post Successful");
+          setFeedback("Post successful");
           setFeedbackStyle("success-text");
           setCommentText("");
           setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);

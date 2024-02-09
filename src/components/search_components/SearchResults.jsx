@@ -31,14 +31,19 @@ const SearchResults = (() => {
             setIsLoading(false)
         }).catch((error) => {
             setIsLoading(false)
-            setError(error.message)
+            setError(error)
+            console.log(error)
         })
     }, [topic_name, sortByQuery, order])
 
     if (isLoading) {
         return <p>Loading articles...</p>
     } else if (error !== "") {
-        return <p>{error}</p>
+        console.log(error.response.data.msg)
+        return (<>
+        <h3 align="center">{error.message}</h3>
+        <p align="center">"{error.response.data.msg}"</p>
+        </>)
     } else {
         return (
         <>
