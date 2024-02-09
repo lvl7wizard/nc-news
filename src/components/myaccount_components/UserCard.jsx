@@ -9,7 +9,7 @@ const UserCard = ({user}) => {
 
     return (
     <div className="user-card">
-        <button onClick={userOnClickHandler}>
+        <button className="user-button" onClick={userOnClickHandler}>
         <img src={user.avatar_url}/>
         <div>
         <p>{user.username}</p>
