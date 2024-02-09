@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const newsApi = axios.create({baseURL: "https://news-app-mk4i.onrender.com/api"})
 
-export const getArticles = (topicName = "") => {
-    return newsApi.get(`/articles${topicName}`)
+export const getArticles = (queryString = "") => {
+    return newsApi.get(`/articles${queryString}`)
     .then((repsonse) => {
         return repsonse.data.articles
     })

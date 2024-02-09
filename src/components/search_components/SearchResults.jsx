@@ -2,19 +2,27 @@ import ArticleCardMini from "../ArticleCardMini";
 import { getArticles } from "../../utils/apiRequest";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 const SearchResults = (() => {
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [error, setError] = useState("")
     const { topic_name } = useParams();
+    const sortByQuery = searchParams.get("sort_by");
+    const order = searchParams.get("order");
 
     useEffect(() => {
         setError("")
         setIsLoading(true);
         let queryString = ""
+        if (topic_name === 'all') {
+            queryString = `?sort_by=${sortByQuery}&order=${order}`
+        } else {
+            queryString = `?topic=${topic_name}&sort_by=${sortByQuery}&order=${order}`
+        }
         if (topic_name !== 'all') {
-            queryString = `?topic=${topic_name}`
         }
         getArticles(queryString)
         .then((response) => {
@@ -24,9 +32,8 @@ const SearchResults = (() => {
         }).catch((error) => {
             setIsLoading(false)
             setError(error.message)
-
         })
-    }, [topic_name])
+    }, [topic_name, sortByQuery, order])
 
     if (isLoading) {
         return <p>Loading articles...</p>
