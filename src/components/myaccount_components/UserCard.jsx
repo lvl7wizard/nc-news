@@ -1,10 +1,10 @@
 import { useContext} from 'react';
 import { UserContext } from '../../contexts/User';
 import styled from 'styled-components';
+
 const Card = styled.button`
 padding: 10px;
 margin: 10px;
-text-align: center;
 text-align: center;
 border: solid black;
 border-radius: 25px;
