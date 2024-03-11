@@ -61,23 +61,8 @@ h2 {
     align-items: center;
 }
 
-.article-card {
-    text-align: center;
-    border: solid black;
-    border-radius: 25px;
-    box-shadow: 7px 7px 2px 1px rgba(0, 0, 0, 0.226);
-    margin: 10px;
-    width: 300px;
-    color: black;
-    padding: 20px;
-}
-
 .link {
     text-decoration: none;
-}
-
-.article-card img {
-    width: 250px; 
 }
 
 .full-article {
