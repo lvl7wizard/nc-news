@@ -4,7 +4,7 @@ import { toDaysMonthsYears } from "../utils/formatTimeStamp";
 const ArticleCardMini = ({ article }) => {
   const articleUrl = `/articles/${article.article_id}`;
   return (
-    <Link to={articleUrl}>
+    <Link className="link" to={articleUrl}>
       <div className="article-card">
         <h4>{article.title}</h4>
         <p>author: {article.author}</p>

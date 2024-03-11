@@ -34,7 +34,7 @@ const Carousel = () => {
             <CCarouselItem key={article.article_id + article.author}>
               <CCarouselCaption className="carousel-captions">
                 <Link to={`/articles/${article.article_id}`}>
-                  <h5>{article.title}</h5>
+                  <h3>{article.title}</h3>
                   <p>Posted {toRelativeTime(article.created_at)}</p>
                 </Link>
               </CCarouselCaption>
