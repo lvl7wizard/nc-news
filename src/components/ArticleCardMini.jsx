@@ -25,12 +25,10 @@ const ArticleCardMini = ({ article }) => {
     <Link className="link" to={articleUrl}>
       <Card>
         <h4>{article.title}</h4>
-        <p>author: {article.author}</p>
         <img src={article.article_img_url} />
-        <p>Topic: {article.topic}</p>
-        <p>Created: {toDaysMonthsYears(article.created_at)}</p>
-        <p>Votes: {article.votes}</p>
-        <p>Comments: {article.comment_count}</p>
+        <p>Posted: {toDaysMonthsYears(article.created_at)}</p>
+        <p>Author: {article.author} | Topic: {article.topic}</p>
+        <p>Votes: {article.votes} | Comments: {article.comment_count}</p>
       </Card>
     </Link>
   );
