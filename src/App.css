@@ -28,6 +28,7 @@ body {
     padding-bottom: 80px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
 }
 
 .carousel-captions {
@@ -41,34 +42,6 @@ body {
     text-decoration: none;
 }
 
-nav {
-    background-color: rgb(3, 134, 248);
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    position: fixed;
-    top: 0px;
-    color: white
-}
-
-.nav-item {
-    color: white;
-    margin-right: 10px;
-    padding: 10px;
-    text-decoration: none;
-}
-
-.nav-item:hover {
-    border: solid white;
-    border-radius: 25px;
-}
-
-.nav-item:visited {
-    color: white;
-}
-
-
 .nav-avatar img{
     width: 40px;
     border-radius: 50%;
@@ -80,7 +53,7 @@ nav {
 }
 
 .footer {
-    background-color: rgb(3, 134, 248);
+    background-color: black;
     color: white;
     width: 100%;
     padding: 20px;
