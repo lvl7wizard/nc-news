@@ -7,13 +7,13 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import MyAccount from "./components/MyAccount";
 import NotFound from "./components/NotFound";
-import Background from "./components/background";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
   return (
     <>
+      <GlobalStyle/>
       <NavBar />
-      <Background>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles/topics/:topic_name" element={<Search />} />
@@ -21,7 +21,6 @@ function App() {
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Background>
       <Footer />
     </>
   );

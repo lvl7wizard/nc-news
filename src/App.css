@@ -23,14 +23,6 @@ h2 {
     height: auto;
 }
 
-body {
-    padding-top: 90px;
-    padding-bottom: 80px;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-}
-
 .carousel-captions {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 25px;
@@ -40,12 +32,6 @@ body {
 .carousel-captions a {
     color: white;
     text-decoration: none;
-}
-
-.nav-avatar img{
-    width: 40px;
-    border-radius: 50%;
-    height: 40px;
 }
 
 .logged-in-as {
