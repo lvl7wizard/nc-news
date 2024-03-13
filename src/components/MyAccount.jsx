@@ -3,6 +3,7 @@ import { UserContext } from "../contexts/User";
 import { fetchUsers } from "../utils/apiRequest";
 import UserCard from "./myaccount_components/UserCard";
 import styled from "styled-components";
+import Loading from "./Loading";
 
 const UserCardContainer = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const MyAccount = () => {
   }, []);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loading/>;
   } else {
     return (
       <div>
