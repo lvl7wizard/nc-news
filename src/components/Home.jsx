@@ -1,11 +1,18 @@
 import Carousel from "./home_components/Carousel";
+import styled from "styled-components";
+
+const HomeContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 80vh;
+`
 
 const Home = () => {
     return (
-    <div className="home-container">
-    <h2>Latest Articles</h2>
+    <HomeContainer>
     <Carousel/>
-    </div>
+    </HomeContainer>
     )
 }
 
