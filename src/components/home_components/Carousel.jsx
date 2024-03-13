@@ -21,7 +21,7 @@ const Carousel = () => {
         setArticles(response);
       })
       .then(() => {
-        setIsLoading(true);
+        setIsLoading(false);
       });
   }, []);
 
