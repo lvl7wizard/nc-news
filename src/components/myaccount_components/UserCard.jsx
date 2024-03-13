@@ -1,34 +1,36 @@
-import { useContext} from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../contexts/User';
 import styled from 'styled-components';
 
 const Card = styled.button`
-padding: 10px;
-margin: 10px;
-text-align: center;
-border: solid black;
-border-radius: 25px;
-box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.226);
-background-color: rgb(255, 255, 255, 0.65);
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  border: solid black;
+  border-radius: 25px;
+  box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.226);
+  background-color: ${props => props.isCurrentUser ? 'lightblue' : 'rgb(255, 255, 255, 0.65)'};
 
-img {
+  img {
     width: 100px;
     max-height: 100px;
     border-radius: 10px;
   }
-`
+`;
 
-const UserCard = ({user}) => {
-    const { setCurrentUser } = useContext(UserContext)
-    const userOnClickHandler = () => {
-        setCurrentUser(user)
-    }
+const UserCard = ({ user }) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
-    return (
-    <Card onClick={userOnClickHandler}>
-        <img src={user.avatar_url}/>
-        <p>{user.username}</p>
-    </Card>)
-}
+  const userOnClickHandler = () => {
+    setCurrentUser(user);
+  };
 
-export default UserCard; 
+  return (
+    <Card onClick={userOnClickHandler} isCurrentUser={user.username === currentUser.username}>
+      <img src={user.avatar_url} alt={user.username} />
+      <p>{user.username}</p>
+    </Card>
+  );
+};
+
+export default UserCard;
