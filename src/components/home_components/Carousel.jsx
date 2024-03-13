@@ -9,6 +9,7 @@ import {
 import "./carousel-styles.min.css";
 import { toRelativeTime } from "../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
+import Loading from "../Loading";
 
 const Carousel = () => {
   const [articles, setArticles] = useState([]);
@@ -20,12 +21,12 @@ const Carousel = () => {
         setArticles(response);
       })
       .then(() => {
-        setIsLoading(false);
+        setIsLoading(true);
       });
   }, []);
 
   if (isLoading) {
-    return <p>Loading, please wait...</p>;
+    return <Loading/>;
   } else {
     return (
       <CCarousel className="carousel" controls>
