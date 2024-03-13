@@ -6,14 +6,49 @@ import {
   CImage,
   CCarouselCaption,
 } from "@coreui/react";
+import styled from "styled-components";
 import "./carousel-styles.min.css";
+import Loading from "../Loading";
 import { toRelativeTime } from "../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
-import Loading from "../Loading";
+
+const CarouselContainer = styled.div`
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+`;
+
+const CarouselTitle = styled.div`
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 5px;
+  text-align: center;
+`;
+
+const StyledCarousel = styled(CCarousel)`
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .carousel-captions {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    color: white;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+`;
 
 const Carousel = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setIsLoading(true);
     getArticles()
@@ -26,12 +61,15 @@ const Carousel = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   } else {
     return (
-      <CCarousel className="carousel" controls>
-        {articles.slice(0, 5).map((article) => {
-          return (
+      <CarouselContainer>
+        <CarouselTitle>
+          <h3>Latest articles</h3>
+        </CarouselTitle>
+        <StyledCarousel controls>
+          {articles.slice(0, 8).map((article) => (
             <CCarouselItem key={article.article_id + article.author}>
               <CCarouselCaption className="carousel-captions">
                 <Link to={`/articles/${article.article_id}`}>
@@ -45,9 +83,9 @@ const Carousel = () => {
                 alt="slide 1"
               />
             </CCarouselItem>
-          );
-        })}
-      </CCarousel>
+          ))}
+        </StyledCarousel>
+      </CarouselContainer>
     );
   }
 };

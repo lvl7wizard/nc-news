@@ -9,14 +9,14 @@ h2 {
 .carousel {
     margin: auto;
     border-radius: 50px;
-    max-width: 1000px;
+    max-width: 700px;
 }
 
-.carousel-container {
+/* .carousel-container {
     width: 100%;
     max-width: 100%;
     height: auto;
-}
+} */
 
 .carousel-item img {
     width: 100%;
