@@ -11,6 +11,12 @@ const UserCardContainer = styled.div`
   justify-content: space-evenly;
 `;
 
+const MyAccountTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
 const MyAccount = () => {
   const { currentUser } = useContext(UserContext);
   const [users, setUsers] = useState([]);
@@ -28,16 +34,14 @@ const MyAccount = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   } else {
     return (
       <div>
-        <p className="logged-in-as">
-          You are currently logged in as <strong>{currentUser.username}</strong>
-          .
-        </p>
-        <p className="logged-in-as">Click below to change account</p>
-        <></>
+        <MyAccountTextContainer>
+          <p>You are currently logged in as{" "}<strong>{currentUser.username}</strong>.{" "}</p>
+          <p>Click below to change account</p>
+        </MyAccountTextContainer>
         <UserCardContainer>
           {users.map((user) => {
             return <UserCard key={user.username} user={user} />;
