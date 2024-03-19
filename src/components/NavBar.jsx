@@ -38,7 +38,6 @@ const NavButton = styled.button`
 `;
 
 const NavBar = () => {
-  const { currentUser } = useContext(UserContext);
   const location = useLocation();
 
   return (

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { fetchArticleById } from '../utils/apiRequest';
 import ArticleCardFull from './viewarticle_components/ArticleCardFull';
 import CommentSection from './viewarticle_components/CommentSection';
+import Loading from './Loading.jsx';
+import CenterContent from './CenterContent.jsx'
 
 const ViewArticle = () => {
     const [article, setArticle] = useState({});
@@ -21,7 +23,11 @@ const ViewArticle = () => {
     }, [article_id])
 
     if (isLoading) {
-        return <>Loading article...</>
+        return (
+        <CenterContent>
+        <Loading/>
+        </CenterContent>
+        )
     } else {
         return (
             <>

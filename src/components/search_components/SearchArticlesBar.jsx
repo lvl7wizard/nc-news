@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../../utils/apiRequest";
 import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+justify-items: center;
+margin-left: 5px;
+margin-right: 5px;
+padding-top: 10px;
+padding-bottom: 10px;
+background: rgba(0, 0, 0, 0.7);
+border-radius: 15px;
+color: white;
+`
 
 const SearchArticlesBar = (() => {
     const [isLoading, setIsLoading] = useState(false)
@@ -38,7 +55,7 @@ const SearchArticlesBar = (() => {
     }
 
     return (
-    <form onSubmit={onSubmitHandler} className="search-bar">
+    <StyledForm onSubmit={onSubmitHandler}>
         <div>
         <label htmlFor="search-topic">Topic: </label>
         <select onChange={topicOnChangeHandler} id="search-topic">
@@ -49,6 +66,8 @@ const SearchArticlesBar = (() => {
                 )
             })}
         </select>
+        </div>
+        <div>
         <label htmlFor="sort-search-by">Sort by: </label>
         <select onChange={sortByOnChangeHandler} id="sort-search-by">
             <option value="created_at">date</option>
@@ -62,9 +81,11 @@ const SearchArticlesBar = (() => {
             <option value="desc">descending</option>
             <option value="asc">ascending</option>
         </select>
+        </div>
+        <div>
         <button>Search</button>
         </div>
-    </form>
+    </StyledForm>
     )})
 
 export default SearchArticlesBar;
