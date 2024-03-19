@@ -71,12 +71,12 @@ const Carousel = () => {
         <StyledCarousel controls>
           {articles.slice(0, 8).map((article) => (
             <CCarouselItem key={article.article_id + article.author}>
-              <CCarouselCaption className="carousel-captions">
-                <Link to={`/articles/${article.article_id}`}>
+              <Link to={`/articles/${article.article_id}`}>
+                <CCarouselCaption className="carousel-captions">
                   <h3>{article.title}</h3>
                   <p>Posted {toRelativeTime(article.created_at)}</p>
-                </Link>
-              </CCarouselCaption>
+                </CCarouselCaption>
+              </Link>
               <CImage
                 className="d-block w-100"
                 src={article.article_img_url}
