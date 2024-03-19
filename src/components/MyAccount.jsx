@@ -42,7 +42,7 @@ const MyAccount = () => {
     )
   } else {
     return (
-      <div>
+      <>
         <MyAccountTextContainer>
           <p>You are currently logged in as{" "}<strong>{currentUser.username}</strong>.{" "}</p>
           <p>Click below to change account</p>
@@ -52,7 +52,7 @@ const MyAccount = () => {
             return <UserCard key={user.username} user={user} />;
           })}
         </UserCardContainer>
-      </div>
+      </>
     );
   }
 };
