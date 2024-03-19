@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../Loading";
-import SearchArticlesBar from "./SearchArticlesBar";
+import CenterContent from "../CenterContent";
+
 
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [error, setError] = useState("");
   const { topic_name } = useParams();
   const sortByQuery = searchParams.get("sort_by");
@@ -42,7 +43,9 @@ const SearchResults = () => {
 
   if (isLoading) {
     return (
-        <Loading />
+        <CenterContent>
+          <Loading />
+        </CenterContent>
     );
   } else if (error !== "") {
     console.log(error.response.data.msg);

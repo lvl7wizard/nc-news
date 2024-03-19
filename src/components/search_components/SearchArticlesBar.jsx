@@ -34,7 +34,7 @@ const SearchArticlesBar = (() => {
     })
 
     if (isLoading) {
-        return <p className="search-bar"></p>
+        return <></>
     }
 
     return (

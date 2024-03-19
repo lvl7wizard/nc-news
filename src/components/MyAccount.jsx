@@ -4,6 +4,7 @@ import { fetchUsers } from "../utils/apiRequest";
 import UserCard from "./myaccount_components/UserCard";
 import styled from "styled-components";
 import Loading from "./Loading";
+import CenterContent from "./CenterContent";
 
 const UserCardContainer = styled.div`
   display: flex;
@@ -34,7 +35,11 @@ const MyAccount = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+    <CenterContent>
+    <Loading/>
+    </CenterContent>
+    )
   } else {
     return (
       <div>

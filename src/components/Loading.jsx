@@ -3,11 +3,10 @@ import ReactLoading from 'react-loading';
 import styled from 'styled-components';
  
 const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const Loading = ({ type, color }) => (
