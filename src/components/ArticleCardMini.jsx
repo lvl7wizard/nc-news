@@ -14,7 +14,7 @@ const Card = styled.div`
   padding: 20px;
 
   img {
-    width: 250px;
+    width: 280px;
   }
 `;
 
