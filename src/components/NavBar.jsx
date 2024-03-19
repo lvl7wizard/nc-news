@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Nav = styled.nav`
   background-color: black;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
   position: fixed;
