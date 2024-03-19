@@ -5,7 +5,14 @@ import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../Loading";
 import CenterContent from "../CenterContent";
+import styled from "styled-components";
 
+const Results = styled.main`
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  align-items: center;
+`
 
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -58,8 +65,8 @@ const SearchResults = () => {
   } else {
     return (
       <>
-        <h3>Showing {searchResults.length} results</h3>
-        <main className="results-display">
+        <h3 align="center">{searchResults.length} articles found for your search</h3>
+        <Results>
           {searchResults.map((article) => {
             return (
               <div key={article.author + article.article_id}>
@@ -67,7 +74,7 @@ const SearchResults = () => {
               </div>
             );
           })}
-        </main>
+        </Results>
       </>
     );
   }
