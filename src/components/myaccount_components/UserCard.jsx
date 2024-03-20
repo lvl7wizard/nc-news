@@ -9,7 +9,7 @@ const Card = styled.button`
   border: solid black;
   border-radius: 25px;
   box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.226);
-  background-color: ${props => props.isCurrentUser ? 'lightblue' : 'rgb(255, 255, 255, 0.65)'};
+  background-color: rgb(255, 255, 255, 0.65);
 
   img {
     width: 100px;
@@ -26,7 +26,7 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <Card onClick={userOnClickHandler} isCurrentUser={user.username === currentUser.username}>
+    <Card onClick={userOnClickHandler} style={{ backgroundColor: user.username === currentUser.username ? 'lightblue' : null }}>
       <img src={user.avatar_url} alt={user.username} />
       <p>{user.username}</p>
     </Card>

@@ -25,19 +25,11 @@ const NavButton = styled.button`
     outline: solid white;
     border-radius: 25px;
   }
-
-  ${(props) => {
-    if (props.active === true) {
-      return `
-        background-color: white;
-        color: black;
-        border-radius: 25px;
-      `;
-    }
-  }}
 `;
 
+
 const NavBar = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const location = useLocation();
 
   return (
@@ -47,7 +39,7 @@ const NavBar = () => {
           onClick={() => {
             window.location.href = "/";
           }}
-          active={location.pathname === "/"}
+          style={location.pathname === "/" ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
         >
           Home
         </NavButton>
@@ -56,7 +48,7 @@ const NavBar = () => {
             window.location.href =
               "/articles/topics/all?sort_by=created_at&order=desc";
           }}
-          active={location.pathname.startsWith("/articles")}
+          style={location.pathname.startsWith("/articles") ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
         >
           Search
         </NavButton>
@@ -64,11 +56,12 @@ const NavBar = () => {
           onClick={() => {
             window.location.href = "/myaccount";
           }}
-          active={location.pathname === "/myaccount"}
+          style={location.pathname === "/myaccount" ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
         >
           My Account
         </NavButton>
       </Nav>
+      {console.log(currentUser)}
     </>
   );
 };
