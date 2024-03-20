@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import MyAccount from "./components/MyAccount";
 import NotFound from "./components/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
+import { UserProvider } from "./contexts/User";
 
 function App() {
   return (
