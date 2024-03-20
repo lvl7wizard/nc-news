@@ -5,9 +5,9 @@ import App from "./App.jsx";
 import { UserProvider } from "./contexts/User.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <UserProvider>
   <BrowserRouter>
-    <UserProvider>
       <App />
-    </UserProvider>
   </BrowserRouter>
+  </UserProvider>
 );

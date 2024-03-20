@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/User";
 import styled from "styled-components";
 
@@ -15,7 +15,8 @@ const Nav = styled.nav`
 
 const NavButton = styled.button`
   color: white;
-  background-color: transparent;
+  background-color: black;
+  border-radius: 25px;
   border: none;
   margin-right: 10px;
   padding: 10px;
@@ -27,38 +28,61 @@ const NavButton = styled.button`
   }
 `;
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
 
 const NavBar = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const location = useLocation();
 
   return (
     <>
       <Nav>
         <NavButton
-          onClick={() => {
-            window.location.href = "/";
-          }}
-          style={location.pathname === "/" ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
+          style={
+            location.pathname === "/"
+              ? {
+                  backgroundColor: "white",
+                  color: "black",
+                  padding: "10px",
+                  borderRadius: "25px",
+                }
+              : null
+          }
         >
-          Home
+          <StyledLink to="/">Home</StyledLink>
         </NavButton>
         <NavButton
-          onClick={() => {
-            window.location.href =
-              "/articles/topics/all?sort_by=created_at&order=desc";
-          }}
-          style={location.pathname.startsWith("/articles") ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
+          style={
+            location.pathname.startsWith("/articles")
+              ? {
+                  backgroundColor: "white",
+                  color: "black",
+                  padding: "10px",
+                  borderRadius: "25px",
+                }
+              : null
+          }
         >
-          Search
+          <StyledLink to="/articles/topics/all?sort_by=created_at&order=desc">
+            Search
+          </StyledLink>
         </NavButton>
         <NavButton
-          onClick={() => {
-            window.location.href = "/myaccount";
-          }}
-          style={location.pathname === "/myaccount" ? { backgroundColor: "white", color: "black", borderRadius: "25px" } : null}
+          style={
+            location.pathname === "/myaccount"
+              ? {
+                  backgroundColor: "white",
+                  color: "black",
+                  padding: "10px",
+                  borderRadius: "25px",
+                }
+              : null
+          }
         >
-          My Account
+          <StyledLink to="/myaccount">My Account</StyledLink>
         </NavButton>
       </Nav>
       {console.log(currentUser)}
