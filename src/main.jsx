@@ -6,8 +6,8 @@ import { UserProvider } from "./contexts/User.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserProvider>
-  <BrowserRouter>
+    <BrowserRouter>
       <App />
-  </BrowserRouter>
+    </BrowserRouter>
   </UserProvider>
 );
