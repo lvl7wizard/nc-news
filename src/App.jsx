@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Search from "./components/Search";
 import ViewArticle from "./components/ViewArticle";
 import NavBar from "./components/NavBar";
@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import MyAccount from "./components/MyAccount";
 import NotFound from "./components/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
-import { UserProvider } from "./contexts/User";
 
 function App() {
   return (
