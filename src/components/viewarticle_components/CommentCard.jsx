@@ -6,17 +6,24 @@ import { UserContext } from "../../contexts/User";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+  color: white;
   padding: 10px;
-  margin: 10px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
-  color: white;
+  margin: 10px;
 
   img {
-    width: 50px;
-    max-height: 50px;
+    border: solid black;
+    border-radius: 50%;
+    width: 60px;
+    max-height: 70px;
     height: auto;
+    background: white;
+    margin-right: 10px;
   }
 `;
 
@@ -59,17 +66,16 @@ const CommentCard = ({ setTriggerFetch, comment, comments, setComments }) => {
       <StyledDiv>
         <div>
           <img src={userAvatar} />
+          </div>
+          <div>
           <strong>{comment.author}</strong>{" "}
           <em>{toRelativeTime(comment.created_at)}</em>
-        </div>
-        <div>
+ 
           <div>{comment.body}</div>
-        </div>
-        <div>
-          Votes = {comment.votes} <br />
+          Votes: {comment.votes} <br />
         </div>
         {comment.author === currentUser.username ? (
-          <button onClick={deleteOnClickHandler}>Delete comment</button>
+          <button onClick={deleteOnClickHandler}>Delete my comment</button>
         ) : (
           <></>
         )}
