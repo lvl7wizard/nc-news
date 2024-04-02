@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import { fetchArticleComments } from "../../utils/apiRequest";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
+import styled from "styled-components";
+
+const CommentsTitle = styled.div`
+text-align:center;
+`
 
 const CommentSection = ({ article_id }) => {
   const [comments, setComments] = useState([]);
@@ -36,24 +41,25 @@ const CommentSection = ({ article_id }) => {
   };
 
   return (
-    <>
-      <h3>Leave a comment</h3>
-      <CommentForm article_id={article_id} setTriggerFetch={setTriggerFetch} />
+    <> 
+      <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} />
+      <CommentsTitle>
       <h3>Comments ({isLoading ? "..." : comments.length})</h3>
       <button onClick={commentsOnClickHandler}>{showComments}</button>
+      </CommentsTitle>
       {showComments === "Hide Comments"
         ? comments.map((comment) => {
-            return (
-              <CommentCard
-                key={comment.author + comment.comment_id}
-                setTriggerFetch={setTriggerFetch}
-                comment={comment}
-                setComments={setComments}
-                comments={comments}
-              />
+          return (
+            <CommentCard
+            key={comment.author + comment.comment_id}
+            setTriggerFetch={setTriggerFetch}
+            comment={comment}
+            setComments={setComments}
+            comments={comments}
+            />
             );
           })
-        : null}
+          : null}
     </>
   );
 };
