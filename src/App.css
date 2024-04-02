@@ -2,29 +2,9 @@
     text-decoration: none;
 }
 
-.full-article {
-    display: block;
-    margin: auto;
-    width: 90%;
-    text-align: center;
-}
-
-.full-article img {
-    max-width: 800px;
-    width: 100%;
-    height: auto;
-}
-
-.full-article button {
-    background-color:lightslategrey;
-}
-
-.full-article .votes {
-    border-top: black solid;
-    border-bottom: black solid;
-    padding-bottom: 20px;
-    border-width: thin;
-}
+.bolded {
+    font-weight: bold;
+  }
 
 .error-text {
     color: red;
@@ -34,7 +14,7 @@
     color: green;
 }
 
-textarea {
+/* textarea {
     width: 50%;
     height: 150px;
     box-sizing: border-box;
@@ -43,4 +23,4 @@ textarea {
     background-color: #f8f8f8;
     resize: none;
     margin: 10px;
-  }
+  } */
