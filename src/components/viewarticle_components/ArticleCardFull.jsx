@@ -40,15 +40,12 @@ const ArticleBody = styled.div`
 `;
 
 const VotingContainer = styled.div`
-  margin-top: 15px;
-  border-width: thin;
+  margin: 15px;
   text-align: center;
 `;
 
 const VotingButton = styled.button`
-  margin: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 15px;
 `;
 
 // This component currently uses local storage to check whether a user has already voted for an article
