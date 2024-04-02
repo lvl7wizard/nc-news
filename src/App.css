@@ -11,16 +11,5 @@
 }
 
 .success-text {
-    color: green;
+    color: greenyellow;
 }
-
-/* textarea {
-    width: 50%;
-    height: 150px;
-    box-sizing: border-box;
-    border: 2px solid #626262;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    resize: none;
-    margin: 10px;
-  } */

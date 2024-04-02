@@ -24,6 +24,10 @@ const ArticleInfoContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: auto;
+
+  p {
+    margin: 10px;
+  }
 `;
 
 const ArticleImage = styled.img`
@@ -36,16 +40,16 @@ const ArticleBody = styled.div`
 `;
 
 const VotingContainer = styled.div`
-margin-top: 15px;
-border-width: thin;
-text-align: center;
-`
+  margin-top: 15px;
+  border-width: thin;
+  text-align: center;
+`;
 
 const VotingButton = styled.button`
-margin: 10px;
-margin-top: 0px;
-margin-bottom: 0px;
-`
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+`;
 
 // This component currently uses local storage to check whether a user has already voted for an article
 // as the backend does not currently support storing this data
@@ -76,67 +80,64 @@ const ArticleCardFull = ({ article }) => {
           currentUser.username,
           JSON.stringify(listOfArticleVotes)
         );
-
       }
     });
   };
 
   return (
     <>
-    <ArticleContainer>
-      <ArticleTitle>{article.title}</ArticleTitle>
-      <ArticleInfoContainer>
-        <p>
-          author: <span className="bolded">{article.author}</span>
-        </p>
-        <p>
-          topic: <span className="bolded">{article.topic}</span>
-        </p>
-        <p>
-          created:{" "}
-          <span className="bolded">
-            {toDaysMonthsYears(article.created_at)}
-          </span>
-        </p>
-        <p>
-          Votes: <span className="bolded">{currentVotes}</span>
-        </p>
-      </ArticleInfoContainer>
-      <ArticleImage src={article.article_img_url} />
-      <ArticleBody>
-        <p>{article.body}</p>
-      </ArticleBody>
-    </ArticleContainer>
-          <VotingContainer>
-          <p>Did you enjoy this article?</p>
-            <VotingButton
-              id="like"
-              onClick={likeOnClickHandler}
-              disabled={
-                listOfArticleVotes.includes(article.article_id) ? true : false
-              }
-              >
-              👍
-            </VotingButton>
-            <VotingButton
-              id="dislike"
-              onClick={likeOnClickHandler}
-              disabled={
-                listOfArticleVotes.includes(article.article_id) ? true : false
-              }
-              >
-              👎
-            </VotingButton>
-            {listOfArticleVotes.includes(article.article_id) ? (
-              <p>Thanks for voting!</p>
-              ) : (
-                null
-                )}
-                {errorMessage ? (
-                  <p className="error-text">Error: "{errorMessage}"</p>
-                ) : null}
-          </VotingContainer>
-                </>
+      <ArticleContainer>
+        <ArticleTitle>{article.title}</ArticleTitle>
+        <ArticleInfoContainer>
+          <p>
+            author: <span className="bolded">{article.author}</span>
+          </p>
+          <p>
+            topic: <span className="bolded">{article.topic}</span>
+          </p>
+          <p>
+            created:{" "}
+            <span className="bolded">
+              {toDaysMonthsYears(article.created_at)}
+            </span>
+          </p>
+          <p>
+            Votes: <span className="bolded">{currentVotes}</span>
+          </p>
+        </ArticleInfoContainer>
+        <ArticleImage src={article.article_img_url} />
+        <ArticleBody>
+          <p>{article.body}</p>
+        </ArticleBody>
+      </ArticleContainer>
+      <VotingContainer>
+        <p>Did you enjoy this article?</p>
+        <VotingButton
+          id="like"
+          onClick={likeOnClickHandler}
+          disabled={
+            listOfArticleVotes.includes(article.article_id) ? true : false
+          }
+        >
+          👍
+        </VotingButton>
+        <VotingButton
+          id="dislike"
+          onClick={likeOnClickHandler}
+          disabled={
+            listOfArticleVotes.includes(article.article_id) ? true : false
+          }
+        >
+          👎
+        </VotingButton>
+        {listOfArticleVotes.includes(article.article_id) ? (
+          <p>Thanks for voting!</p>
+        ) : null}
+        {errorMessage ? (
+          <p className="error-text">Error: "{errorMessage}"</p>
+        ) : null}
+      </VotingContainer>
+    </>
   );
 };
 
