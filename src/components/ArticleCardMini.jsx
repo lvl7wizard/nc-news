@@ -4,19 +4,20 @@ import styled from "styled-components";
 
 const Card = styled.div`
   text-align: center;
-  background-color: rgb(255, 255, 255, 0.65);
-  border: solid black;
-  border-radius: 25px;
-  box-shadow: 7px 7px 2px 1px rgba(0, 0, 0, 0.226);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.226);
   margin: 10px;
   width: 300px;
-  color: black;
+  color: white;
   padding: 20px;
 
   img {
     width: 280px;
   }
 `;
+
+
 
 const ArticleCardMini = ({ article }) => {
 
