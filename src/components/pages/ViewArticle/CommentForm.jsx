@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/User";
-import { postComment } from "../../utils/apiRequest";
-import NCNewsButton from "../buttons/NCNewsButton";
+import { UserContext } from "../../../contexts/User";
+import { postComment } from "../../../utils/apiRequest";
+import Button from "../../buttons/Button";
 import styled from "styled-components";
 
 const PostCommentContainer = styled.div`
@@ -76,7 +76,7 @@ const CommentForm = ({ article_id, setTriggerFetch, title }) => {
         value={commentText}
       ></StyledTextArea>
       <div>
-        <NCNewsButton disabled={isLoading}>Post Comment</NCNewsButton>
+        <Button disabled={isLoading}>Post Comment</Button>
       </div>
       <p className={feedbackStyle}>{feedback}</p>
     </form>

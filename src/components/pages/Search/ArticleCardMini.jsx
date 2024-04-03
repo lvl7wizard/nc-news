@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { toDaysMonthsYears } from "../utils/formatTimeStamp";
+import { toDaysMonthsYears } from "../../../utils/formatTimeStamp";
 import styled from "styled-components";
 
 const Card = styled.div`

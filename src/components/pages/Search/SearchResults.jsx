@@ -1,10 +1,10 @@
-import ArticleCardMini from "../ArticleCardMini";
-import { getArticles } from "../../utils/apiRequest";
+import ArticleCardMini from "./ArticleCardMini";
+import { getArticles } from "../../../utils/apiRequest";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import Loading from "../Loading";
-import CenterContent from "../CenterContent";
+import Loading from "../../loading/Loading";
+import CenterContent from "../../layout/CenterContent/CenterContent";
 import styled from "styled-components";
 
 const Results = styled.main`

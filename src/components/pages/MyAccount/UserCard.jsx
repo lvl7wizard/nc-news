@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../contexts/User";
+import { UserContext } from "../../../contexts/User";
 import styled from "styled-components";
 
 const Card = styled.button`

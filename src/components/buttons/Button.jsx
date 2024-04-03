@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NCNewsButton = styled.button`
+const Button = styled.button`
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 25px;
@@ -15,4 +15,4 @@ const NCNewsButton = styled.button`
   }
 `;
 
-export default NCNewsButton;
+export default Button;

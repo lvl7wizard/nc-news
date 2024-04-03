@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchArticleById } from '../utils/apiRequest';
-import ArticleCardFull from './viewarticle_components/ArticleCardFull';
-import CommentSection from './viewarticle_components/CommentSection';
-import Loading from './Loading.jsx';
-import CenterContent from './CenterContent.jsx'
+import { fetchArticleById } from '../../../utils/apiRequest.js';
+import ArticleCardFull from './ArticleCardFull.jsx';
+import CommentSection from './CommentSection.jsx';
+import Loading from '../../loading/Loading.jsx';
+import CenterContent from '../../layout/CenterContent/CenterContent.jsx'
 
 const ViewArticle = () => {
     const [article, setArticle] = useState({});

@@ -1,9 +1,9 @@
-import { toRelativeTime } from "../../utils/formatTimeStamp";
-import { deleteCommentById, fetchUserAvatar } from "../../utils/apiRequest";
+import { toRelativeTime } from "../../../utils/formatTimeStamp";
+import { deleteCommentById, fetchUserAvatar } from "../../../utils/apiRequest";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { UserContext } from "../../contexts/User";
-import NCNewsButton from "../buttons/NCNewsButton"
+import { UserContext } from "../../../contexts/User";
+import Button from "../../buttons/Button"
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -79,7 +79,7 @@ const CommentCard = ({ setTriggerFetch, comment, comments, setComments }) => {
           <div style={{display: "flex", justifyContent: "space-between"}}>
           Votes: {comment.votes}
         {comment.author === currentUser.username ? (
-          <NCNewsButton onClick={deleteOnClickHandler}>Delete my comment</NCNewsButton>
+          <Button onClick={deleteOnClickHandler}>Delete my comment</Button>
         ) : (
           <></>
         )}

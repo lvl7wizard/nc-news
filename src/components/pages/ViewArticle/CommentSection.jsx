@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { fetchArticleComments } from "../../utils/apiRequest";
+import { fetchArticleComments } from "../../../utils/apiRequest";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
-import NCNewsButton from "../buttons/NCNewsButton"
+import Button from "../../buttons/Button"
 import styled from "styled-components";
 
 const CommentsTitle = styled.div`
@@ -46,7 +46,7 @@ const CommentSection = ({ article_id }) => {
       <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} />
       <CommentsTitle>
       <h3>Comments ({isLoading ? "..." : comments.length})</h3>
-      <NCNewsButton onClick={commentsOnClickHandler}>{showComments}</NCNewsButton>
+      <Button onClick={commentsOnClickHandler}>{showComments}</Button>
       </CommentsTitle>
       {showComments === "Hide Comments"
         ? comments.map((comment) => {

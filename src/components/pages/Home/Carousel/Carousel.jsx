@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getArticles } from "../../utils/apiRequest";
+import { getArticles } from "../../../../utils/apiRequest";
 import {
   CCarousel,
   CCarouselItem,
@@ -8,8 +8,8 @@ import {
 } from "@coreui/react";
 import styled from "styled-components";
 import "./carousel-styles.min.css";
-import Loading from "../Loading";
-import { toRelativeTime } from "../../utils/formatTimeStamp";
+import Loading from "../../../loading/Loading"
+import { toRelativeTime } from "../../../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
 
 const CarouselContainer = styled.div`

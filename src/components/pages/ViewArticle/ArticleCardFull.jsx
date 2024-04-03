@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { toDaysMonthsYears } from "../../utils/formatTimeStamp";
-import { patchArticleLikes } from "../../utils/apiRequest";
+import { toDaysMonthsYears } from "../../../utils/formatTimeStamp";
+import { patchArticleLikes } from "../../../utils/apiRequest";
 import { useContext} from "react";
-import { UserContext } from "../../contexts/User";
-import NCNewsButton from "../buttons/NCNewsButton";
+import { UserContext } from "../../../contexts/User";
+import Button from "../../buttons/Button";
 import styled from "styled-components";
 
 const ArticleContainer = styled.div`
@@ -108,7 +108,7 @@ const ArticleCardFull = ({ article }) => {
       </ArticleContainer>
       <VotingContainer>
         <p>Did you enjoy this article?</p>
-        <NCNewsButton
+        <Button
           id="like"
           onClick={likeOnClickHandler}
           disabled={
@@ -116,8 +116,8 @@ const ArticleCardFull = ({ article }) => {
           }
         >
           👍 Yes
-        </NCNewsButton>
-        <NCNewsButton
+        </Button>
+        <Button
           id="dislike"
           onClick={likeOnClickHandler}
           disabled={
@@ -125,7 +125,7 @@ const ArticleCardFull = ({ article }) => {
           }
         >
           👎 No
-        </NCNewsButton>
+        </Button>
         {listOfArticleVotes.includes(article.article_id) || voted ? (
           <p>Thanks for voting!</p>
         ) : null}
