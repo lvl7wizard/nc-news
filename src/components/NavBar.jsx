@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/User";
+import NCNewsButton from "./buttons/NCNewsButton";
 import styled from "styled-components";
 
 const Nav = styled.nav`
@@ -11,21 +12,6 @@ const Nav = styled.nav`
   justify-content: space-evenly;
   position: fixed;
   top: 0px;
-`;
-
-const NavButton = styled.button`
-  color: white;
-  background-color: black;
-  border-radius: 25px;
-  border: none;
-  margin-right: 10px;
-  padding: 10px;
-  cursor: pointer;
-
-  &:hover {
-    outline: solid white;
-    border-radius: 25px;
-  }
 `;
 
 const StyledLink = styled(Link)`
@@ -40,7 +26,7 @@ const NavBar = () => {
   return (
     <>
       <Nav>
-        <NavButton
+        <NCNewsButton
           style={
             location.pathname === "/"
               ? {
@@ -53,8 +39,8 @@ const NavBar = () => {
           }
         >
           <StyledLink to="/">Home</StyledLink>
-        </NavButton>
-        <NavButton
+        </NCNewsButton>
+        <NCNewsButton
           style={
             location.pathname.startsWith("/articles")
               ? {
@@ -69,8 +55,8 @@ const NavBar = () => {
           <StyledLink to="/articles/topics/all?sort_by=created_at&order=desc">
             Search
           </StyledLink>
-        </NavButton>
-        <NavButton
+        </NCNewsButton>
+        <NCNewsButton
           style={
             location.pathname === "/myaccount"
               ? {
@@ -83,7 +69,7 @@ const NavBar = () => {
           }
         >
           <StyledLink to="/myaccount">My Account</StyledLink>
-        </NavButton>
+        </NCNewsButton>
       </Nav>
       {console.log(currentUser)}
     </>
