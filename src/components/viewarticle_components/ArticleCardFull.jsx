@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toDaysMonthsYears } from "../../utils/formatTimeStamp";
 import { patchArticleLikes } from "../../utils/apiRequest";
-import { useContext } from "react";
+import { useContext} from "react";
 import { UserContext } from "../../contexts/User";
 import NCNewsButton from "../buttons/NCNewsButton";
 import styled from "styled-components";
@@ -50,6 +50,7 @@ const VotingContainer = styled.div`
 
 const ArticleCardFull = ({ article }) => {
   const [currentVotes, setCurrentVotes] = useState(article.votes);
+  const [voted, setVoted] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const { currentUser } = useContext(UserContext);
 
@@ -69,6 +70,7 @@ const ArticleCardFull = ({ article }) => {
         setCurrentVotes((currentVotes) => currentVotes - increment);
       } else {
         setErrorMessage(null);
+        setVoted(true);
         listOfArticleVotes.push(article.article_id);
         localStorage.setItem(
           currentUser.username,
@@ -124,7 +126,7 @@ const ArticleCardFull = ({ article }) => {
         >
           👎 No
         </NCNewsButton>
-        {listOfArticleVotes.includes(article.article_id) ? (
+        {listOfArticleVotes.includes(article.article_id) || voted ? (
           <p>Thanks for voting!</p>
         ) : null}
         {errorMessage ? (
