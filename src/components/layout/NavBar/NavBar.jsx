@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { UserContext } from "../contexts/User";
-import NCNewsButton from "./buttons/NCNewsButton";
+import { UserContext } from "../../../contexts/User";
+import Button from "../../buttons/Button";
 import styled from "styled-components";
 
 const Nav = styled.nav`
@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <>
       <Nav>
-        <NCNewsButton
+        <Button
           style={
             location.pathname === "/"
               ? {
@@ -39,8 +39,8 @@ const NavBar = () => {
           }
         >
           <StyledLink to="/">Home</StyledLink>
-        </NCNewsButton>
-        <NCNewsButton
+        </Button>
+        <Button
           style={
             location.pathname.startsWith("/articles")
               ? {
@@ -55,8 +55,8 @@ const NavBar = () => {
           <StyledLink to="/articles/topics/all?sort_by=created_at&order=desc">
             Search
           </StyledLink>
-        </NCNewsButton>
-        <NCNewsButton
+        </Button>
+        <Button
           style={
             location.pathname === "/myaccount"
               ? {
@@ -69,7 +69,7 @@ const NavBar = () => {
           }
         >
           <StyledLink to="/myaccount">My Account</StyledLink>
-        </NCNewsButton>
+        </Button>
       </Nav>
       {console.log(currentUser)}
     </>

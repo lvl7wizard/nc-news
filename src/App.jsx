@@ -1,12 +1,12 @@
 import "./App.css";
 import { Routes, Route} from "react-router-dom";
-import Search from "./components/Search";
-import ViewArticle from "./components/ViewArticle";
-import NavBar from "./components/NavBar";
-import Home from "./components/Home";
-import Footer from "./components/Footer";
-import MyAccount from "./components/MyAccount";
-import NotFound from "./components/NotFound";
+import Search from "./components/pages/Search/Search"
+import ViewArticle from "./components/pages/ViewArticle/ViewArticle";
+import NavBar from "./components/layout/NavBar/NavBar";
+import Home from "./components/pages/Home/Home";
+import Footer from "./components/layout/Footer/Footer";
+import MyAccount from "./components/pages/MyAccount/MyAccount"
+import NotFound from "./components/pages/NotFound/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
 
 function App() {

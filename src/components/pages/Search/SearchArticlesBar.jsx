@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getTopics } from "../../utils/apiRequest";
+import { getTopics } from "../../../utils/apiRequest";
 import { useNavigate } from 'react-router-dom';
+import Button from '../../buttons/Button'
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -83,7 +84,7 @@ const SearchArticlesBar = (() => {
         </select>
         </div>
         <div>
-        <button>Search</button>
+        <Button>Search</Button>
         </div>
     </StyledForm>
     )})

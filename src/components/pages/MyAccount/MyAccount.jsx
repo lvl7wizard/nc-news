@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/User";
-import { fetchUsers } from "../utils/apiRequest";
-import UserCard from "./myaccount_components/UserCard";
+import { UserContext } from "../../../contexts/User";
+import { fetchUsers } from "../../../utils/apiRequest";
+import UserCard from "../../pages/MyAccount/UserCard"
 import styled from "styled-components";
-import Loading from "./Loading";
-import CenterContent from "./CenterContent";
+import Loading from "../../loading/Loading"
+import CenterContent from "../../layout/CenterContent/CenterContent"
 
 const UserCardContainer = styled.div`
   display: flex;
