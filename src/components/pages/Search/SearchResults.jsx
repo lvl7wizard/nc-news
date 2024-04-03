@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../loading/Loading";
-import CenterContent from "../../layout/CenterContent/CenterContent";
+import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
 import styled from "styled-components";
 
 const Results = styled.main`
@@ -50,9 +50,9 @@ const SearchResults = () => {
 
   if (isLoading) {
     return (
-        <CenterContent>
+        <AbsoluteCenterContent>
           <Loading />
-        </CenterContent>
+        </AbsoluteCenterContent>
     );
   } else if (error !== "") {
     console.log(error.response.data.msg);

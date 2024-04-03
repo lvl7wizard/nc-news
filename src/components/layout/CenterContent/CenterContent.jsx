@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 const CenterContent = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+display: flex;
+justify-content: center;
+height: calc(100vh - 180px);
+align-items: center;
 `;
 
 export default CenterContent;
