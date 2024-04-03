@@ -8,16 +8,13 @@ import {
 } from "@coreui/react";
 import styled from "styled-components";
 import "./carousel-styles.min.css";
-import Loading from "../../../loading/Loading"
+import Loading from "../../../loading/Loading";
 import { toRelativeTime } from "../../../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
 
 const CarouselContainer = styled.div`
   width: 100%;
   max-width: 700px;
-  margin: auto;
-  border-radius: 20px;
-  overflow: hidden;
 `;
 
 const CarouselTitle = styled.div`
