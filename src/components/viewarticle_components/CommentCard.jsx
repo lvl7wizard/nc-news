@@ -3,13 +3,12 @@ import { deleteCommentById, fetchUserAvatar } from "../../utils/apiRequest";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/User";
+import NCNewsButton from "../buttons/NCNewsButton"
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
-  margin: auto;
   color: white;
   padding: 10px;
   background: rgba(0, 0, 0, 0.7);
@@ -24,6 +23,13 @@ const StyledDiv = styled.div`
     height: auto;
     background: white;
     margin-right: 10px;
+  }
+
+  .comment-content {
+    flex-grow: 1;
+    min-width: 50%;
+    max-width: 90%;
+    word-wrap: break-word;
   }
 `;
 
@@ -67,18 +73,18 @@ const CommentCard = ({ setTriggerFetch, comment, comments, setComments }) => {
         <div>
           <img src={userAvatar} />
           </div>
-          <div>
-          <strong>{comment.author}</strong>{" "}
-          <em>{toRelativeTime(comment.created_at)}</em>
- 
-          <div>{comment.body}</div>
-          Votes: {comment.votes} <br />
-        </div>
+          <div className="comment-content">
+          <strong>{comment.author}</strong> <em>{toRelativeTime(comment.created_at)}</em>
+          <div style={{paddingTop:"10px", paddingBottom: "10px"}}>{comment.body}</div>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+          Votes: {comment.votes}
         {comment.author === currentUser.username ? (
-          <button onClick={deleteOnClickHandler}>Delete my comment</button>
+          <NCNewsButton onClick={deleteOnClickHandler}>Delete my comment</NCNewsButton>
         ) : (
           <></>
         )}
+          </div>
+        </div>
       </StyledDiv>
     );
   }

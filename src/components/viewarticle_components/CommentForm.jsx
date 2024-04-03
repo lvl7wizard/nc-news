@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/User";
 import { postComment } from "../../utils/apiRequest";
+import NCNewsButton from "../buttons/NCNewsButton";
 import styled from "styled-components";
 
 const PostCommentContainer = styled.div`
@@ -16,7 +17,7 @@ text-align: center;
 `
 
 const StyledTextArea = styled.textarea`
-width: 80%;
+width: 90%;
 height: 100px;
 box-sizing: border-box;
 border: 2px solid #626262;
@@ -24,6 +25,7 @@ border-radius: 4px;
 background-color: black;
 color: white;
 resize: none;
+margin: 10px;
 `
 
 const CommentForm = ({ article_id, setTriggerFetch, title }) => {
@@ -74,7 +76,7 @@ const CommentForm = ({ article_id, setTriggerFetch, title }) => {
         value={commentText}
       ></StyledTextArea>
       <div>
-        <button disabled={isLoading}>Post Comment</button>
+        <NCNewsButton disabled={isLoading}>Post Comment</NCNewsButton>
       </div>
       <p className={feedbackStyle}>{feedback}</p>
     </form>

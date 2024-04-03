@@ -3,6 +3,7 @@ import { toDaysMonthsYears } from "../../utils/formatTimeStamp";
 import { patchArticleLikes } from "../../utils/apiRequest";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/User";
+import NCNewsButton from "../buttons/NCNewsButton";
 import styled from "styled-components";
 
 const ArticleContainer = styled.div`
@@ -42,10 +43,6 @@ const ArticleBody = styled.div`
 const VotingContainer = styled.div`
   margin: 15px;
   text-align: center;
-`;
-
-const VotingButton = styled.button`
-  margin: 15px;
 `;
 
 // This component currently uses local storage to check whether a user has already voted for an article
@@ -109,24 +106,24 @@ const ArticleCardFull = ({ article }) => {
       </ArticleContainer>
       <VotingContainer>
         <p>Did you enjoy this article?</p>
-        <VotingButton
+        <NCNewsButton
           id="like"
           onClick={likeOnClickHandler}
           disabled={
             listOfArticleVotes.includes(article.article_id) ? true : false
           }
         >
-          👍
-        </VotingButton>
-        <VotingButton
+          👍 Yes
+        </NCNewsButton>
+        <NCNewsButton
           id="dislike"
           onClick={likeOnClickHandler}
           disabled={
             listOfArticleVotes.includes(article.article_id) ? true : false
           }
         >
-          👎
-        </VotingButton>
+          👎 No
+        </NCNewsButton>
         {listOfArticleVotes.includes(article.article_id) ? (
           <p>Thanks for voting!</p>
         ) : null}
