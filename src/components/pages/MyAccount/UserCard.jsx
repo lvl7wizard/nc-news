@@ -39,7 +39,7 @@ const UserCard = ({ user }) => {
       style={{
         backgroundColor:
           user.username === currentUser.username
-            ? "rgba(0, 200, 0, 0.5)"
+            ? "rgba(255, 255, 255, 0.6)"
             : null,
         color: user.username === currentUser.username ? "black" : null,
       }}
