@@ -11,6 +11,7 @@ import "./carousel-styles.min.css";
 import Loading from "../../../loading/Loading";
 import { toRelativeTime } from "../../../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
+import AbsoluteCenterContent from "../../../layout/CenterContent/AbsoluteCenterContent"
 
 const CarouselContainer = styled.section`
   width: 100%;
@@ -58,7 +59,11 @@ const Carousel = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return ( 
+    <AbsoluteCenterContent>
+      <Loading />;
+    </AbsoluteCenterContent>
+    )
   } else {
     return (
       <CarouselContainer>

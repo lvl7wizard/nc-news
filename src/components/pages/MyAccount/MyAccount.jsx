@@ -4,8 +4,7 @@ import { fetchUsers } from "../../../utils/apiRequest";
 import UserCard from "../../pages/MyAccount/UserCard"
 import styled from "styled-components";
 import Loading from "../../loading/Loading"
-import CenterContent from "../../layout/CenterContent/CenterContent"
-import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
+import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent"
 
 const UserCardContainer = styled.div`
   display: flex;

@@ -24,9 +24,9 @@ const ViewArticle = () => {
 
     if (isLoading) {
         return (
-        <CenterContent>
+        <AbsoluteCenterContent>
         <Loading/>
-        </CenterContent>
+        </AbsoluteCenterContent>
         )
     } else {
         return (
