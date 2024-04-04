@@ -47,7 +47,7 @@ const UserCard = ({ user }) => {
       <img src={user.avatar_url} alt={user.username} />
       <p>{user.username}</p>
     </Card>
-  );
+  ); 
 };
 
 export default UserCard;
