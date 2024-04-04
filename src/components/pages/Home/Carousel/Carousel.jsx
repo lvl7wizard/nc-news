@@ -12,12 +12,12 @@ import Loading from "../../../loading/Loading";
 import { toRelativeTime } from "../../../../utils/formatTimeStamp";
 import { Link } from "react-router-dom";
 
-const CarouselContainer = styled.div`
+const CarouselContainer = styled.section`
   width: 100%;
   max-width: 700px;
 `;
 
-const CarouselTitle = styled.div`
+const CarouselTitle = styled.header`
   background: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 5px;
@@ -63,7 +63,7 @@ const Carousel = () => {
     return (
       <CarouselContainer>
         <CarouselTitle>
-          <h3>Latest articles</h3>
+          <h1>Welcome to NC News!</h1>
         </CarouselTitle>
         <StyledCarousel controls>
           {articles.slice(0, 8).map((article) => (
