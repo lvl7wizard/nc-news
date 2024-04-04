@@ -4,7 +4,7 @@ import { fetchArticleById } from '../../../utils/apiRequest.js';
 import ArticleCardFull from './ArticleCardFull.jsx';
 import CommentSection from './CommentSection.jsx';
 import Loading from '../../loading/Loading.jsx';
-import CenterContent from '../../layout/CenterContent/CenterContent.jsx'
+import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent.jsx"
 
 const ViewArticle = () => {
     const [article, setArticle] = useState({});
