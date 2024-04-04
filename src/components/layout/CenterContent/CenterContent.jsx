@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CenterContent = styled.div`
 display: flex;
 justify-content: center;
-height: calc(100vh - 180px);
+height: calc(100vh - 65px);
 align-items: center;
 `;
 
