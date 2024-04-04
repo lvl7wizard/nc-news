@@ -4,7 +4,6 @@ import Search from "./components/pages/Search/Search"
 import ViewArticle from "./components/pages/ViewArticle/ViewArticle";
 import NavBar from "./components/layout/NavBar/NavBar";
 import Home from "./components/pages/Home/Home";
-import Footer from "./components/layout/Footer/Footer";
 import MyAccount from "./components/pages/MyAccount/MyAccount"
 import NotFound from "./components/pages/NotFound/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
@@ -21,7 +20,6 @@ function App() {
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      {/* <Footer /> */}
     </>
   );
 }
