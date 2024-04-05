@@ -25,6 +25,12 @@ const CarouselTitle = styled.header`
   text-align: center;
 `;
 
+const CarouselBottom = styled.div`
+  background: rgba(0, 0, 0, 0.9);
+  padding: 37px;
+  margin-top:-4px;
+`;
+
 const StyledCarousel = styled(CCarousel)`
   .carousel-item img {
     width: 100%;
@@ -87,6 +93,7 @@ const Carousel = () => {
             </CCarouselItem>
           ))}
         </StyledCarousel>
+        <CarouselBottom/>
       </CarouselContainer>
     );
   }
