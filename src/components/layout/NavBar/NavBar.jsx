@@ -5,6 +5,7 @@ import Button from "../../buttons/Button";
 import styled from "styled-components";
 import closeIcon from "../../../assets/NavBar/closeIcon.png";
 import menuIcon from "../../../assets/NavBar/menuIcon.png";
+import planetIcon from "../../../assets/NavBar/planet-earth.png";
 
 const Nav = styled.nav`
   display: flex;
@@ -21,6 +22,13 @@ const Nav = styled.nav`
 const Title = styled.h1`
   text-decoration: none;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -68,6 +76,11 @@ const HamburgerMenuIcons = styled.div`
   display: none;
   margin-right: 10px;
 
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
   @media (max-width: 480px) {
     display: flex;
   }
@@ -86,7 +99,11 @@ const NavBar = () => {
     <>
       <Nav>
         <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>
-          <Title>NC News</Title>
+          <Title>
+            {" "}
+            <img src={planetIcon} />
+            NC News
+          </Title>
         </StyledLink>
         <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
           <Button
