@@ -17,6 +17,7 @@ const Nav = styled.nav`
   align-items: center;
   padding: 10px 0px 10px;
   background-color: black;
+  z-index: 1;
 `;
 
 const Title = styled.h1`

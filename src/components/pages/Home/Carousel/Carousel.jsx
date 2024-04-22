@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 const CarouselContainer = styled.section`
   width: 100%;
   max-width: 700px;
-  z-index: -1;
+  z-index: 0;
 `;
 
 const CarouselTitle = styled.h2`
