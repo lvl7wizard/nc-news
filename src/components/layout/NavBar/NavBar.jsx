@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/User";
 import Button from "../../buttons/Button";
 import styled from "styled-components";
+import closeIcon from "../../../assets/NavBar/closeIcon.png";
+import menuIcon from "../../../assets/NavBar/menuIcon.png"
+
 
 const Nav = styled.nav`
 display: flex;
@@ -18,7 +21,7 @@ background-color: black;
 `;
 
 const Title = styled.h1`
-// margin-left: 20px;
+text-decoration: none;
 `
 
 const StyledLink = styled(Link)`
@@ -27,7 +30,6 @@ const StyledLink = styled(Link)`
 `;
 
 const ButtonContainer = styled.div`
-// margin-right: 20px;
 display: flex;
 
 @media (max-width: 480px) {
@@ -67,7 +69,9 @@ const NavBar = () => {
   return (
     <>
       <Nav>
+        <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>
         <Title>NC News</Title>
+        </StyledLink>
         <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
         <Button
           style={
@@ -81,7 +85,7 @@ const NavBar = () => {
               : null
           }
         >
-          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>Home</StyledLink>
         </Button>
         <Button
           style={
@@ -95,7 +99,7 @@ const NavBar = () => {
               : null
           }
         >
-          <StyledLink to="/articles/topics/all?sort_by=created_at&order=desc">
+          <StyledLink to="/articles/topics/all?sort_by=created_at&order=desc" onClick={menuOpen ? toggleMenu : ""}>
             Search
           </StyledLink>
         </Button>
@@ -111,11 +115,11 @@ const NavBar = () => {
               : null
           }
         >
-          <StyledLink to="/myaccount">My Account</StyledLink>
+          <StyledLink to="/myaccount" onClick={menuOpen ? toggleMenu : ""}>My Account</StyledLink>
         </Button>
         </ButtonContainer>
         <HamburgerMenuContainer>
-          <img src={menuOpen ? "assets/NavBar/closeIcon.png" : "assets/NavBar/menuIcon.png"} alt="menu button" onClick={toggleMenu}/>
+          <img src={menuOpen ? closeIcon : menuIcon} alt="menu button" onClick={toggleMenu}/>
         </HamburgerMenuContainer>
       </Nav>
     </>
