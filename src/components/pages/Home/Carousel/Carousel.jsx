@@ -19,6 +19,7 @@ const CarouselContainer = styled.section`
 `;
 
 const CarouselTitle = styled.h2`
+  font-family: "Courier New", Courier, monospace;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   margin: 0px;
@@ -26,12 +27,18 @@ const CarouselTitle = styled.h2`
   text-align: center;
   border-radius: 25px 25px 0 0;
   font-weight: 300;
+  font-size: 30px;
+  text-shadow: 1px 1px black;
 `;
 
 const CarouselBottom = styled.div`
   background: rgba(0, 0, 0, 0.8);
-  height: 37.5px;
+  height: 44px;
   border-radius: 0 0 25px 25px;
+
+  @media (max-width: 280px) {
+    height: 78px;
+  }
 `;
 
 const StyledCarousel = styled(CCarousel)`
@@ -50,8 +57,16 @@ const StyledCarousel = styled(CCarousel)`
       color: white;
       text-decoration: none;
     }
+    h3 {
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 300;
+      text-shadow: 1px 1px black;
+    }
     p {
       font-size: 15px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 600;
+      text-shadow: 1px 1px black;
     }
   }
 `;
@@ -72,14 +87,11 @@ const Carousel = () => {
   }, []);
 
   if (isLoading) {
-    return ( 
-      <Loading />
-    )
+    return <Loading />;
   } else {
     return (
       <CarouselContainer>
-
-        <CarouselTitle>Latest Articles ⬇</CarouselTitle>
+        <CarouselTitle>Latest Articles</CarouselTitle>
         <StyledCarousel controls>
           {articles.slice(0, 8).map((article) => (
             <CCarouselItem key={article.article_id + article.author}>
@@ -97,7 +109,7 @@ const Carousel = () => {
             </CCarouselItem>
           ))}
         </StyledCarousel>
-        <CarouselBottom/>
+        <CarouselBottom />
       </CarouselContainer>
     );
   }
