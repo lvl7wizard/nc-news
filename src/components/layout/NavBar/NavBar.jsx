@@ -30,6 +30,7 @@ const StyledLink = styled(Link)`
 
 const ButtonContainer = styled.div`
   display: flex;
+  z-index: -1;
 
   @media (max-width: 480px) {
     display: none;
@@ -45,18 +46,18 @@ const ButtonContainer = styled.div`
       gap: 20px;
       border-radius: 0px 0px 0px 10px;
 
-      animation-name: dropdown;
-      animation-duration: 1s; /* Adjust duration as desired */
-      animation-fill-mode: forwards; /* Maintain final state */
+      animation-name: slidein;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
 
-      @keyframes dropdown {
+      @keyframes slidein {
         from {
-          opacity: 0;
-          transform: translateY(-100%); /* Start off-screen */
+          opacity: 0.5;
+          transform: translateX(100%);
         }
         to {
           opacity: 1;
-          transform: translateY(0); /* Animate to visible position */
+          transform: translateY(0);
         }
       }
     }
