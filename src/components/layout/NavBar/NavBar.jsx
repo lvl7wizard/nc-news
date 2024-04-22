@@ -13,6 +13,7 @@ const Nav = styled.nav`
   justify-content: space-evenly;
   position: fixed;
   top: 0px;
+  z-index: 1;
 `;
 
 const StyledLink = styled(Link)`

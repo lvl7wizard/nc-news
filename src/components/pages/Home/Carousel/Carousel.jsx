@@ -19,16 +19,18 @@ const CarouselContainer = styled.section`
 `;
 
 const CarouselTitle = styled.header`
-  background: rgba(0, 0, 0, 0.9);
+  background: black;
   color: white;
   padding: 5px;
   text-align: center;
+  border-radius: 30px 30px 0 0;
 `;
 
 const CarouselBottom = styled.div`
-  background: rgba(0, 0, 0, 0.9);
+  background: black;
   padding: 37px;
   margin-top:-4px;
+  border-radius: 0 0 30px 30px;
 `;
 
 const StyledCarousel = styled(CCarousel)`
@@ -66,9 +68,7 @@ const Carousel = () => {
 
   if (isLoading) {
     return ( 
-    <AbsoluteCenterContent>
-      <Loading />;
-    </AbsoluteCenterContent>
+      <Loading />
     )
   } else {
     return (

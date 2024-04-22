@@ -1,11 +1,11 @@
-import CenterContent from "../../layout/CenterContent/CenterContent";
 import Carousel from "../../pages/Home/Carousel/Carousel"
+import styles from "./Home.module.css"
 
 const Home = () => {
     return (
-    <CenterContent>
+    <div className={styles.container}>
         <Carousel/>
-    </CenterContent>
+    </div>
     )
 }
 
