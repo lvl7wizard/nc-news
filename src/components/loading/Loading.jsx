@@ -14,6 +14,6 @@ const Loading = ({ type, color }) => (
     <ReactLoading type={'spin'} color={'white'} height={70} width={70} />
     <p>Loading, please wait...</p>
   </LoadingContainer>
-);
+)
  
 export default Loading;
