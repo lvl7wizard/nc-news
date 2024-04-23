@@ -19,7 +19,7 @@ const CarouselContainer = styled.section`
 `;
 
 const CarouselTitle = styled.h2`
-  font-family: "Courier New", Courier, monospace;
+  font-family: Helvetica, Sans-Serif;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   margin: 0px;
@@ -27,18 +27,14 @@ const CarouselTitle = styled.h2`
   text-align: center;
   border-radius: 25px 25px 0 0;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 20px;
   text-shadow: 1px 1px black;
 `;
 
 const CarouselBottom = styled.div`
   background: rgba(0, 0, 0, 0.8);
-  height: 44px;
+  height: 33px;
   border-radius: 0 0 25px 25px;
-
-  @media (max-width: 280px) {
-    height: 78px;
-  }
 `;
 
 const StyledCarousel = styled(CCarousel)`
@@ -58,13 +54,14 @@ const StyledCarousel = styled(CCarousel)`
       text-decoration: none;
     }
     h3 {
-      font-family: "Courier New", Courier, monospace;
+      font-family: Helvetica, Sans-Serif;
       font-weight: 300;
+      font-size: 15px;
       text-shadow: 1px 1px black;
     }
     p {
       font-size: 15px;
-      font-family: "Courier New", Courier, monospace;
+      font-family: Helvetica, Sans-Serif;
       font-weight: 600;
       text-shadow: 1px 1px black;
     }
