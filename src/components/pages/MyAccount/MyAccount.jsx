@@ -9,7 +9,9 @@ import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterCont
 const UserCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
 `;
 
 const MyAccountTextContainer = styled.div`

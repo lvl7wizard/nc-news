@@ -3,26 +3,28 @@ import { UserContext } from "../../../contexts/User";
 import styled from "styled-components";
 
 const Card = styled.button`
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  border: solid black;
-  border-radius: 25px;
-  box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.226);
-  background-color: rgb(0, 0, 0, 0.65);
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  background-color: rgb(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
+  padding-top: 10px;
+  padding-bottom: 20px;
+  gap: 13px;
 
   img {
     border: solid black;
     border-radius: 15px;
     width: 100px;
-    min-height: 100px;
-    max-height: 100px;
-    height: auto;
+    height: 100px;
     background: white;
+  }
+
+  p {
+    margin: 0px;
   }
 `;
 
@@ -43,11 +45,11 @@ const UserCard = ({ user }) => {
             : null,
         color: user.username === currentUser.username ? "black" : null,
       }}
-    > 
-      <img src={user.avatar_url} alt={user.username} />
+    >
       <p>{user.username}</p>
+      <img src={user.avatar_url} alt={user.username} />
     </Card>
-  ); 
+  );
 };
 
 export default UserCard;
