@@ -61,7 +61,7 @@ const SearchArticlesBar = () => {
       <div>
       <select onChange={sortByOnChangeHandler} id="sort-search-by">
         <option value="created_at">date</option>
-        <option value="comment_count">comment count</option>
+        <option value="comment_count">comments</option>
         <option value="votes">votes</option>
       </select>
      </div>
