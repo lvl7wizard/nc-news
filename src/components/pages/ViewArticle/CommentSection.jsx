@@ -58,6 +58,7 @@ const CommentSection = ({ article_id }) => {
   };
 
   return (
+    <>
     <CommentSectionContainer> 
       <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} />
       <StyledDiv>
@@ -66,6 +67,7 @@ const CommentSection = ({ article_id }) => {
       </CommentsTitle>
       <Button onClick={commentsOnClickHandler}>{showComments}</Button>
       </StyledDiv>
+      </CommentSectionContainer>
       {showComments === "Hide Comments"
         ? comments.map((comment) => {
           return (
@@ -76,10 +78,10 @@ const CommentSection = ({ article_id }) => {
             setComments={setComments}
             comments={comments}
             />
-            );
-          })
-          : null}
-    </CommentSectionContainer>
+          );
+        })
+        : null}
+        </>
   );
 };
 
