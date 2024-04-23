@@ -5,6 +5,11 @@ import CommentForm from "./CommentForm";
 import Button from "../../buttons/Button"
 import styled from "styled-components";
 
+const CommentSectionContainer = styled.div`
+max-width: 630px;
+margin: auto;
+`
+
 const CommentsTitle = styled.div`
 text-align:center;
 margin-bottom: 20px;
@@ -43,7 +48,7 @@ const CommentSection = ({ article_id }) => {
   };
 
   return (
-    <> 
+    <CommentSectionContainer> 
       <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} />
       <CommentsTitle>
       <h3>Comments ({isLoading ? "..." : comments.length})</h3>
@@ -62,7 +67,7 @@ const CommentSection = ({ article_id }) => {
             );
           })
           : null}
-    </>
+    </CommentSectionContainer>
   );
 };
 
