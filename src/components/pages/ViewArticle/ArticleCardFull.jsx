@@ -9,15 +9,15 @@ import styled from "styled-components";
 const ArticleContainer = styled.div`
   display: block;
   width: 90%;
+  max-width: 630px;
   margin: auto;
-  color: white;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 15px;
+  color: black;
 `;
 
 const ArticleTitle = styled.h2`
   text-align: center;
+  font-family: Helvetica, Sans-Serif;
 `;
 
 const ArticleInfoContainer = styled.div`
@@ -27,22 +27,32 @@ const ArticleInfoContainer = styled.div`
   margin: auto;
 
   p {
-    margin: 10px;
+    margin: 5px;
+    font-family: Helvetica, Sans-Serif;
   }
 `;
 
 const ArticleImage = styled.img`
   width: 100%;
   height: auto;
+  border-radius: 15px;
 `;
 
 const ArticleBody = styled.div`
   text-align: center;
+  font-family: Helvetica, Sans-Serif;
 `;
 
 const VotingContainer = styled.div`
-  margin: 15px;
   text-align: center;
+  color: black;
+  border-top: solid;
+  padding-bottom: 16px;
+  border-bottom: solid;
+  width: 90%;
+  max-width: 630px;
+  margin: auto;
+  font-family: Helvetica, Sans-Serif;
 `;
 
 // This component currently uses local storage to check whether a user has already voted for an article
@@ -84,6 +94,7 @@ const ArticleCardFull = ({ article }) => {
     <>
       <ArticleContainer>
         <ArticleTitle>{article.title}</ArticleTitle>
+        <ArticleImage src={article.article_img_url} />
         <ArticleInfoContainer>
           <p>
             author: <span className="bolded">{article.author}</span>
@@ -101,7 +112,6 @@ const ArticleCardFull = ({ article }) => {
             Votes: <span className="bolded">{currentVotes}</span>
           </p>
         </ArticleInfoContainer>
-        <ArticleImage src={article.article_img_url} />
         <ArticleBody>
           <p>{article.body}</p>
         </ArticleBody>

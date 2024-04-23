@@ -6,27 +6,24 @@ import Button from "../../buttons/Button";
 import styled from "styled-components";
 
 const PostCommentContainer = styled.div`
-display: block;
-padding: 10px;
-width: 90%;
-margin: auto;
-background: rgba(0, 0, 0, 0.7);
-border-radius: 15px;
-color: white;
-text-align: center;
-`
+  display: block;
+  padding: 10px;
+  border-radius: 15px;
+  color: black;
+  text-align: center;
+`;
 
 const StyledTextArea = styled.textarea`
-width: 90%;
-height: 100px;
-box-sizing: border-box;
-border: 2px solid #626262;
-border-radius: 4px;
-background-color: black;
-color: white;
-resize: none;
-margin: 10px;
-`
+  height: 100px;
+  width: 90%;
+  box-sizing: border-box;
+  border: 2px solid #626262;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  resize: none;
+  margin: 10px;
+`;
 
 const CommentForm = ({ article_id, setTriggerFetch, title }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -48,17 +45,19 @@ const CommentForm = ({ article_id, setTriggerFetch, title }) => {
         username: currentUser.username,
         body: commentText,
       };
-      postComment(article_id, requestBody).then((response) => {
-        setIsLoading(false);
+      postComment(article_id, requestBody)
+        .then((response) => {
+          setIsLoading(false);
           setFeedback("Post successful");
           setFeedbackStyle("success-text");
           setCommentText("");
           setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-      }).catch((error) => {
-        setIsLoading(false);
-        setFeedback(`Error: ${error.message}`);
-        setFeedbackStyle("error-text");
-      });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setFeedback(`Error: ${error.message}`);
+          setFeedbackStyle("error-text");
+        });
     }
   };
 
@@ -68,18 +67,18 @@ const CommentForm = ({ article_id, setTriggerFetch, title }) => {
 
   return (
     <PostCommentContainer>
-    <h3>{title}</h3>
-    <form onSubmit={onSubmitHandler}>
-      <StyledTextArea
-        disabled={isLoading}
-        onChange={onChangeHandler}
-        value={commentText}
-      ></StyledTextArea>
-      <div>
+      <h3>{title}</h3>
+      <form onSubmit={onSubmitHandler}>
+        <StyledTextArea
+          disabled={isLoading}
+          onChange={onChangeHandler}
+          value={commentText}
+        ></StyledTextArea>
+        <div>
         <Button disabled={isLoading}>Post Comment</Button>
-      </div>
-      <p className={feedbackStyle}>{feedback}</p>
-    </form>
+        </div>
+        <p className={feedbackStyle}>{feedback}</p>
+      </form>
     </PostCommentContainer>
   );
 };

@@ -5,9 +5,24 @@ import CommentForm from "./CommentForm";
 import Button from "../../buttons/Button"
 import styled from "styled-components";
 
+const CommentSectionContainer = styled.div`
+max-width: 630px;
+margin: auto;
+text-align: center;
+margin-bottom: 20px;
+`
+
+const StyledDiv = styled.div`
+border-top: solid black;
+width: 90%;
+margin: auto;
+margin-bottom: 18.72px;
+padding: 10px;
+`
+
 const CommentsTitle = styled.div`
 text-align:center;
-margin-bottom: 20px;
+color: black;
 `
 
 const CommentSection = ({ article_id }) => {
@@ -43,12 +58,14 @@ const CommentSection = ({ article_id }) => {
   };
 
   return (
-    <> 
+    <CommentSectionContainer> 
       <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} />
+      <StyledDiv>
       <CommentsTitle>
       <h3>Comments ({isLoading ? "..." : comments.length})</h3>
-      <Button onClick={commentsOnClickHandler}>{showComments}</Button>
       </CommentsTitle>
+      <Button onClick={commentsOnClickHandler}>{showComments}</Button>
+      </StyledDiv>
       {showComments === "Hide Comments"
         ? comments.map((comment) => {
           return (
@@ -62,7 +79,7 @@ const CommentSection = ({ article_id }) => {
             );
           })
           : null}
-    </>
+    </CommentSectionContainer>
   );
 };
 
