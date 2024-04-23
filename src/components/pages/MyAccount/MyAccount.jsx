@@ -16,6 +16,7 @@ const MyAccountTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  color: black;
 `;
 
 const MyAccount = () => {
