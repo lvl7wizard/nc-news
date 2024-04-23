@@ -14,6 +14,12 @@ const Results = styled.main`
   align-items: center;
 `
 
+const ResultsText = styled.h3`
+text-align: center;
+color: black;
+margin: 0px;
+`
+
 const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -65,7 +71,7 @@ const SearchResults = () => {
   } else {
     return (
       <>
-        <h3 align="center">{searchResults.length} articles found for your search</h3>
+        <ResultsText>{searchResults.length} articles found for your search</ResultsText>
         <Results>
           {searchResults.map((article) => {
             return (
