@@ -103,7 +103,7 @@ const NavBar = () => {
           <Title>
             {" "}
             <img src={planetIcon} />
-            NC News
+            NC NEWS
           </Title>
         </StyledLink>
         <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
