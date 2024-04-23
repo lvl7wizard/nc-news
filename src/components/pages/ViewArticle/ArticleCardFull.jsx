@@ -47,6 +47,7 @@ const VotingContainer = styled.div`
   text-align: center;
   color: black;
   border-top: solid;
+  padding-bottom: 16px;
   border-bottom: solid;
   width: 90%;
   max-width: 630px;
