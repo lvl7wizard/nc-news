@@ -12,7 +12,7 @@ const LoadingContainer = styled.div`
 const Loading = ({ type, color }) => (
   <LoadingContainer>
     <ReactLoading type={'spin'} color={'white'} height={70} width={70} />
-    <p>Loading, please wait...</p>
+    <p>Connecting to server...</p>
   </LoadingContainer>
 )
  
