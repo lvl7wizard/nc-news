@@ -8,6 +8,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: calc(100vh - 55px);
+min-height: 520px;
 `
 
 const Post = () => {
@@ -102,10 +103,10 @@ const Post = () => {
       </label>
       <label>
         Body:
-        <input
-          type="text"
+        <textarea
           name="body"
           value={formData.body}
+          rows="5"
           onChange={handleChange}
           />
         {formData.errors.body && (
