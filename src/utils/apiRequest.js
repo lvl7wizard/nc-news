@@ -18,36 +18,36 @@ export const getTopics = () => {
 
 export const fetchArticleById = (article_id) => {
     return newsApi.get(`/articles/${article_id}`)
-    .then((repsonse) => {
-        return repsonse.data.article
+    .then((response) => {
+        return response.data.article
     })
 }
 
 export const fetchArticleComments = (article_id) => {
     return newsApi.get(`/articles/${article_id}/comments`)
-    .then((repsonse) => {
-        return repsonse.data.comments;
+    .then((response) => {
+        return response.data.comments;
     })
 }
 
 export const fetchUserAvatar = (username) => {
     return newsApi.get(`/users/${username}`)
-    .then((repsonse) => {
-        return repsonse.data.user.avatar_url;
+    .then((response) => {
+        return response.data.user.avatar_url;
     })
 }
 
 export const fetchUsers = () => {
     return newsApi.get(`/users`)
-        .then((repsonse) => {
-            return repsonse.data.users
+        .then((response) => {
+            return response.data.users
         })
 }
 
 export const patchArticleLikes = (article_id, amount) => {
     return newsApi.patch(`/articles/${article_id}`, {"inc_votes": amount})
-    .then((repsonse) => {
-        return repsonse
+    .then((response) => {
+        return response
     })
     .catch((error) => {
         return error
