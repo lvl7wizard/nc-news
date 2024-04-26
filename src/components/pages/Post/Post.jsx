@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../../contexts/User";
 import StyledForm from "../../forms/StyledForm";
 import styled from "styled-components";
+import isValidUrl from "../../../utils/isValidUrl";
+import hasImgExtension from "../../../utils/hasImgExtension";
 
 const FormContainer = styled.div`
 display: flex;
@@ -61,9 +63,18 @@ const Post = () => {
       errors.body = "Body is required";
     }
 
-    // Check if image URL is empty
+    // Check if string is empty
     if (!formData.image) {
       errors.image = "Image URL is required";
+      // check if string is a valid URL
+    } else {
+      if (!isValidUrl(formData.image)) {
+        errors.image = "Image URL is not valid"
+      } else {
+        if (!hasImgExtension(formData.image)) {
+          errors.image = "Image must be a JPG or PNG"
+        }
+      }
     }
 
     // Update formData state to include errors
