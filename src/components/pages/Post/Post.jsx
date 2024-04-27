@@ -54,13 +54,13 @@ const Post = () => {
     const errors = {};
 
     // Check if title is empty
-    if (!formData.title) {
-      errors.title = "Username is required";
+    if (formData.title.length < 5) {
+      errors.title = "Title must be at least 5 characters";
     }
 
     // Check if body is empty
-    if (!formData.body) {
-      errors.body = "Body is required";
+    if (formData.body.length < 20) {
+      errors.body = "Body must be at least 20 characters";
     }
 
     // Check if string is empty
