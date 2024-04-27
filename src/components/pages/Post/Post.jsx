@@ -4,6 +4,8 @@ import StyledForm from "../../forms/StyledForm";
 import styled from "styled-components";
 import isValidUrl from "../../../utils/isValidUrl";
 import hasImgExtension from "../../../utils/hasImgExtension";
+import { postArticle } from "../../../utils/apiRequest";
+import { Navigate } from "react-router-dom";
 
 const FormContainer = styled.div`
 display: flex;
@@ -18,8 +20,8 @@ const Post = () => {
   const [formData, setFormData] = useState({
     author: currentUser.username,
     title: "",
-    topic: "",
     body: "",
+    topic: "",
     image: "",
     errors: {},
     loading: false,
@@ -30,20 +32,30 @@ const Post = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      // Form is valid
       // set loading state
-
       setFormData((prevState) => ({ ...prevState, loading: true }));
-      console.log(formData, "loading started");
-      // simulating loading time
-      setTimeout(() => {
+      // create request body
+      const requestBody = {
+        author: formData.author,
+        title: formData.title,
+        body: formData.body,
+        topic: formData.topic,
+        article_img_url: formData.image
+      }
+      // send post request
+      try {
+        const response = await postArticle(requestBody);
+        // redirect on successful response
+        return <Navigate to={`/article/${response.data.id}`} replace />;
+      } catch (error) {
+        console.error(error);
+        // handle errors appropriately, update state if needed
+      } finally {
         setFormData({ ...formData, loading: false });
-        setFormData((prevState) => ({ ...prevState, errors: {} }));
-        console.log(formData, "loading finished");
-      }, 2000);
+      }
     } else {
       // Form is invalid, do nothing
       console.log(formData, "form was not validated");
