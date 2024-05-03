@@ -5,7 +5,6 @@ import styled from "styled-components";
 import isValidUrl from "../../../utils/isValidUrl";
 import hasImgExtension from "../../../utils/hasImgExtension";
 import { postArticle } from "../../../utils/apiRequest";
-import { Navigate } from "react-router-dom";
 
 const FormContainer = styled.div`
 display: flex;
@@ -15,13 +14,42 @@ height: calc(100vh - 55px);
 min-height: 520px;
 `
 
+const PostForm = styled.form`
+background: rgba(0, 0, 0, 0.8);
+display: flex;
+flex-direction: column;
+text-align: center;
+gap: 20px;
+padding: 20px;
+border-radius: 25px;
+select {
+  border: none;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+}
+
+input {
+background-color: black;
+color: white;
+border: none;
+}
+
+textarea {
+background-color: black;
+color: white;
+}
+
+color: white;
+`
+
 const Post = () => {
   const { currentUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     author: currentUser.username,
     title: "",
     body: "",
-    topic: "",
+    topic: "coding",
     image: "",
     errors: {},
     loading: false,
@@ -47,9 +75,10 @@ const Post = () => {
       }
       // send post request
       try {
+        console.log(requestBody)
         const response = await postArticle(requestBody);
         // redirect on successful response
-        return <Navigate to={`/article/${response.data.id}`} replace />;
+        navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
         console.error(error);
         // handle errors appropriately, update state if needed
@@ -98,34 +127,38 @@ const Post = () => {
 
   return (
     <FormContainer>
-    <StyledForm
-      style={{ display: "flex", flexDirection: "column", height: "auto" }}
+    <PostForm
       onSubmit={handleSubmit}
       >
         <h2>Post An Article</h2>
       <p>Author: {currentUser.username}</p>
       <label>
         Title:
+        <div>
         <input
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
           />
+        </div>
         {formData.errors.title && (
             <p style={{ color: "red" }}>{formData.errors.title}</p>
         )}
       </label>
       <label>
         Topic:
+        <div>
         <select onChange={handleChange} name="topic">
           <option>coding</option>
           <option>football</option>
           <option>cooking</option>
         </select>
+        </div>
       </label>
       <label>
         Body:
+        <div>
         <textarea
           name="body"
           value={formData.body}
@@ -135,9 +168,11 @@ const Post = () => {
         {formData.errors.body && (
             <p style={{ color: "red" }}>{formData.errors.body}</p>
         )}
+        </div>
       </label>
       <label>
         Image URL:
+        <div>
         <input
           type="text"
           name="image"
@@ -147,12 +182,13 @@ const Post = () => {
         {formData.errors.image && (
             <p style={{ color: "red" }}>{formData.errors.image}</p>
         )}
+        </div>
       </label>
       <input type="submit" value="Submit" />
       {formData.loading && (
           <p style={{ marginTop: 5, fontWeight: "bold" }}>Loading...</p>
         )}
-    </StyledForm>
+    </PostForm>
         </FormContainer>
   );
 };

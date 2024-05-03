@@ -19,6 +19,7 @@ const Card = styled.div`
 
   img {
     width: 270px;
+    height: 200px;
     border-radius: 15px;
   }
 `;
