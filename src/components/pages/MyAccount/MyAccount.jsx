@@ -48,33 +48,9 @@ const MyAccount = () => {
     fetchUsers()
       .then((response) => {
         setUsers(response);
+        setIsLoading(false);
       })
-      .then(() => {
-        getArticles().then((response) => {
-          const articles = response.filter(
-            (article) => article.author === currentUser.username
-          );
-          setUsersArticles(articles);
-          setIsLoading(false);
-        });
-      });
-  }, [currentUser]);
-
-  const deleteOnClickHandler = (article_id) => {
-    const isConfirmed = window.confirm(
-      "Are you sure you want to delete your article?"
-    );
-    if (isConfirmed) {
-      console.log(article_id);
-      const updatedArticles = usersArticles.filter((item) => {
-        return item.article_id !== article_id;
-      });
-      setUsersArticles(updatedArticles);
-      deleteArticleById(article_id).catch((error) => {
-        window.alert(`Delete request was unsuccessful.`)
-      })
-    }
-  };
+  }, []);
 
   if (isLoading) {
     return (
@@ -98,23 +74,6 @@ const MyAccount = () => {
             return <UserCard key={user.username} user={user} />;
           })}
         </UserCardContainer>
-        <MyAccountTextContainer>
-          <h2>Manage My Articles</h2>
-        </MyAccountTextContainer>
-        <MyArticles>
-          {usersArticles.map((article) => {
-            return (
-              <CardContainer key={article.article_id}>
-                <ArticleCardMini article={article} />
-                <Button
-                  onClick={() => deleteOnClickHandler(article.article_id)}
-                >
-                  Delete article ↑
-                </Button>
-              </CardContainer>
-            );
-          })}
-        </MyArticles>
       </>
     );
   }

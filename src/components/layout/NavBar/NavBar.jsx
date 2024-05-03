@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/User";
 import Button from "../../buttons/Button";
 import styled from "styled-components";
-import closeIcon from "../../../assets/NavBar/closeIcon.png";
-import menuIcon from "../../../assets/NavBar/menuIcon.png";
+import closeIcon from "../../../assets/NavBar/menu_close_icon.png";
+import menuIcon from "../../../assets/NavBar/menu_icon.png";
 import planetIcon from "../../../assets/NavBar/planet-earth.png";
 
 const Nav = styled.nav`
@@ -41,7 +41,7 @@ const ButtonContainer = styled.div`
   display: flex;
   z-index: -1;
 
-  @media (max-width: 500px) {
+  @media (max-width: 550px) {
     display: none;
 
     &&.menuOpen {
@@ -82,7 +82,7 @@ const HamburgerMenuIcons = styled.div`
     height: 30px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 550px) {
     display: flex;
   }
 `;
@@ -107,22 +107,6 @@ const NavBar = () => {
           </Title>
         </StyledLink>
         <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
-          <Button
-            style={
-              location.pathname === "/"
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>
-              Home
-            </StyledLink>
-          </Button>
           <Button
             style={
               location.pathname.startsWith("/articles")
@@ -156,6 +140,22 @@ const NavBar = () => {
           >
             <StyledLink to="/post" onClick={menuOpen ? toggleMenu : ""}>
               Post
+            </StyledLink>
+          </Button>
+          <Button
+            style={
+              location.pathname === "/myarticles"
+                ? {
+                    backgroundColor: "white",
+                    color: "black",
+                    padding: "10px",
+                    borderRadius: "25px",
+                  }
+                : null
+            }
+          >
+            <StyledLink to="/myarticles" onClick={menuOpen ? toggleMenu : ""}>
+              My Articles
             </StyledLink>
           </Button>
           <Button

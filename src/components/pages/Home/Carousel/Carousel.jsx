@@ -39,7 +39,6 @@ const CarouselBottom = styled.div`
 
 const StyledCarousel = styled(CCarousel)`
   .carousel-item img {
-    width: 100vw;
     height: 80vw;
     max-height: 600px;
     max-width: auto;
