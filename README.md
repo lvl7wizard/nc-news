@@ -11,6 +11,7 @@ The project provides the frontend which allows users to interact with a backend 
 - Log in as different users
 - Adjust the votes for articles
 - Post comments and delete comments on articles
+- Post articles
 
 ## Minimum Requirements
 
