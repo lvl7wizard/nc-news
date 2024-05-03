@@ -30,14 +30,20 @@ select {
 }
 
 input {
-background-color: black;
+background-color: rgba(0, 0, 0, 0.7);
 color: white;
-border: none;
+border: solid grey 1px;
+width: 40vw;
+max-width: 288px;
+align-self: center;
 }
 
 textarea {
 background-color: black;
 color: white;
+width: 70vw;
+// max-width: 500px;
+height: 20vh;
 }
 
 color: white;
@@ -162,7 +168,6 @@ const Post = () => {
         <textarea
           name="body"
           value={formData.body}
-          rows="5"
           onChange={handleChange}
           />
         {formData.errors.body && (
