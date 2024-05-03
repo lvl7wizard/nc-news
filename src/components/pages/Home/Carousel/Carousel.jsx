@@ -40,7 +40,9 @@ const CarouselBottom = styled.div`
 const StyledCarousel = styled(CCarousel)`
   .carousel-item img {
     width: 100vw;
-    height: 60vh;
+    height: 80vw;
+    max-height: 600px;
+    max-width: auto;
     margin-bottom: -4px; /* accounts for a bug in the component that leaves a gap */
   }
 
