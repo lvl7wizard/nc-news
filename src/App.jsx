@@ -7,6 +7,7 @@ import Home from "./components/pages/Home/Home";
 import MyAccount from "./components/pages/MyAccount/MyAccount"
 import NotFound from "./components/pages/NotFound/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
+import Post from "./components/pages/Post/Post";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/articles/topics/:topic_name" element={<Search />} />
           <Route path="/articles/:article_id" element={<ViewArticle />} />
+          <Route path="/post" element={<Post/>}></Route>
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

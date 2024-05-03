@@ -41,7 +41,7 @@ const ButtonContainer = styled.div`
   display: flex;
   z-index: -1;
 
-  @media (max-width: 480px) {
+  @media (max-width: 500px) {
     display: none;
 
     &&.menuOpen {
@@ -140,6 +140,22 @@ const NavBar = () => {
               onClick={menuOpen ? toggleMenu : ""}
             >
               Search
+            </StyledLink>
+          </Button>
+          <Button
+            style={
+              location.pathname === "/post"
+                ? {
+                    backgroundColor: "white",
+                    color: "black",
+                    padding: "10px",
+                    borderRadius: "25px",
+                  }
+                : null
+            }
+          >
+            <StyledLink to="/post" onClick={menuOpen ? toggleMenu : ""}>
+              Post
             </StyledLink>
           </Button>
           <Button

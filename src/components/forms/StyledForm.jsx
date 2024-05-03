@@ -4,9 +4,6 @@ const StyledForm = styled.form`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-// margin-left: 10vw;
-// margin-right: 10vw;
-// margin-top: 10px;
 margin-bottom: 10px;
 padding: 10px;
 gap: 10px;
@@ -19,6 +16,17 @@ select {
     background-color: black;
     color: white;
   }
+
+input {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+textarea {
+  background-color: black;
+  color: white;
+}
 
 color: white;
 `

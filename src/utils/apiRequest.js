@@ -67,3 +67,10 @@ export const deleteCommentById = (comment_id) => {
         return repsonse
     })
 }
+
+export const postArticle = (requestBody) => {
+    return newsApi.post(`/articles`, requestBody)
+    .then((response) => {
+        return response
+    })
+}
