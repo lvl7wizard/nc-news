@@ -9,7 +9,7 @@ const PostCommentContainer = styled.div`
   display: block;
   padding: 10px;
   border-radius: 15px;
-  color: black;
+  color: white;
   text-align: center;
 `;
 

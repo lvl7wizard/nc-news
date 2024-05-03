@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../contexts/User";
-import { deleteArticleById, fetchUsers, getArticles } from "../../../utils/apiRequest";
+import { fetchUsers } from "../../../utils/apiRequest";
 import UserCard from "../../pages/MyAccount/UserCard";
 import styled from "styled-components";
 import Loading from "../../loading/Loading";
 import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
-import ArticleCardMini from "../Search/ArticleCardMini";
-import Button from "../../buttons/Button";
 
 const UserCardContainer = styled.div`
   display: flex;
@@ -20,28 +18,14 @@ const MyAccountTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: black;
+  color: white;
 `;
 
-const MyArticles = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const MyAccount = () => {
   const { currentUser } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [usersArticles, setUsersArticles] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);

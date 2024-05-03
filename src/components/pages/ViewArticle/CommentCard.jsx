@@ -10,7 +10,9 @@ const StyledDiv = styled.div`
   display: flex;
   color: white;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
 
   img {

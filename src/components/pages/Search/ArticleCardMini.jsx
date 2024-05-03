@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 const Card = styled.div`
   text-align: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
+  // box-shadow: 3px 3px 2px 1px rgba(255, 255, 255, 0.2);
   margin: 10px;
   width: 285px;
   height: 425px;

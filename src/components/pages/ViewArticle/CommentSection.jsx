@@ -22,7 +22,7 @@ padding: 10px;
 
 const CommentsTitle = styled.div`
 text-align:center;
-color: black;
+color: white;
 `
 
 const CommentSection = ({ article_id }) => {

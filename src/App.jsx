@@ -5,16 +5,18 @@ import ViewArticle from "./components/pages/ViewArticle/ViewArticle";
 import NavBar from "./components/layout/NavBar/NavBar";
 import Home from "./components/pages/Home/Home";
 import MyAccount from "./components/pages/MyAccount/MyAccount"
-import MyArticles from "./components/pages/Home/MyArticles/MyArticles";
+import MyArticles from "./components/pages/MyArticles/MyArticles";
 import NotFound from "./components/pages/NotFound/NotFound";
 import GlobalStyle from "./components/GlobalStyle";
 import Post from "./components/pages/Post/Post";
+import Background from "./components/layout/Background/Background";
 
 function App() {
   return (
     <>
       <GlobalStyle/>
       <NavBar />
+      <Background/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles/topics/:topic_name" element={<Search />} />

@@ -1,25 +1,25 @@
 import styled from "styled-components";
-import { UserContext } from "../../../../contexts/User";
-import { getArticles } from "../../../../utils/apiRequest";
+import { UserContext } from "../../../contexts/User";
+import { getArticles } from "../../../utils/apiRequest";
 import { useContext, useState, useEffect } from "react";
-import ArticleCardMini from "../../Search/ArticleCardMini";
-import Button from "../../../buttons/Button";
-import Loading from "../../../loading/Loading";
-import { deleteArticleById } from "../../../../utils/apiRequest";
-import AbsoluteCenterContent from "../../../layout/CenterContent/AbsoluteCenterContent";
+import ArticleCardMini from "../Search/ArticleCardMini";
+import Button from "../../buttons/Button";
+import Loading from "../../loading/Loading";
+import { deleteArticleById } from "../../../utils/apiRequest";
+import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
 
 const MyArticlesTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: black;
+  color: white;
 `;
 const MyArticlesContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  // gap: 20px;
 `;
 
 const CardContainer = styled.div`
@@ -70,7 +70,7 @@ const MyArticles = () => {
       return (
         <>
         <MyArticlesTextContainer>
-          <h2>My Account</h2>
+          <h2>My Articles</h2>
           <p>
             You are currently logged in as{" "}
             <strong>{currentUser.username}</strong>.{" "}
@@ -82,7 +82,7 @@ const MyArticles = () => {
             return (
               <CardContainer key={article.article_id}>
                 <ArticleCardMini article={article} />
-                <Button onClick={() => deleteOnClickHandler(article.article_id)}>
+                <Button onClick={() => deleteOnClickHandler(article.article_id)} style={{background: "#B22222"}}>
                   Delete article ↑
                 </Button>
               </CardContainer>

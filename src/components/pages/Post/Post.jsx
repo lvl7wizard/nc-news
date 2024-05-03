@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../../contexts/User";
-import StyledForm from "../../forms/StyledForm";
 import styled from "styled-components";
 import isValidUrl from "../../../utils/isValidUrl";
 import hasImgExtension from "../../../utils/hasImgExtension";
@@ -10,12 +9,22 @@ const FormContainer = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-height: calc(100vh - 55px);
+height: calc(100vh - 80px);
 min-height: 520px;
+
+h2 {
+  padding:0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
 `
 
 const PostForm = styled.form`
-background: rgba(0, 0, 0, 0.8);
+background: rgba(255, 255, 255, 0.1);
 display: flex;
 flex-direction: column;
 text-align: center;
@@ -47,6 +56,25 @@ height: 20vh;
 }
 
 color: white;
+`
+
+const SubmitButton = styled.input`
+background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: opacity 0.2s ease;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 20px;
+  
+  &:hover {
+    outline: solid white;
+    border-radius: 25px;
+  }
 `
 
 const Post = () => {
@@ -140,27 +168,23 @@ const Post = () => {
       <p>Author: {currentUser.username}</p>
       <label>
         Title:
-        <div>
         <input
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
           />
-        </div>
         {formData.errors.title && (
             <p style={{ color: "red" }}>{formData.errors.title}</p>
         )}
       </label>
       <label>
         Topic:
-        <div>
         <select onChange={handleChange} name="topic">
           <option>coding</option>
           <option>football</option>
           <option>cooking</option>
         </select>
-        </div>
       </label>
       <label>
         Body:
@@ -177,7 +201,6 @@ const Post = () => {
       </label>
       <label>
         Image URL:
-        <div>
         <input
           type="text"
           name="image"
@@ -187,9 +210,8 @@ const Post = () => {
         {formData.errors.image && (
             <p style={{ color: "red" }}>{formData.errors.image}</p>
         )}
-        </div>
       </label>
-      <input type="submit" value="Submit" />
+      <SubmitButton type="submit" value="Submit" />
       {formData.loading && (
           <p style={{ marginTop: 5, fontWeight: "bold" }}>Loading...</p>
         )}
