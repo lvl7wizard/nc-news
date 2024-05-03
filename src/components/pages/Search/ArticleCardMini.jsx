@@ -9,6 +9,7 @@ const Card = styled.div`
   box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 10px;
   width: 285px;
+  height: 425px;
   color: white;
   padding: 5px;
   font-family: Helvetica, Sans-Serif;

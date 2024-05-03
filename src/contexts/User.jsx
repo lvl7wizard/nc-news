@@ -4,7 +4,6 @@ import { useState } from 'react';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  console.log("userprovider")
   const [currentUser, setCurrentUser] = useState({
     "username": "jessjelly",
     "name": "Jess Jelly",

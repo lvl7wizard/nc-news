@@ -74,3 +74,9 @@ export const postArticle = (requestBody) => {
         return response
     })
 }
+
+export const deleteArticleById = (article_id) => {
+    return newsApi.delete(`/articles/${article_id}`).then((response) => {
+        return response
+    });
+}
