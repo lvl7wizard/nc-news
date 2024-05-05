@@ -1,13 +1,7 @@
-import Carousel from "../../pages/Home/Carousel/Carousel";
 import styles from "./Home.module.css";
 import { UserContext } from "../../../contexts/User";
 import { useContext } from "react";
 import { useState } from "react";
-import rocket from "../../../assets/Home/rocket.png";
-import rocket2 from "../../../assets/Home/rocket2.png";
-import astronaut from "../../../assets/Home/astronaut.png";
-import astronaut2 from "../../../assets/Home/astronaut2.png";
-import astronaut3 from "../../../assets/Home/astronaut3.jpg";
 import spaceship1 from "../../../assets/Home/spaceship1.png";
 
 const Home = () => {
@@ -27,7 +21,9 @@ const Home = () => {
               posting.
             </p>
           </div>
-          <img className={styles.rocket} src={spaceship1}></img>
+          <div className={styles.spaceShipContainer}>
+          <img className={styles.spaceShip} src={spaceship1}></img>
+          </div>
         </div>
       )}
       {/* <Carousel isLoading={isLoading} setIsLoading={setIsLoading} /> */}

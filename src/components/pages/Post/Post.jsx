@@ -4,6 +4,7 @@ import styled from "styled-components";
 import isValidUrl from "../../../utils/isValidUrl";
 import hasImgExtension from "../../../utils/hasImgExtension";
 import { postArticle } from "../../../utils/apiRequest";
+import { useNavigate } from "react-router-dom";
 
 const FormContainer = styled.div`
 display: flex;
@@ -51,7 +52,7 @@ textarea {
 background-color: black;
 color: white;
 width: 70vw;
-// max-width: 500px;
+max-width: 500px;
 height: 20vh;
 }
 
@@ -79,6 +80,7 @@ background-color: rgba(255, 255, 255, 0.2);
 
 const Post = () => {
   const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     author: currentUser.username,
     title: "",
@@ -109,10 +111,10 @@ const Post = () => {
       }
       // send post request
       try {
-        console.log(requestBody)
         const response = await postArticle(requestBody);
         // redirect on successful response
-        navigation.navigate(`/articles/${response.data.article.article_id}`)
+        navigate(`/articles/${response.data.article.article_id}`);
+        // navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
         console.error(error);
         // handle errors appropriately, update state if needed

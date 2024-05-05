@@ -1,8 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 160px);
-  margin-bottom: 80px;
+  height: calc(100vh - 60px);
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -18,15 +17,11 @@
   flex-direction: column;
     gap: 5vh;
   h2 {
-    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     margin: 0px;
+    margin-top: 10vh;
     font-size: 80px;
     font-weight: 900;
   color: white;
-    /* -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    /* -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white; */
   }
   p {
     margin: 0px;
@@ -37,14 +32,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* margin-left: 10vw;
-  margin-right: 10vw; */
 }
 
-.rocket {
+.spaceShipContainer {
+  position: relative;
+  overflow: hidden;
+  margin-left: -10vw;
+  margin-right: -10vw;
+  height: 10vh;
+}
+.spaceShip {
     height: 10vh;
     width: 10vh;
-    animation-duration: 8s;
+    animation-duration: 7s;
     animation-name: slidein;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
@@ -54,13 +54,14 @@
   
   @keyframes slidein {
     from {
-      transform: translateX(0vw);
+      transform: translateX(-70vw);
     }
   
     to {
       transform: translateX(70vw);
     }
   }
+
 
 @media (max-width: 640px) {
   .content {

@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/User";
-// import Button from "../../buttons/Button";
 import styled from "styled-components";
 import closeIcon from "../../../assets/NavBar/menu_close_icon.png";
 import menuIcon from "../../../assets/NavBar/menu_icon.png";
@@ -12,25 +11,25 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 60px;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px;
-  background-color:  black;
+  background-color:  #696969;
   box-shadow: 0px 0px 15px black inset;
   z-index: 1;
 `;
 
 const Title = styled.h1`
   text-decoration: none;
-  font-size: 35px;
+  font-size: 25px;
   margin: 0px;
   margin-left: 10px;
   display: flex;
   align-items: center;
   img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
   }
   text-shadow: 2px 2px black;
@@ -54,11 +53,12 @@ const ButtonContainer = styled.div`
       right: 0px;
       display: flex;
       flex-direction: column;
-      top: 55px;
-      background: rgba(0, 0, 0, 1);
+      top: 60px;
+      background: #696969;
       padding: 20px;
       gap: 20px;
       border-radius: 0px 0px 0px 10px;
+      box-shadow: 0px 0px 15px black inset;
 
       animation-name: slidein;
       animation-duration: 1s;
@@ -83,8 +83,8 @@ const HamburgerMenuIcons = styled.div`
   margin-right: 10px;
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 
   @media (max-width: 640px) {
