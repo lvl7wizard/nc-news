@@ -12,7 +12,9 @@ const ArticleContainer = styled.div`
   max-width: 630px;
   margin: auto;
   padding: 10px;
-  color: black;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
 `;
 
 const ArticleTitle = styled.h2`
@@ -25,7 +27,6 @@ const ArticleInfoContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: auto;
-
   p {
     margin: 5px;
     font-family: Helvetica, Sans-Serif;
@@ -45,10 +46,10 @@ const ArticleBody = styled.div`
 
 const VotingContainer = styled.div`
   text-align: center;
-  color: black;
-  border-top: solid;
+  color: white;
+  // border-top: solid;
   padding-bottom: 16px;
-  border-bottom: solid;
+  // border-bottom: solid;
   width: 90%;
   max-width: 630px;
   margin: auto;

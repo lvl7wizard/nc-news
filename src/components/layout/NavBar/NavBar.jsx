@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../../contexts/User";
-import Button from "../../buttons/Button";
 import styled from "styled-components";
-import closeIcon from "../../../assets/NavBar/closeIcon.png";
-import menuIcon from "../../../assets/NavBar/menuIcon.png";
+import closeIcon from "../../../assets/NavBar/menu_close_icon.png";
+import menuIcon from "../../../assets/NavBar/menu_icon.png";
 import planetIcon from "../../../assets/NavBar/planet-earth.png";
 
 const Nav = styled.nav`
@@ -12,36 +11,41 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 35px;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px;
-  background-color: black;
+  background-color:  #696969;
+  box-shadow: 0px 0px 15px black inset;
   z-index: 1;
 `;
 
 const Title = styled.h1`
   text-decoration: none;
+  font-size: 25px;
+  margin: 0px;
   margin-left: 10px;
   display: flex;
   align-items: center;
   img {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
   }
+  text-shadow: 2px 2px black;
 `;
 
 const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  font-size: 15px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   z-index: -1;
 
-  @media (max-width: 500px) {
+  @media (max-width: 640px) {
     display: none;
 
     &&.menuOpen {
@@ -49,11 +53,12 @@ const ButtonContainer = styled.div`
       right: 0px;
       display: flex;
       flex-direction: column;
-      top: 55px;
-      background: rgba(0, 0, 0, 1);
+      top: 60px;
+      background: #696969;
       padding: 20px;
       gap: 20px;
       border-radius: 0px 0px 0px 10px;
+      box-shadow: 0px 0px 15px black inset;
 
       animation-name: slidein;
       animation-duration: 1s;
@@ -78,12 +83,30 @@ const HamburgerMenuIcons = styled.div`
   margin-right: 10px;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     display: flex;
+  }
+`;
+
+const NavButton = styled.button`
+background-color: rgba(255, 255, 255, 0);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: opacity 0.2s ease;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  
+  &:hover {
+    outline: solid white;
+    border-radius: 25px;
   }
 `;
 
@@ -107,23 +130,7 @@ const NavBar = () => {
           </Title>
         </StyledLink>
         <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
-          <Button
-            style={
-              location.pathname === "/"
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>
-              Home
-            </StyledLink>
-          </Button>
-          <Button
+          <NavButton
             style={
               location.pathname.startsWith("/articles")
                 ? {
@@ -141,8 +148,8 @@ const NavBar = () => {
             >
               Search
             </StyledLink>
-          </Button>
-          <Button
+          </NavButton>
+          <NavButton
             style={
               location.pathname === "/post"
                 ? {
@@ -157,8 +164,24 @@ const NavBar = () => {
             <StyledLink to="/post" onClick={menuOpen ? toggleMenu : ""}>
               Post
             </StyledLink>
-          </Button>
-          <Button
+          </NavButton>
+          <NavButton
+            style={
+              location.pathname === "/myarticles"
+                ? {
+                    backgroundColor: "white",
+                    color: "black",
+                    padding: "10px",
+                    borderRadius: "25px",
+                  }
+                : null
+            }
+          >
+            <StyledLink to="/myarticles" onClick={menuOpen ? toggleMenu : ""}>
+              My Articles
+            </StyledLink>
+          </NavButton>
+          <NavButton
             style={
               location.pathname === "/myaccount"
                 ? {
@@ -173,7 +196,7 @@ const NavBar = () => {
             <StyledLink to="/myaccount" onClick={menuOpen ? toggleMenu : ""}>
               My Account
             </StyledLink>
-          </Button>
+          </NavButton>
         </ButtonContainer>
         <HamburgerMenuIcons>
           <img

@@ -7,10 +7,11 @@ const Card = styled.button`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: rgb(0, 0, 0, 0.6);
+  background-color: rgb(0, 0, 0, 0);
   color: white;
+  border: 0;
   border-radius: 15px;
-  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
+  // box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.1);
   padding-top: 10px;
   padding-bottom: 20px;
   gap: 13px;

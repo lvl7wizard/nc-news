@@ -1,7 +1,72 @@
 .container {
-    display:flex;
-    height: calc(100vh - 55px);
-    min-height: 610px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 5vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+    gap: 5vh;
+  h2 {
+    margin: 0px;
+    margin-top: 10vh;
+    font-size: 80px;
+    font-weight: 900;
+  color: white;
+  }
+  p {
+    margin: 0px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spaceShipContainer {
+  position: relative;
+  overflow: hidden;
+  margin-left: -10vw;
+  margin-right: -10vw;
+  height: 10vh;
+}
+.spaceShip {
+    height: 10vh;
+    width: 10vh;
+    animation-duration: 7s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    transform: translateX(0);
+  }
+  
+  @keyframes slidein {
+    from {
+      transform: translateX(-70vw);
+    }
+  
+    to {
+      transform: translateX(70vw);
+    }
+  }
+
+
+@media (max-width: 640px) {
+  .content {
+    h2 {
+      font-size: 50px;
+    }
+  }
 }
