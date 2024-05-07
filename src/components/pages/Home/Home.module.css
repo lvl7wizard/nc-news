@@ -18,7 +18,6 @@
     gap: 5vh;
   h2 {
     margin: 0px;
-    margin-top: 10vh;
     font-size: 80px;
     font-weight: 900;
   color: white;
@@ -26,6 +25,17 @@
   p {
     margin: 0px;
   }
+}
+
+.username {
+  background-color: #f3ec78;
+  background-image: linear-gradient(180deg, #f3ef96 30%, #ffbb1d);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 228, 96, 0.2);
 }
 
 .text {
@@ -39,11 +49,11 @@
   overflow: hidden;
   margin-left: -10vw;
   margin-right: -10vw;
-  height: 10vh;
+  height: 7.5vh;
 }
 .spaceShip {
-    height: 10vh;
-    width: 10vh;
+    height: 7.5vh;
+    width: 15vh;
     animation-duration: 7s;
     animation-name: slidein;
     animation-iteration-count: infinite;
