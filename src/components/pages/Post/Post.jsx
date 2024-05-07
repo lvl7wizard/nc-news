@@ -116,14 +116,14 @@ const Post = () => {
         navigate(`/articles/${response.data.article.article_id}`);
         // navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         // handle errors appropriately, update state if needed
       } finally {
         setFormData({ ...formData, loading: false });
       }
     } else {
       // Form is invalid, do nothing
-      console.log(formData, "form was not validated");
+      // console.log(formData, "form was not validated");
     }
   };
 
