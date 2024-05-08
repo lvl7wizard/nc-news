@@ -3,8 +3,8 @@ import { UserContext } from "../../../contexts/User";
 import { useContext } from "react";
 import { useState } from "react";
 import { ReactTyped } from "react-typed";
-import InitialConnect from "../../loading/InitialConnect";
 import { fetchUsers } from "../../../utils/apiRequest";
+import Loading from "../../loading/Loading";
 
 const Home = () => {
   const { currentUser } = useContext(UserContext);
@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <InitialConnect />
+        <Loading />
       ) : (
         <div className={styles.content}>
           <h2>
