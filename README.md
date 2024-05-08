@@ -12,7 +12,7 @@ The project provides the frontend which allows users to interact with a backend 
 - Delete articles
 - Log in as different users
 - Upvote or downvote articles
-- Post comments and delete comments on articles
+- Post and delete comments on articles
 
 ## Minimum Requirements
 
