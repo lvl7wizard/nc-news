@@ -16,7 +16,7 @@ const Results = styled.main`
 
 const ResultsText = styled.h3`
 text-align: center;
-color: black;
+color: white;
 margin: 0px;
 `
 
