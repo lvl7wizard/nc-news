@@ -3,6 +3,39 @@ import { getTopics } from "../../../utils/apiRequest";
 import { useNavigate } from "react-router-dom";
 import Button from "../../buttons/Button";
 import StyledForm from "../../forms/StyledForm";
+import styled from "styled-components";
+
+const SearchForm = styled.form`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+margin-bottom: 10px;
+padding: 10px;
+gap: 10px;
+width: 100vw;
+
+background: rgba(255, 255, 255, 0.1);
+
+select {
+    border: none;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+  }
+
+color: white;
+animation: slideDown 1s;
+
+@keyframes slideDown {
+  from {
+    transform: translate(0, -10vh);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+`
 
 const SearchArticlesBar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +77,7 @@ const SearchArticlesBar = () => {
   }
 
   return (
-    <StyledForm onSubmit={onSubmitHandler}>
+    <SearchForm onSubmit={onSubmitHandler}>
       <div>
         <label htmlFor="search-topic">Topic: </label>
         <div>
@@ -78,7 +111,7 @@ const SearchArticlesBar = () => {
       <div>
         <Button>Search</Button>
       </div>
-    </StyledForm>
+    </SearchForm>
   );
 };
 
