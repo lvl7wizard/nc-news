@@ -12,6 +12,7 @@ justify-content: center;
 margin-bottom: 10px;
 padding: 10px;
 gap: 10px;
+width: 100vw;
 
 background: rgba(255, 255, 255, 0.1);
 
