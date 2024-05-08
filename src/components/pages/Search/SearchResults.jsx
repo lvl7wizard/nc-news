@@ -56,6 +56,7 @@ const SearchResults = () => {
 
   if (isLoading) {
     return (
+      // Absolute positioning applied so the connecting message appears in the same position regardless of whether search bar has been rendered or not 
         <AbsoluteCenterContent>
           <Loading />
         </AbsoluteCenterContent>

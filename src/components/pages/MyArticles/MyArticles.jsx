@@ -8,6 +8,8 @@ import Loading from "../../loading/Loading";
 import { deleteArticleById } from "../../../utils/apiRequest";
 import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
 
+
+
 const MyArticlesTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,7 +21,8 @@ const MyArticlesContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  // gap: 20px;
+  row-gap: 20px;
+  margin-bottom: 20px;
 `;
 
 const CardContainer = styled.div`
