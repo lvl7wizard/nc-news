@@ -1,12 +1,14 @@
-.container {
+.formContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.notLoggedInText {
     display: flex;
     flex-direction: column;
     justify-content: center;
 height: calc(100vh - 60px);
 min-height: 700px;
-}
-
-.notLoggedInText {
     align-items: center;
     text-align: center; 
 }
