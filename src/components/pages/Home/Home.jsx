@@ -4,10 +4,13 @@ import Loading from "../../loading/Loading";
 import Login from "./Login/Login";
 import WelcomeMessage from "./WelcomeMessage/WelcomeMessage";
 import { fetchUsers } from "../../../utils/apiRequest";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/User";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { currentUser } = useContext(UserContext);
+
   {
     // API call added here to reduce load times for this demo as the current free server is slow to wake up
     fetchUsers()
@@ -15,7 +18,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      {!loggedIn ? <Login setLoggedIn={setLoggedIn} setIsLoading={setIsLoading}/> : (isLoading ? <Loading/> : <WelcomeMessage/>)}
+      {currentUser === null ? <Login setIsLoading={setIsLoading}/> : (isLoading ? <Loading/> : <WelcomeMessage/>)}
     </div>
   );
 };
