@@ -5,11 +5,15 @@ import ArticleCardFull from './ArticleCardFull.jsx';
 import CommentSection from './CommentSection.jsx';
 import Loading from '../../loading/Loading.jsx';
 import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent.jsx"
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/User.jsx';
+import styles from "./ViewArticle.module.css";
 
 const ViewArticle = () => {
     const [article, setArticle] = useState({});
     const { article_id } = useParams();
     const [isLoading, setIsLoading] = useState(true);
+    const { currentUser } = useContext(UserContext);
 
     useEffect(() => {
         setIsLoading(true);
@@ -22,20 +26,28 @@ const ViewArticle = () => {
         })
     }, [article_id])
 
-    if (isLoading) {
+    if (currentUser === null) {
         return (
-        <AbsoluteCenterContent>
-        <Loading/>
-        </AbsoluteCenterContent>
+        <div className={styles.container}>
+            <h2>You must be logged in to view articles</h2>
+        </div>
         )
     } else {
-        return (
-            <>
-            <ArticleCardFull article={article}/>
-            <CommentSection article_id={article.article_id}/>
-            </>
-            
-        )
+        if (isLoading) {
+            return (
+            <AbsoluteCenterContent>
+            <Loading/>
+            </AbsoluteCenterContent>
+            )
+        } else {
+            return (
+                <>
+                <ArticleCardFull article={article}/>
+                <CommentSection article_id={article.article_id}/>
+                </>
+                
+            )
+        }
     }
 
 }

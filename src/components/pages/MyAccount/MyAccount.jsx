@@ -1,66 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../../contexts/User";
-import { fetchUsers } from "../../../utils/apiRequest";
-import UserCard from "../../pages/MyAccount/UserCard";
-import styled from "styled-components";
-import Loading from "../../loading/Loading";
-import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
-
-const UserCardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 16px;
-`;
-
-const MyAccountTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: white;
-`;
-
+import ChangeAccount from "./ChangeAccount.jsx/ChangeAccount";
+import styles from "./MyAccount.module.css";
 
 const MyAccount = () => {
   const { currentUser } = useContext(UserContext);
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchUsers()
-      .then((response) => {
-        setUsers(response);
-        setIsLoading(false);
-      })
-  }, []);
-
-  if (isLoading) {
-    return (
-      <AbsoluteCenterContent>
-        <Loading />
-      </AbsoluteCenterContent>
-    );
-  } else {
-    return (
-      <>
-        <MyAccountTextContainer>
-          <h2>My Account</h2>
-          <p>
-            You are currently logged in as{" "}
-            <strong>{currentUser.username}</strong>.{" "}
-          </p>
-          <p>Click below to change account</p>
-        </MyAccountTextContainer>
-        <UserCardContainer>
-          {users.map((user) => {
-            return <UserCard key={user.username} user={user} />;
-          })}
-        </UserCardContainer>
-      </>
-    );
-  }
+  return (
+    <div className={styles.container}>
+      {currentUser === null ? (
+        <h2>You must be logged in to view your account</h2>
+      ) : (
+        <ChangeAccount />
+      )}
+    </div>
+  );
 };
 
 export default MyAccount;

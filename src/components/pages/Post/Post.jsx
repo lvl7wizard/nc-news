@@ -9,11 +9,9 @@ const Post = () => {
   const { currentUser } = useContext(UserContext);
   return (
     <div className={styles.container}>
-      {currentUser === null ? <h2 style={{textAlign:"center"}}>You must be logged in to post articles</h2> : <PostForm/>}
+      {currentUser === null ? <h2>You must be logged in to post articles</h2> : <PostForm/>}
     </div>
   )
-
-
 }
 
 
