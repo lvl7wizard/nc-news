@@ -1,7 +1,7 @@
 import { UserContext } from "../../../../contexts/User";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css'; // keep bootstrap styles locally scoped until project migration is complete
+import "bootstrap/dist/css/bootstrap.min.css"; // keep bootstrap styles locally scoped until project migration is complete
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -23,7 +23,9 @@ const PostArticle = () => {
   const [articleBody, setArticleBody] = useState("");
   const [bodyValid, setBodyValid] = useState(false);
   const [bodyInvalid, setBodyInvalid] = useState(false);
-  const [articleTopic, setArticleTopic] = useState("coding");
+  const [articleTopic, setArticleTopic] = useState("");
+  const [topicValid, setTopicValid] = useState(false);
+  const [topicInvalid, setTopicInvalid] = useState(false);
   const [articleImage, setArticleImage] = useState("");
   const [imageValid, setImageValid] = useState(false);
   const [imageInvalid, setImageInvalid] = useState(false);
@@ -67,6 +69,12 @@ const PostArticle = () => {
     setArticleImage(event.target.value);
   };
 
+  const updateTopic = (event) => {
+    setArticleTopic(event.target.value);
+    setTopicValid(true);
+    setTopicInvalid(false);
+  };
+
   const useDefaultImage = () => {
     setArticleImage(
       "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg"
@@ -85,6 +93,9 @@ const PostArticle = () => {
     if (!isValidUrl(articleImage) && !hasImgExtension(articleImage)) {
       setImageInvalid(true);
     }
+    if (!topicValid) {
+      setTopicInvalid(true);
+    }
     if (titleValid && bodyValid && imageValid) {
       console.log("success");
       const requestBody = {
@@ -92,15 +103,15 @@ const PostArticle = () => {
         title: articleTitle,
         body: articleBody,
         topic: articleTopic,
-        article_img_url: articleImage
-      }
+        article_img_url: articleImage,
+      };
       try {
         const response = await postArticle(requestBody);
         // redirect on successful response
         navigate(`/articles/${response.data.article.article_id}`);
         // navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
-        console.log(error)
+        console.log(error);
         // handle errors appropriately, update state if needed
       }
     }
@@ -110,13 +121,16 @@ const PostArticle = () => {
       <Row className="d-flex justify-content-center">
         <Col xs="auto">
           <Card className="shadow-lg">
-            <Card.Header className="text-center pt-3 pb-3 rounded-top bg-secondary text-white border-bottom-0" style={{textShadow:"2px 2px black"}}>
+            <Card.Header
+              className="text-center pt-3 pb-2 rounded-top bg-secondary text-white border-bottom-0"
+              style={{ textShadow: "2px 2px black" }}
+            >
               <h2 className="mb-0">Post an Article</h2>
             </Card.Header>
             <Card.Body className="text-dark rounded-bottom bg-secondary">
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="articleAuthor">
-                  <Form.Label>Author:</Form.Label>
+                <Form.Group className="mb-2" controlId="articleAuthor">
+                  <Form.Label className="text-black">Author:</Form.Label>
                   <Form.Control
                     type="text"
                     value={currentUser.username}
@@ -125,8 +139,8 @@ const PostArticle = () => {
                     className="text-muted"
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="articleTitle">
-                  <Form.Label>Title:</Form.Label>
+                <Form.Group className="mb-2" controlId="articleTitle">
+                  <Form.Label className="text-black">Title:</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="article title"
@@ -139,11 +153,28 @@ const PostArticle = () => {
                     Article titles must be at least 6 letters long.
                   </FormText>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="articleBody">
-                  <Form.Label>Body:</Form.Label>
+                <Form.Group className="mb-2" controlId="topicSelect">
+                  <Form.Label className="text-black">Topic:</Form.Label>
+                  <Form.Select
+                    onChange={updateTopic}
+                    value={articleTopic}
+                    isValid={topicValid}
+                    isInvalid={topicInvalid}
+                    className={articleTopic === "" ? "text-muted" : ""}
+                  >
+                    <option disabled value="">
+                      Select a topic
+                    </option>
+                    <option>coding</option>
+                    <option>cooking</option>
+                    <option>football</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="articleBody">
+                  <Form.Label className="text-black">Body:</Form.Label>
                   <Form.Control
                     as="textarea"
-                    rows={6}
+                    rows={4}
                     placeholder="article body"
                     isValid={bodyValid}
                     isInvalid={bodyInvalid}
@@ -155,8 +186,8 @@ const PostArticle = () => {
                   </FormText>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="articleImageURL">
-                  <Form.Label>Image:</Form.Label>
+                <Form.Group className="mb-2" controlId="articleImageURL">
+                  <Form.Label className="text-black">Image:</Form.Label>
                   <InputGroup>
                     <Form.Control
                       type="text"
@@ -166,7 +197,7 @@ const PostArticle = () => {
                       onChange={updateImage}
                       value={articleImage}
                     />
-                    <Button onClick={useDefaultImage} id="defaultImageButton">
+                    <Button variant="dark" onClick={useDefaultImage} id="useDefaultImageBtn">
                       Use default
                     </Button>
                   </InputGroup>
