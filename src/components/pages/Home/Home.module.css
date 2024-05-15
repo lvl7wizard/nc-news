@@ -5,22 +5,22 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  gap: 5vh;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-    gap: 5vh;
+  gap: 5vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
   h2 {
     margin: 0px;
     font-size: 80px;
     font-weight: 900;
-  color: white;
+    color: white;
   }
   p {
     margin: 0px;
@@ -33,7 +33,7 @@
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
+  -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   text-shadow: 0 0 40px rgba(255, 228, 96, 0.2);
 }
@@ -43,34 +43,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
-.spaceShipContainer {
-  position: relative;
-  overflow: hidden;
-  margin-left: -10vw;
-  margin-right: -10vw;
-  height: 7.5vh;
-}
-.spaceShip {
-    height: 7.5vh;
-    width: 15vh;
-    animation-duration: 7s;
-    animation-name: slidein;
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    animation-direction: alternate;
-    transform: translateX(0);
-  }
-  
-  @keyframes slidein {
-    from {
-      transform: translateX(-70vw);
-    }
-  
-    to {
-      transform: translateX(70vw);
-    }
-  }
 
 
 @media (max-width: 640px) {

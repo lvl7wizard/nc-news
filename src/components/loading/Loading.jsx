@@ -10,6 +10,8 @@ const LoadingContainer = styled.div`
   color: white;
   gap: 32px;
   text-align: center;
+  margin-left: 10vw;
+  margin-right: 10vw;
 `;
 
 const NoteMessage = styled.p`
