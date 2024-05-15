@@ -1,218 +1,193 @@
-import { useState, useContext } from "react";
 import { UserContext } from "../../../../contexts/User";
-import styled from "styled-components";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'; // keep bootstrap styles locally scoped until project migration is complete
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import FormText from "react-bootstrap/FormText";
+import InputGroup from "react-bootstrap/InputGroup";
 import isValidUrl from "../../../../utils/isValidUrl";
 import hasImgExtension from "../../../../utils/hasImgExtension";
 import { postArticle } from "../../../../utils/apiRequest";
-import { useNavigate } from "react-router-dom";
 
-const StyledForm = styled.form`
-background: rgba(255, 255, 255, 0.1);
-display: flex;
-flex-direction: column;
-text-align: center;
-gap: 20px;
-padding: 20px;
-border-radius: 25px;
-h2 {
-    padding:0;
-    margin: 0;
-  }
-  
-  p {
-    padding: 0;
-    margin: 0;
-  }
-select {
-  border: none;
-  border-radius: 4px;
-  background-color: black;
-  color: white;
-}
-
-input {
-background-color: rgba(0, 0, 0, 0.7);
-color: white;
-border: solid grey 1px;
-width: 40vw;
-max-width: 288px;
-align-self: center;
-}
-
-textarea {
-background-color: black;
-color: white;
-width: 70vw;
-max-width: 500px;
-height: 20vh;
-}
-
-color: white;
-`
-
-const SubmitButton = styled.input`
-background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border-radius: 25px;
-  border: none;
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  transition: opacity 0.2s ease;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  font-size: 20px;
-  
-  &:hover {
-    outline: solid white;
-    border-radius: 25px;
-  }
-`
-
-const PostForm = () => {
+const PostArticle = () => {
   const { currentUser } = useContext(UserContext);
+  const [usernameValid] = useState(true);
+  const [articleTitle, setArticleTitle] = useState("");
+  const [titleValid, setTitleValid] = useState(false);
+  const [titleInvalid, setTitleInvalid] = useState(false);
+  const [articleBody, setArticleBody] = useState("");
+  const [bodyValid, setBodyValid] = useState(false);
+  const [bodyInvalid, setBodyInvalid] = useState(false);
+  const [articleTopic, setArticleTopic] = useState("coding");
+  const [articleImage, setArticleImage] = useState("");
+  const [imageValid, setImageValid] = useState(false);
+  const [imageInvalid, setImageInvalid] = useState(false);
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    author: currentUser.username,
-    title: "",
-    body: "",
-    topic: "coding",
-    image: "",
-    errors: {},
-    loading: false,
-  });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  useEffect(() => {
+    setTitleInvalid(false);
+    if (articleTitle.length >= 6) {
+      setTitleValid(true);
+    } else {
+      setTitleValid(false);
+    }
+  }, [articleTitle]);
+
+  useEffect(() => {
+    setBodyInvalid(false);
+    if (articleBody.length >= 20) {
+      setBodyValid(true);
+    } else {
+      setBodyValid(false);
+    }
+  }, [articleBody]);
+
+  useEffect(() => {
+    setImageInvalid(false);
+    if (isValidUrl(articleImage) && hasImgExtension(articleImage)) {
+      setImageValid(true);
+    } else {
+      setImageValid(false);
+    }
+  }, [articleImage]);
+
+  const updateTitle = (event) => {
+    setArticleTitle(event.target.value);
+  };
+  const updateBody = (event) => {
+    setArticleBody(event.target.value);
+  };
+
+  const updateImage = (event) => {
+    setArticleImage(event.target.value);
+  };
+
+  const useDefaultImage = () => {
+    setArticleImage(
+      "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg"
+    );
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      // set loading state
-      setFormData((prevState) => ({ ...prevState, loading: true }));
-      // create request body
+
+    if (articleTitle.length <= 5) {
+      setTitleInvalid(true);
+    }
+    if (articleBody.length < 20) {
+      setBodyInvalid(true);
+    }
+    if (!isValidUrl(articleImage) && !hasImgExtension(articleImage)) {
+      setImageInvalid(true);
+    }
+    if (titleValid && bodyValid && imageValid) {
+      console.log("success");
       const requestBody = {
-        author: formData.author,
-        title: formData.title,
-        body: formData.body,
-        topic: formData.topic,
-        article_img_url: formData.image
+        author: currentUser.username,
+        title: articleTitle,
+        body: articleBody,
+        topic: articleTopic,
+        article_img_url: articleImage
       }
-      // send post request
       try {
         const response = await postArticle(requestBody);
         // redirect on successful response
         navigate(`/articles/${response.data.article.article_id}`);
         // navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
+        console.log(error)
         // handle errors appropriately, update state if needed
-      } finally {
-        setFormData({ ...formData, loading: false });
-      }
-    } else {
-      // Form is invalid, do nothing
-    }
-  };
-
-  const validateForm = () => {
-    const errors = {};
-
-    // Check if title is empty
-    if (formData.title.length < 5) {
-      errors.title = "Title must be at least 5 characters";
-    }
-
-    // Check if body is empty
-    if (formData.body.length < 20) {
-      errors.body = "Body must be at least 20 characters";
-    }
-
-    // Check if string is empty
-    if (!formData.image) {
-      errors.image = "Image URL is required";
-      // check if string is a valid URL
-    } else {
-      if (!isValidUrl(formData.image)) {
-        errors.image = "Image URL is not valid"
-      } else {
-        if (!hasImgExtension(formData.image)) {
-          errors.image = "Image must be a JPG or PNG"
-        }
       }
     }
-
-    // Update formData state to include errors
-    setFormData((prevState) => ({ ...prevState, errors }));
-
-    // Return true if there are no errors
-    return Object.keys(errors).length === 0;
   };
+  return (
+    <Container>
+      <Row className="d-flex justify-content-center">
+        <Col xs="auto">
+          <Card className="shadow-lg">
+            <Card.Header className="text-center pt-3 pb-3 rounded-top bg-secondary text-white border-bottom-0" style={{textShadow:"2px 2px black"}}>
+              <h2 className="mb-0">Post an Article</h2>
+            </Card.Header>
+            <Card.Body className="text-dark rounded-bottom bg-secondary">
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="articleAuthor">
+                  <Form.Label>Author:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={currentUser.username}
+                    disabled
+                    isValid={usernameValid}
+                    className="text-muted"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="articleTitle">
+                  <Form.Label>Title:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="article title"
+                    isValid={titleValid}
+                    isInvalid={titleInvalid}
+                    onChange={updateTitle}
+                    value={articleTitle}
+                  />
+                  <FormText id="articleTitleHelpBlock" className="text-dark">
+                    Article titles must be at least 6 letters long.
+                  </FormText>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="articleBody">
+                  <Form.Label>Body:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={6}
+                    placeholder="article body"
+                    isValid={bodyValid}
+                    isInvalid={bodyInvalid}
+                    onChange={updateBody}
+                    value={articleBody}
+                  />
+                  <FormText id="articleBodyHelpBlock" className="text-dark">
+                    Article body must be at least 20 letters long.
+                  </FormText>
+                </Form.Group>
 
-  if (currentUser === null) {
-    return <p>You must be logged in to post</p>
-  } else {
-    return (
-      <StyledForm
-        onSubmit={handleSubmit}
-        >
-          <h2>Post An Article</h2>
-        <p>Author: {currentUser.username}</p>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            />
-          {formData.errors.title && (
-              <p style={{ color: "red" }}>{formData.errors.title}</p>
-          )}
-        </label>
-        <label>
-          Topic:
-          <select onChange={handleChange} name="topic">
-            <option>coding</option>
-            <option>football</option>
-            <option>cooking</option>
-          </select>
-        </label>
-        <label>
-          Body:
-          <div>
-          <textarea
-            name="body"
-            value={formData.body}
-            onChange={handleChange}
-            />
-          {formData.errors.body && (
-              <p style={{ color: "red" }}>{formData.errors.body}</p>
-          )}
-          </div>
-        </label>
-        <label>
-          Image URL:
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            />
-          {formData.errors.image && (
-              <p style={{ color: "red" }}>{formData.errors.image}</p>
-          )}
-        </label>
-        <SubmitButton type="submit" value="Submit" />
-        {formData.loading && (
-            <p style={{ marginTop: 5, fontWeight: "bold" }}>Loading...</p>
-          )}
-      </StyledForm>
-    );
-  };
+                <Form.Group className="mb-3" controlId="articleImageURL">
+                  <Form.Label>Image:</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      type="text"
+                      placeholder="image URL"
+                      isValid={imageValid}
+                      isInvalid={imageInvalid}
+                      onChange={updateImage}
+                      value={articleImage}
+                    />
+                    <Button onClick={useDefaultImage} id="defaultImageButton">
+                      Use default
+                    </Button>
+                  </InputGroup>
 
-  }
+                  <FormText id="articleFormHelpBlock" className="text-dark">
+                    This must be a valid http address ending in .jpg or .png.
+                  </FormText>
+                </Form.Group>
 
+                <Form.Group className="text-center">
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form.Group>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-export default PostForm;
+export default PostArticle;
