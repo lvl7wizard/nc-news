@@ -15,7 +15,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px;
-  background-color:  #696969;
+  background-color:  #6C757D;
   box-shadow: 0px 0px 15px black inset;
   z-index: 1;
 `;
