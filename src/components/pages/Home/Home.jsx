@@ -12,7 +12,7 @@ const Home = () => {
   const { currentUser } = useContext(UserContext);
 
   {
-    // API call added here to reduce load times for this demo as the current free server is slow to wake up
+    // API call added here on render to reduce load times for this demo as the current free server is slow to wake up
     fetchUsers()
   }
 
