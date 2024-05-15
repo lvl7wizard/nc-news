@@ -14,14 +14,6 @@ const LoadingContainer = styled.div`
   margin-right: 10vw;
 `;
 
-const NoteMessage = styled.p`
-animation: fadeIn 5s;
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-`
-
 const Loading = () => (
   <LoadingContainer>
     <div>
@@ -39,10 +31,6 @@ const Loading = () => (
         typeSpeed={60}
         loop={true}
       />
-      <NoteMessage>
-        {" "}
-        (Note: This site runs on a free server which may take a minute to wake up 🥱)
-      </NoteMessage>
     </div>
   </LoadingContainer>
 );
