@@ -3,12 +3,11 @@ import styles from "./WelcomeMessage.module.css";
 import { useContext } from "react";
 import { UserContext } from "../../../../contexts/User";
 
-
 const WelcomeMessage = () => {
   const { currentUser } = useContext(UserContext);
   return (
     <div className={styles.content}>
-      <h2>
+      <h2 className={styles.welcomeMessage}>
         Welcome back,{" "}
         <span className={styles.username}>{currentUser.username}</span>
       </h2>
