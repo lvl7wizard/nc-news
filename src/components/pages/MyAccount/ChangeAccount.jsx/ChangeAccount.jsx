@@ -4,6 +4,8 @@ import { fetchUsers } from "../../../../utils/apiRequest";
 import UserCard from "../../../pages/MyAccount/UserCard";
 import styled from "styled-components";
 import Loading from "../../../loading/Loading";
+import Button from "react-bootstrap/Button"
+import { useNavigate } from "react-router-dom";
 
 const UserCardContainer = styled.div`
   display: flex;
@@ -22,9 +24,10 @@ const MyAccountTextContainer = styled.div`
 
 
 const ChangeAccount = () => {
-  const { currentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,6 +38,11 @@ const ChangeAccount = () => {
       })
   }, []);
 
+  const logOut = () => {
+    setCurrentUser(null)
+    navigate(`/`);
+  }
+
   if (isLoading) {
     return (
         <Loading />
@@ -43,10 +51,6 @@ const ChangeAccount = () => {
     return (
       <>
         <MyAccountTextContainer>
-          <p>
-            You are currently logged in as{" "}
-            <strong>{currentUser.username}</strong>.{" "}
-          </p>
           <p>Click below to change account</p>
         </MyAccountTextContainer>
         <UserCardContainer>
@@ -54,6 +58,7 @@ const ChangeAccount = () => {
             return <UserCard key={user.username} user={user} />;
           })}
         </UserCardContainer>
+        <Button onClick={logOut}>Log out</Button>
       </>
     );
   }
