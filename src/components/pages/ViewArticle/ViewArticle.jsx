@@ -8,6 +8,7 @@ import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterCont
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/User.jsx';
 import styles from "./ViewArticle.module.css";
+import Button from "react-bootstrap/Button"
 
 const ViewArticle = () => {
     const [article, setArticle] = useState({});
@@ -30,6 +31,7 @@ const ViewArticle = () => {
         return (
         <div className={styles.container}>
             <h2>You must be logged in to view articles</h2>
+            <Button href="/">Log in</Button>
         </div>
         )
     } else {

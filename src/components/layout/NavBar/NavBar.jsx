@@ -54,7 +54,7 @@ const ButtonContainer = styled.div`
       display: flex;
       flex-direction: column;
       top: 60px;
-      background: #696969;
+      background-color:  #6C757D;
       padding: 20px;
       gap: 20px;
       border-radius: 0px 0px 0px 10px;
