@@ -64,13 +64,14 @@ const ArticleCardFull = ({ article }) => {
   const [voted, setVoted] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const { currentUser } = useContext(UserContext);
+  const loggedIn = !currentUser === null;
 
-  let listOfArticleVotes = JSON.parse(
-    localStorage.getItem(currentUser.username)
-  );
-  if (listOfArticleVotes === null) {
-    listOfArticleVotes = [];
-  }
+    let listOfArticleVotes = JSON.parse(
+      localStorage.getItem(currentUser.username)
+    );
+    if (listOfArticleVotes === null) {
+      listOfArticleVotes = [];
+    }
 
   const likeOnClickHandler = (event) => {
     let increment = event.target.id === "like" ? 1 : -1;

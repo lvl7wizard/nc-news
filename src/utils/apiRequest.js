@@ -37,6 +37,13 @@ export const fetchUserAvatar = (username) => {
     })
 }
 
+export const fetchUser = (username) => {
+    return newsApi.get(`/users/${username}`)
+        .then((response) => {
+            return response.data.user
+        })
+}
+
 export const fetchUsers = () => {
     return newsApi.get(`/users`)
         .then((response) => {

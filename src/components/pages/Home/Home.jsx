@@ -1,46 +1,24 @@
 import styles from "./Home.module.css";
-import { UserContext } from "../../../contexts/User";
-import { useContext } from "react";
 import { useState } from "react";
-import { ReactTyped } from "react-typed";
-import { fetchUsers } from "../../../utils/apiRequest";
 import Loading from "../../loading/Loading";
+import Login from "./Login/Login";
+import WelcomeMessage from "./WelcomeMessage/WelcomeMessage";
+import { fetchUsers } from "../../../utils/apiRequest";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/User";
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { currentUser } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(true);
+
   {
-    // add logic here to check browser history if a previous user has been logged in.
-    // if they have set the userContext to that user.
-    // if not a default user can be used
-    // some kind of connection should be made to server here to wake it up as it can be slow if inactive for awhile.
-    // add a nice greeting message while the server connects
-    fetchUsers().then(() => {
-      setIsLoading(false);
-    });
+    // API call added here to reduce load times for this demo as the current free server is slow to wake up
+    fetchUsers()
   }
 
   return (
     <div className={styles.container}>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className={styles.content}>
-          <h2>
-            Welcome back,{" "}
-            <span className={styles.username}>{currentUser.username}</span>
-          </h2>
-          <div className={styles.text}>
-            <ReactTyped
-              strings={[
-                "Hit up the menu to start reading, commenting, and posting!",
-              ]}
-              typeSpeed={50}
-              loop={false}
-            />
-          </div>
-        </div>
-      )}
+      {currentUser === null ? <Login setIsLoading={setIsLoading}/> : (isLoading ? <Loading/> : <WelcomeMessage/>)}
     </div>
   );
 };

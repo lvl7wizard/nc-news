@@ -11,7 +11,7 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 40px;
+  height: 60px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px;
