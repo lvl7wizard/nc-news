@@ -12,6 +12,8 @@ const Results = styled.main`
   flex-wrap:wrap;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
 `
 
 const ResultsText = styled.h3`

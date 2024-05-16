@@ -1,43 +1,41 @@
 import { Link } from "react-router-dom";
 import { toDaysMonthsYears } from "../../../utils/formatTimeStamp";
-import styled from "styled-components";
-
-const Card = styled.div`
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  // box-shadow: 3px 3px 2px 1px rgba(255, 255, 255, 0.2);
-  margin: 10px;
-  width: 285px;
-  height: 425px;
-  color: white;
-  padding: 5px;
-  font-family: Helvetica, Sans-Serif;
-  
-  p {
-    font-size: 15px;
-  }
-
-  img {
-    width: 270px;
-    height: 200px;
-    border-radius: 15px;
-  }
-`;
-
-
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faAt } from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 const ArticleCardMini = ({ article }) => {
-
   const articleUrl = `/articles/${article.article_id}`;
   return (
     <Link className="link" to={articleUrl}>
-      <Card>
-        <h4>{article.title}</h4>
-        <img src={article.article_img_url} />
-        <p>Posted: {toDaysMonthsYears(article.created_at)}</p>
-        <p>Author: {article.author} | Topic: {article.topic}</p>
-        <p>Votes: {article.votes} | Comments: {article.comment_count}</p>
+      <Card
+        style={{ width: "22rem", textAlign: "center"}}
+        className="bg-secondary"
+      >
+        <Card.Header className="h5 text-black">{article.title}</Card.Header>
+        <Card.Img src={article.article_img_url} variant="top" />
+        <Row>
+          <Col xs={6}>
+          <Card.Text><FontAwesomeIcon icon={faAt} color="black" aria-label="author icon" title="author:"/> {article.author}</Card.Text>
+          </Col>
+          <Col xs={6}>
+          <Card.Text><FontAwesomeIcon icon={faBook} color="black" aria-label="topic icon" title="topic:"/> {article.topic}</Card.Text>
+          </Col>
+          <Col xs={6}>
+            <Card.Text><FontAwesomeIcon icon={faThumbsUp} color="black" aria-label="votes icon" title="votes:"/> {article.votes}</Card.Text>
+          </Col>
+          <Col xs={6}>
+            <Card.Text> <FontAwesomeIcon icon={faComment} color="black" aria-label="comments icon" title="comments:"/> {article.comment_count}</Card.Text>
+          </Col>
+        </Row>
+        <Card.Footer>
+          Posted: {toDaysMonthsYears(article.created_at)}
+        </Card.Footer>
       </Card>
     </Link>
   );

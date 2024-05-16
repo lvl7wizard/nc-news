@@ -3,30 +3,23 @@ import { UserContext } from "../../../contexts/User";
 import { getArticles } from "../../../utils/apiRequest";
 import { useContext, useState, useEffect } from "react";
 import ArticleCardMini from "../Search/ArticleCardMini";
-import Button from "../../buttons/Button";
+import Button from "react-bootstrap/Button";
 import Loading from "../../loading/Loading";
 import { deleteArticleById } from "../../../utils/apiRequest";
-import AbsoluteCenterContent from "../../layout/CenterContent/AbsoluteCenterContent";
 
-const MyArticlesTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: white;
-`;
+const LoadingContainer = styled.div`
+display: flex;
+height: calc(100vh - 60px);
+align-items: center;
+`
+
 const MyArticlesContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  row-gap: 20px;
   margin-bottom: 20px;
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const MyArticleCards = () => {
@@ -63,29 +56,27 @@ const MyArticleCards = () => {
 
   if (isLoading) {
     return (
-    <AbsoluteCenterContent>
+    <LoadingContainer>
         <Loading/>
-    </AbsoluteCenterContent>
+    </LoadingContainer>
     )
   } else {
       return (
         <>
-        <MyArticlesTextContainer>
           <p>
-            You are currently logged in as{" "}
-            <strong>{currentUser.username}</strong>.{" "}
+            You are currently logged in as{" "}<span className="text-warning">
+            <strong>{currentUser.username}</strong></span>.{" "}
           </p>
-          <p>Click below to view or delete your articles</p>
-        </MyArticlesTextContainer>
+          <p>Click below to view or <span className="text-danger">delete</span> your articles</p>
         <MyArticlesContainer>
           {usersArticles.map((article) => {
             return (
-              <CardContainer key={article.article_id}>
-                <ArticleCardMini article={article} />
-                <Button onClick={() => deleteOnClickHandler(article.article_id)} style={{background: "#B22222"}}>
+              <div key={article.article_id}>
+                <ArticleCardMini article={article}/>
+                <Button onClick={() => deleteOnClickHandler(article.article_id)} variant="danger">
                   Delete article ↑
                 </Button>
-              </CardContainer>
+              </div>
             );
           })}
         </MyArticlesContainer>
