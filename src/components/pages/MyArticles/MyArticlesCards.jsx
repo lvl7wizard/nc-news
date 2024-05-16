@@ -145,9 +145,15 @@ const MyArticleCards = () => {
                     to={`/articles/${article.article_id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    <Button variant="success">View</Button>
+                    <Button
+                      variant="success"
+                      className="rounded-0 rounded-bottom-2"
+                    >
+                      View
+                    </Button>
                   </Link>
                   <Button
+                    className="rounded-0 rounded-bottom-2"
                     onClick={() => {
                       handleShowEditModal();
                       setSelectedArticle(article);
@@ -157,6 +163,7 @@ const MyArticleCards = () => {
                     Edit
                   </Button>
                   <Button
+                    className="rounded-0 rounded-bottom-2"
                     onClick={() => {
                       handleShowDeleteModal();
                       setSelectedArticle(article);
