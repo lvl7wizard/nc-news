@@ -1,7 +1,6 @@
 import { UserContext } from "../../../../contexts/User";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"; // keep bootstrap styles locally scoped until project migration is complete
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

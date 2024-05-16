@@ -9,7 +9,6 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import FormText from "react-bootstrap/FormText";
 import { useContext } from "react";
 import { UserContext } from "../../../../contexts/User";
-import 'bootstrap/dist/css/bootstrap.min.css'; // keep bootstrap styles locally scoped until project migration is complete
 import { fetchUser } from "../../../../utils/apiRequest";
 
 let Login = ({setIsLoading}) => {
