@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import ErrorMessage from "../../../../modals/ErrorMessage";
 
-const CommentForm = ({ article_id, setTriggerFetch, title }) => {
+const CommentForm = ({ article_id, comments, setComments }) => {
   const [commentText, setCommentText] = useState("");
   const [commentIsValid, setCommentIsValid] = useState(false);
   const [commentIsInvalid, setCommentIsInvalid] = useState(false);
@@ -46,10 +46,13 @@ const CommentForm = ({ article_id, setTriggerFetch, title }) => {
       setCommentIsValid(true);
       setFeedback("Post successful");
       setFeedbackPositive(true);
+      console.log(response.data.comment)
 
       setTimeout(() => {
         setCommentText("");
         setCommentIsValid(false);
+        console.log(comments)
+        setComments([response.data.comment].concat(comments));
       }, 2000);
 
     } catch (error) {

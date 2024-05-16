@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { fetchArticleComments } from "../../../../utils/apiRequest";
-// import CommentCard from "./CommentCard/CommentCard";
+import CommentCard from "./CommentCard/CommentCard";
 import CommentForm from "./CommentForm/CommentForm";
-import Button from "../../../buttons/Button"
+import Button from "react-bootstrap/Button"
 import styled from "styled-components";
+import DeleteConfirmation from "../../../modals/DeleteConfirmation";
 
 // const CommentSectionContainer = styled.div`
 // max-width: 630px;
@@ -30,6 +31,9 @@ const CommentSection = ({ article_id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showComments, setShowComments] = useState("Show Comments");
   const [triggerFetch, setTriggerFetch] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState("")
+  const [deleteFunction, setDeleteFunction] = useState("");
 
   const fetchComments = () => {
     setIsLoading(true);
@@ -59,17 +63,11 @@ const CommentSection = ({ article_id }) => {
 
   return (
     <>
-    <CommentForm article_id={article_id}/>
-    {/* <CommentSectionContainer>  */}
-      {/* <CommentForm title={"Leave a comment"}article_id={article_id} setTriggerFetch={setTriggerFetch} /> */}
-      {/* <StyledDiv> */}
-      {/* <CommentsTitle> */}
-      {/* <h3>Comments ({isLoading ? "..." : comments.length})</h3> */}
-      {/* </CommentsTitle> */}
-      {/* <Button onClick={commentsOnClickHandler}>{showComments}</Button> */}
-      {/* </StyledDiv> */}
-      {/* </CommentSectionContainer> */}
-      {/* {showComments === "Hide Comments"
+    <DeleteConfirmation showModal={showModal} setShowModal={setShowModal} deleteFunction={deleteFunction} deleteMessage={deleteMessage}/>
+    <CommentForm article_id={article_id} comments={comments} setComments={setComments}/>
+      <h3>Comments ({isLoading ? "..." : comments.length})</h3>
+      <Button onClick={commentsOnClickHandler}>{showComments}</Button>
+      {showComments === "Hide Comments"
         ? comments.map((comment) => {
           return (
             <CommentCard
@@ -78,10 +76,13 @@ const CommentSection = ({ article_id }) => {
             comment={comment}
             setComments={setComments}
             comments={comments}
+            setShowModal={setShowModal}
+            setDeleteMessage={setDeleteMessage}
+            setDeleteFunction={setDeleteFunction}
             />
           );
         })
-        : null} */}
+        : null}
         </>
   );
 };
