@@ -1,24 +1,40 @@
 import { useContext } from "react";
-import styles from "./Post.module.css";
 import { UserContext } from "../../../contexts/User";
-import PostForm from "./PostForm/PostForm";
+import PostArticleForm from "./PostArticleForm/PostArticleForm"
 import Button from "react-bootstrap/Button";
+import styled from "styled-components";
+
+const LoginPromptContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  min-height: 150px;
+  align-items: center;
+  text-align: center;
+`;
+
+const PostArticleFormContainer = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 
 const Post = () => {
   const { currentUser } = useContext(UserContext);
+
   return (
-    <div>
+    <main>
       {currentUser === null ? (
-        <div className={styles.notLoggedInText}>
+        <LoginPromptContainer>
           <h2>You must be logged in to post articles</h2>
           <Button href="/">Log in</Button>
-        </div>
+        </LoginPromptContainer>
       ) : (
-        <div className={styles.formContainer}>
-          <PostForm />
-        </div>
+        <PostArticleFormContainer aria-labelledby="post-article">
+          <PostArticleForm />
+        </PostArticleFormContainer>
       )}
-    </div>
+    </main>
   );
 };
 
