@@ -65,15 +65,7 @@ const CommentCard = ({
       >
         <Card.Body>
           <Row>
-            <Col xs={2}>
-              <img
-                src={userAvatar}
-                alt="User Avatar"
-                className="rounded-circle img-fluid"
-                style={{ width: "80px", height: "80px" }}
-              />
-            </Col>
-            <Col xs={9}>
+            <Col xs={10}>
               <Card.Title>{comment.author}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 {toRelativeTime(comment.created_at)}
@@ -90,7 +82,7 @@ const CommentCard = ({
                 {comment.votes}
               </Card.Text>
             </Col>
-            <Col xs={1} style={{ alignSelf: "end" }}>
+            <Col xs={2} className="d-flex justify-content-center align-items-end">
               {currentUser !== null ? (
                 comment.author === currentUser.username ? (
                   <FontAwesomeIcon
@@ -99,6 +91,8 @@ const CommentCard = ({
                     aria-label="delete icon"
                     title="delete comment"
                     onClick={deleteOnClickHandler}
+                    size="xl"
+                    style={{ marginBottom: "8px" }}
                   />
                 ) : (
                   <></>
