@@ -89,19 +89,6 @@ const CommentCard = ({
     setDeleteMessage("Are you sure you want to delete your comment?");
     setShowModal(true);
     setDeleteFunction(() => deleteComment);
-    // const isConfirmed = window.confirm(
-    //   "Are you sure you want to delete your comment?"
-    // );
-    // if (isConfirmed) {
-    //   const updatedComments = comments.filter((item) => {
-    //     return item.comment_id !== comment.comment_id;
-    //   });
-    //   setComments(updatedComments);
-    //   deleteCommentById(comment.comment_id).catch((error) => {
-    //     window.alert(`Delete request was unsuccessful. Press okay to refresh.`);
-    //     setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-    //   });
-    // }
   };
 
   if (isLoading) {
