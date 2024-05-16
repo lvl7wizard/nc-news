@@ -6,48 +6,12 @@ import {
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../../../../contexts/User";
-import Button from "../../../../buttons/Button";
-import styled from "styled-components";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
-const StyledDiv = styled.div`
-  display: flex;
-  color: white;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-
-  img {
-    border: solid black;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    background: white;
-    margin-right: 10px;
-  }
-
-  .comment-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-grow: 1;
-    min-width: 50%;
-    max-width: 90%;
-    word-wrap: break-word;
-  }
-`;
-
-const VotesDeleteBtn = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 const CommentCard = ({
   setTriggerFetch,
@@ -146,31 +110,6 @@ const CommentCard = ({
           </Row>
         </Card.Body>
       </Card>
-
-      //       <StyledDiv>
-      //         <div>
-      //           <img src={userAvatar} />
-      //         </div>
-      //         <div className="comment-content">
-      //           <strong>{comment.author}</strong>{" "}
-      //           <em>{toRelativeTime(comment.created_at)}</em>
-      //           <div>
-      //             {comment.body}
-      //           </div>
-      //           <VotesDeleteBtn>
-      //             Votes: {comment.votes}
-      //             {currentUser !== null ? (
-      //   comment.author === currentUser.username ? (
-      //     <Button onClick={deleteOnClickHandler}>Delete my comment</Button>
-      //   ) : (
-      //     <></>
-      //   )
-      // ) : (
-      //   <></>
-      // )}
-      //           </VotesDeleteBtn>
-      //         </div>
-      //       </StyledDiv>
     );
   }
 };
