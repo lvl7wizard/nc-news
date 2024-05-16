@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getTopics } from "../../../utils/apiRequest";
 import { useNavigate } from "react-router-dom";
 import Button from "../../buttons/Button";
-import StyledForm from "../../forms/StyledForm";
 import styled from "styled-components";
 
 const SearchForm = styled.form`
