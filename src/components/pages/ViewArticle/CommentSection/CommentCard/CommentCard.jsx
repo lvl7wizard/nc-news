@@ -1,9 +1,9 @@
-import { toRelativeTime } from "../../../utils/formatTimeStamp";
-import { deleteCommentById, fetchUserAvatar } from "../../../utils/apiRequest";
+import { toRelativeTime } from "../../../../../utils/formatTimeStamp";
+import { deleteCommentById, fetchUserAvatar } from "../../../../../utils/apiRequest";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { UserContext } from "../../../contexts/User";
-import Button from "../../buttons/Button";
+import { UserContext } from "../../../../../contexts/User";
+import Button from "../../../../buttons/Button";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`

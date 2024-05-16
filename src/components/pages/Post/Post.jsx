@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styles from "./Post.module.css";
 import { UserContext } from "../../../contexts/User";
-import PostForm from "./PostForm.jsx/PostForm";
+import PostForm from "./PostForm/PostForm";
 import Button from "react-bootstrap/Button";
 
 const Post = () => {

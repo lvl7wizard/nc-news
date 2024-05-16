@@ -1,4 +1,4 @@
-import { toDaysMonthsYears } from "../../../utils/formatTimeStamp";
+import { toDaysMonthsYears } from "../../../../utils/formatTimeStamp";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
@@ -8,11 +8,11 @@ import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { patchArticleLikes } from "../../../utils/apiRequest";
+import { patchArticleLikes } from "../../../../utils/apiRequest";
 import { useState } from "react";
-import ErrorMessage from "../../modals/ErrorMessage";
+import ErrorMessage from "../../../modals/ErrorMessage"
 import { useContext } from "react";
-import { UserContext } from "../../../contexts/User";
+import { UserContext } from "../../../../contexts/User";
 import styled from "styled-components";
 
 const ButtonContainer = styled.div`

@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchArticleById } from "../../../utils/apiRequest.js";
-import ArticleCardFull from "./ArticleCardFull.jsx";
-import CommentSection from "./CommentSection.jsx";
+import ArticleCardFull from "./ArticleCardFull/ArticleCardFull.jsx";
 import Loading from "../../loading/Loading.jsx";
 import { useContext } from "react";
 import { UserContext } from "../../../contexts/User.jsx";
-import styles from "./ViewArticle.module.css";
-import Button from "react-bootstrap/Button";
 import styled from "styled-components";
+import CommentSection from "./CommentSection/CommentSection.jsx";
 
 const LoadingContainer = styled.div`
 display: flex;
@@ -44,14 +42,6 @@ const ViewArticle = () => {
       });
   }, [article_id]);
 
-//   if (currentUser === null) {
-//     return (
-//       <div className={styles.container}>
-//         <h2>You must be logged in to view articles</h2>
-//         <Button href="/">Log in</Button>
-//       </div>
-//     );
-//   } else {
     if (isLoading) {
       return (
         <LoadingContainer>
@@ -62,11 +52,10 @@ const ViewArticle = () => {
       return (
         <ViewArticleContainer>
           <ArticleCardFull article={article} />
-          {/* <CommentSection article_id={article.article_id} /> */}
+          <CommentSection article_id={article.article_id} />
         </ViewArticleContainer>
       );
     }
-//   }
 };
 
 export default ViewArticle;
