@@ -13,7 +13,7 @@ import isValidUrl from "../../../../utils/isValidUrl";
 import hasImgExtension from "../../../../utils/hasImgExtension";
 import { postArticle } from "../../../../utils/apiRequest";
 
-const PostArticle = () => {
+const PostArticleForm = () => {
   const { currentUser } = useContext(UserContext);
   const [usernameValid] = useState(true);
   const [articleTitle, setArticleTitle] = useState("");
@@ -220,4 +220,4 @@ const PostArticle = () => {
   );
 };
 
-export default PostArticle;
+export default PostArticleForm;
