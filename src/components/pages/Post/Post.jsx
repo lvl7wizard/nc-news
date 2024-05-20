@@ -15,8 +15,11 @@ const LoginPromptContainer = styled.div`
 `;
 
 const PostArticleFormContainer = styled.div`
+display: flex;
+align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  min-height: calc(100vh - 100px); // 60 px navbar 40 px margins
 `;
 
 const Post = () => {

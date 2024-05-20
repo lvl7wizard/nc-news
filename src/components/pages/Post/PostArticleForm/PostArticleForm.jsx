@@ -118,7 +118,7 @@ const PostArticleForm = () => {
   return (
     <Container>
       <Row className="d-flex justify-content-center">
-        <Col xs="auto">
+        <Col style={{maxWidth:"800px"}}>
           <Card className="shadow-lg">
             <Card.Header
               className="text-center pt-3 pb-2 rounded-top bg-secondary text-white border-bottom-0"
@@ -128,6 +128,8 @@ const PostArticleForm = () => {
             </Card.Header>
             <Card.Body className="text-dark rounded-bottom bg-secondary">
               <Form onSubmit={handleSubmit}>
+                <Row>
+                <Col md={6}>
                 <Form.Group className="mb-2" controlId="articleAuthor">
                   <Form.Label className="text-black">Author:</Form.Label>
                   <Form.Control
@@ -138,6 +140,8 @@ const PostArticleForm = () => {
                     className="text-muted"
                   />
                 </Form.Group>
+                </Col>
+                <Col md={6}>
                 <Form.Group className="mb-2" controlId="articleTitle">
                   <Form.Label className="text-black">Title:</Form.Label>
                   <Form.Control
@@ -149,9 +153,13 @@ const PostArticleForm = () => {
                     value={articleTitle}
                   />
                   <FormText id="articleTitleHelpBlock" className="text-dark">
-                    Article titles must be at least 6 letters long.
+                    Title must be at least 6 letters long.
                   </FormText>
                 </Form.Group>
+                </Col>
+                </Row>
+                <Row>
+                <Col md={6}>
                 <Form.Group className="mb-2" controlId="topicSelect">
                   <Form.Label className="text-black">Topic:</Form.Label>
                   <Form.Select
@@ -169,22 +177,8 @@ const PostArticleForm = () => {
                     <option>football</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-2" controlId="articleBody">
-                  <Form.Label className="text-black">Body:</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    placeholder="article body"
-                    isValid={bodyValid}
-                    isInvalid={bodyInvalid}
-                    onChange={updateBody}
-                    value={articleBody}
-                  />
-                  <FormText id="articleBodyHelpBlock" className="text-dark">
-                    Article body must be at least 20 letters long.
-                  </FormText>
-                </Form.Group>
-
+                </Col>
+                <Col md={6}>
                 <Form.Group className="mb-2" controlId="articleImageURL">
                   <Form.Label className="text-black">Image:</Form.Label>
                   <InputGroup>
@@ -202,7 +196,24 @@ const PostArticleForm = () => {
                   </InputGroup>
 
                   <FormText id="articleFormHelpBlock" className="text-dark">
-                    This must be a valid http address ending in .jpg or .png.
+                    URL must be a valid http address ending in .jpg or .png.
+                  </FormText>
+                </Form.Group>
+                </Col>
+                </Row>
+                <Form.Group className="mb-2" controlId="articleBody">
+                  <Form.Label className="text-black">Body:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={4}
+                    placeholder="article body"
+                    isValid={bodyValid}
+                    isInvalid={bodyInvalid}
+                    onChange={updateBody}
+                    value={articleBody}
+                  />
+                  <FormText id="articleBodyHelpBlock" className="text-dark">
+                    Body must be at least 20 letters long.
                   </FormText>
                 </Form.Group>
 
