@@ -1,94 +1,61 @@
-import { toDaysMonthsYears } from "../../../../utils/formatTimeStamp";
+import { useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment } from "@fortawesome/free-solid-svg-icons";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import { faAt } from "@fortawesome/free-solid-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { patchArticleLikes } from "../../../../utils/apiRequest";
-import { useState } from "react";
-import ErrorMessage from "../../../modals/ErrorMessage"
-import { useContext } from "react";
-import { UserContext } from "../../../../contexts/User";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faComment,
+  faThumbsUp,
+  faThumbsDown,
+  faAt,
+  faBook,
+} from "@fortawesome/free-solid-svg-icons";
+import { toDaysMonthsYears } from "../../../../utils/formatTimeStamp";
+import { patchArticleLikes } from "../../../../utils/apiRequest";
+import ErrorMessage from "../../../modals/ErrorMessage";
+import { UserContext } from "../../../../contexts/User";
 
 const ButtonContainer = styled.div`
-display: flex;
-gap: 20px;
-justify-content: right;
-margin: 20px;
-`
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  margin: 20px;
+`;
 
 const ArticleCardFull = ({ article }) => {
   const { currentUser } = useContext(UserContext);
-  const [currentVotes, setCurrentVotes] = useState(article.votes);
+  const { article_id, title, article_img_url, author, topic, votes, comment_count, body, created_at } = article;
+  const [currentVotes, setCurrentVotes] = useState(votes);
   const [likePressed, setLikePressed] = useState(false);
   const [dislikePressed, setDislikePressed] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const likeOnClickHandler = () => {
-    if (currentUser === null) {
+  const handleVote = async (type) => {
+    if (!currentUser) {
       setErrorMessage("You must be logged in to vote");
       setShowModal(true);
-    } else {
-      let increment = 1;
-      if (dislikePressed) {
-        increment = 2;
-      }
-      if (!likePressed) {
-        setCurrentVotes((currentVotes) => currentVotes + increment);
-        try {
-          patchArticleLikes(article.article_id, increment);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        setCurrentVotes((currentVotes) => currentVotes - increment);
-        try {
-          patchArticleLikes(article.article_id, -increment);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      setLikePressed(!likePressed);
-      if (dislikePressed === true) {
-        setDislikePressed(false);
-      }
+      return;
     }
-  };
 
-  const dislikeOnClickHandler = () => {
-    if (currentUser === null) {
-      setErrorMessage("You must be logged in to vote");
-      setShowModal(true);
-    } else {
-      let decrement = 1;
-      if (likePressed) {
-        decrement = 2;
-      }
-      if (!dislikePressed) {
-        setCurrentVotes((currentVotes) => currentVotes - decrement);
-        try {
-          patchArticleLikes(article.article_id, -decrement);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        setCurrentVotes((currentVotes) => currentVotes + decrement);
-        try {
-          patchArticleLikes(article.article_id, +decrement);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+    let increment = 0;
+
+    if (type === "like") {
+      increment = likePressed ? -1 : (dislikePressed ? 2 : 1);
+      setLikePressed(!likePressed);
+      if (dislikePressed) setDislikePressed(false);
+    } else if (type === "dislike") {
+      increment = dislikePressed ? 1 : (likePressed ? -2 : -1);
       setDislikePressed(!dislikePressed);
-      if (likePressed === true) {
-        setLikePressed(false);
-      }
+      if (likePressed) setLikePressed(false);
+    }
+
+    try {
+      await patchArticleLikes(article_id, increment);
+      setCurrentVotes(currentVotes + increment);
+    } catch (error) {
+      console.error("Error updating votes:", error);
     }
   };
 
@@ -100,39 +67,39 @@ const ArticleCardFull = ({ article }) => {
         errorMessage={errorMessage}
       />
       <Card
-        className="bg-secondary"
+        className="border-white border-opacity-50 bg-secondary bg-opacity-25 text-light"
         style={{ maxWidth: "1000px", textAlign: "center" }}
       >
-        <Card.Header className="text-black h1">{article.title}</Card.Header>
-        <Card.Img src={article.article_img_url}></Card.Img>
+        <Card.Header className="h1">{title}</Card.Header>
+        <Card.Img src={article_img_url} alt={`Article image for ${title}`} />
         <Row className="mt-3">
           <Col xs={6}>
             <Card.Text>
               <FontAwesomeIcon
                 icon={faAt}
-                color="black"
+                color="lightblue"
                 aria-label="author icon"
                 title="author:"
               />{" "}
-              {article.author}
+              {author}
             </Card.Text>
           </Col>
           <Col xs={6}>
             <Card.Text>
               <FontAwesomeIcon
                 icon={faBook}
-                color="black"
+                color="pink"
                 aria-label="topic icon"
                 title="topic:"
               />{" "}
-              {article.topic}
+              {topic}
             </Card.Text>
           </Col>
           <Col xs={6}>
             <Card.Text>
               <FontAwesomeIcon
                 icon={faThumbsUp}
-                color="black"
+                color="lightgreen"
                 aria-label="votes icon"
                 title="votes:"
               />{" "}
@@ -141,38 +108,37 @@ const ArticleCardFull = ({ article }) => {
           </Col>
           <Col xs={6}>
             <Card.Text>
-              {" "}
               <FontAwesomeIcon
                 icon={faComment}
-                color="black"
+                color="burlywood"
                 aria-label="comments icon"
                 title="comments:"
               />{" "}
-              {article.comment_count}
+              {comment_count}
             </Card.Text>
           </Col>
         </Row>
-        <Card.Body className="text-black">{article.body}</Card.Body>
+        <Card.Body>{body}</Card.Body>
         <ButtonContainer>
-            <FontAwesomeIcon
-              icon={faThumbsUp}
-              color={likePressed ? "darkgreen" : "black"}
-              aria-label="like button"
-              title="like button"
-              size="2xl"
-              onClick={likeOnClickHandler}
-            />
-            <FontAwesomeIcon
-              icon={faThumbsDown}
-              color={dislikePressed ? "red" : "black"}
-              aria-label="dislike button"
-              title="dislike button"
-              size="2xl"
-              onClick={dislikeOnClickHandler}
-            />
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            color={likePressed ? "lightgreen" : "white"}
+            aria-label="like button"
+            title="like button"
+            size="2x"
+            onClick={() => handleVote("like")}
+          />
+          <FontAwesomeIcon
+            icon={faThumbsDown}
+            color={dislikePressed ? "pink" : "white"}
+            aria-label="dislike button"
+            title="dislike button"
+            size="2x"
+            onClick={() => handleVote("dislike")}
+          />
         </ButtonContainer>
-        <Card.Footer>
-          Posted: {toDaysMonthsYears(article.created_at)}
+        <Card.Footer className="text-black bg-secondary bg-opacity-50">
+          Posted: {toDaysMonthsYears(created_at)}
         </Card.Footer>
       </Card>
     </>
