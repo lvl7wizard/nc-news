@@ -1,17 +1,16 @@
-import { toRelativeTime } from "../../../../../utils/formatTimeStamp";
-import {
-  deleteCommentById,
-  fetchUserAvatar,
-} from "../../../../../utils/apiRequest";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { UserContext } from "../../../../../contexts/User";
+import { useEffect, useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { toRelativeTime } from "../../../../../utils/formatTimeStamp";
+import {
+  deleteCommentById,
+} from "../../../../../utils/apiRequest";
+import { UserContext } from "../../../../../contexts/User";
+import ErrorMessage from "../../../../modals/ErrorMessage";
+
 
 const CommentCard = ({
   setTriggerFetch,
@@ -22,31 +21,24 @@ const CommentCard = ({
   setDeleteMessage,
   setDeleteFunction,
 }) => {
-  const [userAvatar, setUserAvatar] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchUserAvatar(comment.author)
-      .then((response) => {
-        setUserAvatar(response);
-      })
-      .then(() => {
-        setIsLoading(false);
-      });
-  }, []);
+    console.log("showErrorModal state changed:", showErrorModal);
+  }, [showErrorModal]);
 
-  const deleteComment = () => {
-    console.log("delete confirmed");
-          const updatedComments = comments.filter((item) => {
-        return item.comment_id !== comment.comment_id;
-      });
-            setComments(updatedComments);
-      deleteCommentById(comment.comment_id).catch((error) => {
-        window.alert(`Delete request was unsuccessful. Press okay to refresh.`);
-        setTriggerFetch((prevTriggerFetch) => !prevTriggerFetch);
-      });
+  const deleteComment = async () => {
+    try {
+      await deleteCommentById(comment.comment_id);
+      const updatedComments = comments.filter((item) => item.comment_id !== comment.comment_id);
+      setComments(updatedComments);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(`Error: ${error.response ? error.response.data.msg : error.message}. Please refresh and try again.`);
+      setShowErrorModal(true);
+    }
   };
 
   const deleteOnClickHandler = () => {
@@ -55,10 +47,9 @@ const CommentCard = ({
     setDeleteFunction(() => deleteComment);
   };
 
-  if (isLoading) {
-    return <p className="comment-card">Loading Comment...</p>;
-  } else {
     return (
+      <>
+      <ErrorMessage showModal={showErrorModal} setShowErrorModal={setShowErrorModal} errorMessage={errorMessage}/>
       <Card
         className="w-100 bg-secondary text-black"
         style={{ maxWidth: "1000px" }}
@@ -82,7 +73,10 @@ const CommentCard = ({
                 {comment.votes}
               </Card.Text>
             </Col>
-            <Col xs={2} className="d-flex justify-content-center align-items-end">
+            <Col
+              xs={2}
+              className="d-flex justify-content-center align-items-end"
+            >
               {currentUser !== null ? (
                 comment.author === currentUser.username ? (
                   <FontAwesomeIcon
@@ -104,8 +98,8 @@ const CommentCard = ({
           </Row>
         </Card.Body>
       </Card>
+      </>
     );
-  }
-};
+  };
 
 export default CommentCard;
