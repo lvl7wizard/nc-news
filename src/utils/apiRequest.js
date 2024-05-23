@@ -73,6 +73,9 @@ export const deleteCommentById = (comment_id) => {
     .then((repsonse) => {
         return repsonse
     })
+    .catch((error) => {
+        throw error;
+    })
 }
 
 export const postArticle = (requestBody) => {
