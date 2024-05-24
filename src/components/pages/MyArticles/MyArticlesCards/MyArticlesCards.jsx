@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { UserContext } from "../../../../contexts/User";
 import { getArticles } from "../../../../utils/apiRequest";
 import { useContext, useState, useEffect } from "react";
-import ArticleCardMini from "../../Search/ArticleCardMini";
+import ArticleCardMini from "../../Search/SearchResults/ArticleCardMini/ArticleCardMini"
 import Button from "react-bootstrap/Button";
 import Loading from "../../../loading/Loading";
 import { deleteArticleById } from "../../../../utils/apiRequest";
