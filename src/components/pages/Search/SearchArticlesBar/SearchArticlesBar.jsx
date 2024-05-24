@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../../../../utils/apiRequest";
 import { useNavigate } from "react-router-dom";
-import Button from "../../../buttons/Button";
 import styled from "styled-components";
+
 
 const SearchForm = styled.form`
 display: flex;
@@ -16,11 +16,11 @@ width: 100vw;
 background: rgba(255, 255, 255, 0.1);
 
 select {
-    border: none;
-    border-radius: 4px;
-    background-color: black;
-    color: white;
-  }
+  border: none;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+}
 
 color: white;
 animation: slideDown 1s;
@@ -33,8 +33,25 @@ animation: slideDown 1s;
     transform: translate(0, 0);
   }
 }
-
 `
+
+const StyledButton = styled.button`
+background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: opacity 0.2s ease;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  
+  &:hover {
+    outline: solid white;
+    border-radius: 25px;
+  }
+`;
 
 const SearchArticlesBar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -108,7 +125,7 @@ const SearchArticlesBar = () => {
         </div>
       </div>
       <div>
-        <Button>Search</Button>
+        <StyledButton>Search</StyledButton>
       </div>
     </SearchForm>
   );
