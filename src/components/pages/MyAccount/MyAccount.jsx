@@ -11,6 +11,7 @@ const MyAccountContainer = styled.div`
   align-items: center;
   min-height: calc(100vh - 60px);
   justify-content: center;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
