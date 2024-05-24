@@ -7,7 +7,8 @@ import Button from "react-bootstrap/Button";
 import Loading from "../../loading/Loading";
 import { deleteArticleById } from "../../../utils/apiRequest";
 import { Link } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
+import ErrorMessage from "../../modals/ErrorMessage"
+import DeleteConfirmation from "../../modals/DeleteConfirmation";
 
 const LoadingContainer = styled.div`
   display: flex;
@@ -35,12 +36,12 @@ const MyArticleCards = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [usersArticles, setUsersArticles] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
-  const handleCloseEditModal = () => setShowEditModal(false);
-  const handleShowEditModal = () => setShowEditModal(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
   const handleShowDeleteModal = () => setShowDeleteModal(true);
   const [selectedArticle, setSelectedArticle] = useState("");
+  const [errorText, setErrorText] = useState("");
+  const [deleteText, setDeleteText] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,15 +54,28 @@ const MyArticleCards = () => {
     });
   }, [currentUser]);
 
-  const deleteOnClickHandler = (article_id) => {
+  const deleteArticle = () => {
     const updatedArticles = usersArticles.filter((item) => {
-      return item.article_id !== article_id;
+      return item.article_id !== selectedArticle.article_id;
     });
     setUsersArticles(updatedArticles);
-    deleteArticleById(article_id).catch((error) => {
+    deleteArticleById(selectedArticle.article_id).catch((error) => {
       window.alert(`Delete request was unsuccessful.`);
     });
   };
+
+  const deleteOnClickHandler = (article) => {
+    setSelectedArticle(article);
+    setDeleteText(
+      `Are you sure you want to delete your article "${article.title}"?`
+    );
+    setShowDeleteModal(true);
+  }
+  
+  const editOnClickHandler = () => {
+    setErrorText("Sorry, we're still in construction. Edit function coming soon!")
+    setShowEditModal(true)
+  }
 
   if (isLoading) {
     return (
@@ -72,69 +86,13 @@ const MyArticleCards = () => {
   } else {
     return (
       <>
-        <p>
-          You are currently logged in as <strong>{currentUser.username}</strong>
-          .{" "}
-        </p>
-        <p>
-          Click the buttons below to <span className="text-success">view</span>,{" "}
-          <span className="text-warning">edit</span>, or{" "}
-          <span className="text-danger">delete</span> your articles
-        </p>
-
-        {/* edit article pop up modal */}
-        <Modal show={showEditModal} onHide={handleCloseEditModal} centered>
-          <Modal.Header
-            closeButton
-            className="border-bottom border-secondary bg-warning"
-          >
-            <Modal.Title className="text-dark">Edit Article</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="text-light bg-dark">
-            🚧 Sorry, we're still in construction 🚧. Edit function coming soon!
-          </Modal.Body>
-          <Modal.Footer className="border-top bg-dark">
-            <Button
-              variant="outline-secondary"
-              onClick={handleCloseEditModal}
-              className="text-light"
-            >
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-        {/* delete article pop up modal */}
-        <Modal show={showDeleteModal} onHide={handleCloseDeleteModal} centered>
-          <Modal.Header
-            closeButton
-            className="border-bottom border-secondary bg-danger"
-          >
-            <Modal.Title className="text-light">Delete Article</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="text-light bg-dark">
-            Are you sure you want to delete your article "
-            {selectedArticle.title}"?
-          </Modal.Body>
-          <Modal.Footer className="border-top bg-dark">
-            <Button
-              variant="outline-secondary"
-              onClick={handleCloseDeleteModal}
-              className="text-light"
-            >
-              No
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                deleteOnClickHandler(selectedArticle.article_id);
-                handleCloseDeleteModal();
-              }}
-            >
-              Yes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
+      <ErrorMessage showModal={showEditModal} setShowModal={setShowEditModal} errorMessage={errorText}/>
+        <DeleteConfirmation
+          showModal={showDeleteModal}
+          setShowModal={setShowDeleteModal}
+          deleteFunction={deleteArticle}
+          deleteMessage={deleteText}
+        />
         <MyArticlesContainer>
           {usersArticles.map((article) => {
             return (
@@ -155,8 +113,8 @@ const MyArticleCards = () => {
                   <Button
                     className="rounded-0 rounded-bottom-2"
                     onClick={() => {
-                      handleShowEditModal();
                       setSelectedArticle(article);
+                      editOnClickHandler();
                     }}
                     variant="warning"
                   >
@@ -165,8 +123,7 @@ const MyArticleCards = () => {
                   <Button
                     className="rounded-0 rounded-bottom-2"
                     onClick={() => {
-                      handleShowDeleteModal();
-                      setSelectedArticle(article);
+                      deleteOnClickHandler(article);
                     }}
                     variant="danger"
                   >
