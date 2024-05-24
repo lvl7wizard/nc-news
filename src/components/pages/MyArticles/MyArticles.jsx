@@ -1,7 +1,7 @@
 import { UserContext } from "../../../contexts/User";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
-import MyArticleCards from "./MyArticlesCards";
+import MyArticleCards from "./MyArticlesCards/MyArticlesCards";
 import styled from "styled-components";
 
 const MyArticlesContainer = styled.div`
