@@ -88,5 +88,7 @@ export const postArticle = (requestBody) => {
 export const deleteArticleById = (article_id) => {
     return newsApi.delete(`/articles/${article_id}`).then((response) => {
         return response
+    }).catch((error) => {
+        throw error;
     });
 }

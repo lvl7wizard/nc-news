@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Loading from "../../loading/Loading";
 import { deleteArticleById } from "../../../utils/apiRequest";
 import { Link } from "react-router-dom";
-import ErrorMessage from "../../modals/ErrorMessage"
+import ErrorMessage from "../../modals/ErrorMessage";
 import DeleteConfirmation from "../../modals/DeleteConfirmation";
 
 const LoadingContainer = styled.div`
@@ -37,8 +37,6 @@ const MyArticleCards = () => {
   const [usersArticles, setUsersArticles] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const handleCloseDeleteModal = () => setShowDeleteModal(false);
-  const handleShowDeleteModal = () => setShowDeleteModal(true);
   const [selectedArticle, setSelectedArticle] = useState("");
   const [errorText, setErrorText] = useState("");
   const [deleteText, setDeleteText] = useState("");
@@ -59,8 +57,10 @@ const MyArticleCards = () => {
       return item.article_id !== selectedArticle.article_id;
     });
     setUsersArticles(updatedArticles);
-    deleteArticleById(selectedArticle.article_id).catch((error) => {
-      window.alert(`Delete request was unsuccessful.`);
+    deleteArticleById(selectedArticle.article_id)
+    .catch((error) => {
+      setErrorText(`Error: ${error.message}`);
+      setShowEditModal(true);
     });
   };
 
@@ -70,12 +70,14 @@ const MyArticleCards = () => {
       `Are you sure you want to delete your article "${article.title}"?`
     );
     setShowDeleteModal(true);
-  }
-  
+  };
+
   const editOnClickHandler = () => {
-    setErrorText("Sorry, we're still in construction. Edit function coming soon!")
-    setShowEditModal(true)
-  }
+    setErrorText(
+      "Sorry, we're still in construction. Edit function coming soon!"
+    );
+    setShowEditModal(true);
+  };
 
   if (isLoading) {
     return (
@@ -86,7 +88,11 @@ const MyArticleCards = () => {
   } else {
     return (
       <>
-      <ErrorMessage showModal={showEditModal} setShowModal={setShowEditModal} errorMessage={errorText}/>
+        <ErrorMessage
+          showModal={showEditModal}
+          setShowModal={setShowEditModal}
+          errorMessage={errorText}
+        />
         <DeleteConfirmation
           showModal={showDeleteModal}
           setShowModal={setShowDeleteModal}
