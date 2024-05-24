@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@coreui/react": "^4.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -23,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.22.0",
+    "react-starfield": "^1.0.3",
     "react-typed": "^2.0.12",
     "styled-components": "^6.1.8"
   },
