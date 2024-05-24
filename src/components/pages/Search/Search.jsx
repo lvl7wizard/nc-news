@@ -1,5 +1,5 @@
-import SearchArticlesBar from "./SearchArticlesBar";
-import SearchResults from "./SearchResults";
+import SearchArticlesBar from "./SearchArticlesBar/SearchArticlesBar";
+import SearchResults from "./SearchResults/SearchResults";
 
 const Search = (() => {
     return (
