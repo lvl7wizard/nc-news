@@ -40,8 +40,9 @@ const LogoImage = styled.img`
   margin-right: 8px;
 `;
 
-const NCNewsText = styled.span`
-  font-size: 20px; /* Adjust font size as needed */
+const NCNewsText = styled.h1`
+  font-size: 25px;
+  margin: 0px;
   color: white;
   font-weight: bold;
   text-shadow: 2px 2px black;
