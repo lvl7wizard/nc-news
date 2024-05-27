@@ -61,6 +61,15 @@ export const patchArticleLikes = (article_id, amount) => {
     })
 }
 
+export const patchCommentLikes = (comment_id, amount) => {
+    return newsApi.patch(`/comments/${comment_id}`, {"inc_votes": amount})
+    .then((response) => {
+        return response
+    }).catch((error) => {
+        throw error;
+    });
+}
+
 export const postComment = (article_id, requestBody) => {
     return newsApi.post(`/articles/${article_id}/comments`, requestBody)
     .then((response) => {
