@@ -16,10 +16,10 @@ const Results = styled.main`
   margin-bottom: 20px;
 `
 
-const ResultsText = styled.h3`
+const ResultsText = styled.h2`
 text-align: center;
 color: white;
-margin: 0px;
+margin: 8px 0px;
 `
 
 const SearchResults = () => {
@@ -74,7 +74,7 @@ const SearchResults = () => {
   } else {
     return (
       <>
-        <ResultsText>{searchResults.length} articles found for your search</ResultsText>
+        <ResultsText>{searchResults.length} articles found with the topic "{topic_name}"</ResultsText>
         <Results>
           {searchResults.map((article) => {
             return (
