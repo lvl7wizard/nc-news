@@ -37,6 +37,7 @@ const { setCurrentUser } = useContext(UserContext);
       setUsernameFeedback("");
     } else {
       setUsernameValid(true);
+      setUsernameInvalid(false);
     }
   }, [username, validUsernames]);
 
