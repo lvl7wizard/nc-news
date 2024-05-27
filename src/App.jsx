@@ -1,15 +1,15 @@
 import "./App.css";
 import { Routes, Route} from "react-router-dom";
+import GlobalStyle from "./components/GlobalStyle";
+import NavBar from "./components/layout/NavBar/NavBar";
+import Background from "./components/layout/Background/Background";
+import Home from "./components/pages/Home/Home";
 import Search from "./components/pages/Search/Search"
 import ViewArticle from "./components/pages/ViewArticle/ViewArticle";
-import NavBar from "./components/layout/NavBar/NavBar";
-import Home from "./components/pages/Home/Home";
-import MyAccount from "./components/pages/MyAccount/MyAccount"
-import MyArticles from "./components/pages/MyArticles/MyArticles";
-import NotFound from "./components/pages/NotFound/NotFound";
-import GlobalStyle from "./components/GlobalStyle";
 import Post from "./components/pages/Post/Post";
-import Background from "./components/layout/Background/Background";
+import MyArticles from "./components/pages/MyArticles/MyArticles";
+import MyAccount from "./components/pages/MyAccount/MyAccount"
+import NotFound from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
