@@ -1,212 +1,115 @@
-import { useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { UserContext } from "../../../contexts/User";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import closeIcon from "../../../assets/NavBar/menu_close_icon.png";
-import menuIcon from "../../../assets/NavBar/menu_icon.png";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import planetIcon from "../../../assets/NavBar/planet-earth.png";
 
-const Nav = styled.nav`
-  display: flex;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 60px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0px 10px;
-  background-color:  #6C757D;
-  box-shadow: 0px 0px 15px black inset;
-  z-index: 1;
+const StyledNavbar = styled(Navbar)`
+  min-height: 60px;
+  padding: 10px;
 `;
 
-const Title = styled.h1`
-  text-decoration: none;
-  font-size: 25px;
-  margin: 0px;
-  margin-left: 10px;
+const StyledNavDropdown = styled(NavDropdown)`
+  .dropdown-menu {
+    background-color: #343a40;
+  }
+
+  .dropdown-header {
+    color: lightgrey;
+  }
+
+  .dropdown-item {
+    color: #fff;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: #495057;
+  }
+`;
+
+const StyledNavbarBrand = styled(Navbar.Brand)`
   display: flex;
   align-items: center;
-  img {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-  }
+`;
+
+const LogoImage = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+`;
+
+const NCNewsText = styled.span`
+  font-size: 20px; /* Adjust font size as needed */
+  color: white;
+  font-weight: bold;
   text-shadow: 2px 2px black;
 `;
 
-const StyledLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-  font-size: 15px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  z-index: -1;
-
-  @media (max-width: 640px) {
-    display: none;
-
-    &&.menuOpen {
-      position: fixed;
-      right: 0px;
-      display: flex;
-      flex-direction: column;
-      top: 60px;
-      background-color:  #6C757D;
-      padding: 20px;
-      gap: 20px;
-      border-radius: 0px 0px 0px 10px;
-      box-shadow: 0px 0px 15px black inset;
-
-      animation-name: slidein;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-
-      @keyframes slidein {
-        from {
-          opacity: 0.5;
-          transform: translateX(100%);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    }
-  }
-`;
-
-const HamburgerMenuIcons = styled.div`
-  display: none;
-  margin-right: 10px;
-
-  img {
-    width: 40px;
-    height: 40px;
-  }
-
-  @media (max-width: 640px) {
-    display: flex;
-  }
-`;
-
-const NavButton = styled.button`
-background-color: rgba(255, 255, 255, 0);
-  color: white;
-  border-radius: 25px;
-  border: none;
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  transition: opacity 0.2s ease;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  
-  &:hover {
-    outline: solid white;
-    border-radius: 25px;
-  }
-`;
-
 const NavBar = () => {
-  const { currentUser } = useContext(UserContext);
-  const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen((open) => !open);
-  };
-
   return (
-    <>
-      <Nav>
-        <StyledLink to="/" onClick={menuOpen ? toggleMenu : ""}>
-          <Title>
-            {" "}
-            <img src={planetIcon} />
-            NC NEWS
-          </Title>
-        </StyledLink>
-        <ButtonContainer className={menuOpen ? "menuOpen" : ""}>
-          <NavButton
-            style={
-              location.pathname.startsWith("/articles")
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink
-              to="/articles/topics/all?sort_by=created_at&order=desc"
-              onClick={menuOpen ? toggleMenu : ""}
+    <StyledNavbar
+      bg="dark"
+      variant="dark"
+      fixed="top"
+      expand="sm"
+      collapseOnSelect
+    >
+      <StyledNavbarBrand>
+        <LogoImage src={planetIcon} />
+        <NCNewsText>NC News</NCNewsText>
+      </StyledNavbarBrand>
+      <Navbar.Toggle />
+      <Navbar.Collapse className="justify-content-end">
+        <Nav>
+        <Nav.Link eventKey="0" as={NavLink} to="">
+            Home
+          </Nav.Link>
+          <StyledNavDropdown title="Search">
+            <NavDropdown.Header>Topic</NavDropdown.Header>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
+              eventKey="1"
+              as={NavLink}
+              to="http://localhost:5173/articles/topics/all?sort_by=created_at&order=desc"
             >
-              Search
-            </StyledLink>
-          </NavButton>
-          <NavButton
-            style={
-              location.pathname === "/post"
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink to="/post" onClick={menuOpen ? toggleMenu : ""}>
-              Post
-            </StyledLink>
-          </NavButton>
-          <NavButton
-            style={
-              location.pathname === "/myarticles"
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink to="/myarticles" onClick={menuOpen ? toggleMenu : ""}>
-              My Articles
-            </StyledLink>
-          </NavButton>
-          <NavButton
-            style={
-              location.pathname === "/myaccount"
-                ? {
-                    backgroundColor: "white",
-                    color: "black",
-                    padding: "10px",
-                    borderRadius: "25px",
-                  }
-                : null
-            }
-          >
-            <StyledLink to="/myaccount" onClick={menuOpen ? toggleMenu : ""}>
-              My Account
-            </StyledLink>
-          </NavButton>
-        </ButtonContainer>
-        <HamburgerMenuIcons>
-          <img
-            src={menuOpen ? closeIcon : menuIcon}
-            alt="menu button"
-            onClick={toggleMenu}
-          />
-        </HamburgerMenuIcons>
-      </Nav>
-    </>
+              All
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              eventKey="2"
+              as={NavLink}
+              to="http://localhost:5173/articles/topics/coding?sort_by=created_at&order=desc"
+            >
+              Coding
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              eventKey="3"
+              as={NavLink}
+              to="http://localhost:5173/articles/topics/football?sort_by=created_at&order=desc"
+            >
+              Football
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              eventKey="4"
+              as={NavLink}
+              to="http://localhost:5173/articles/topics/cooking?sort_by=created_at&order=desc"
+            >
+              Cooking
+            </NavDropdown.Item>
+          </StyledNavDropdown>
+          <Nav.Link eventKey="5" as={NavLink} to="/post">
+            Post
+          </Nav.Link>
+          <Nav.Link eventKey="6" as={NavLink} to="/myarticles">
+            My Articles
+          </Nav.Link>
+          <Nav.Link eventKey="7" as={NavLink} to="/myaccount">
+            My Account
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </StyledNavbar>
   );
 };
 
