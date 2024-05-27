@@ -8,7 +8,6 @@ const SearchForm = styled.form`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-margin-bottom: 10px;
 padding: 10px;
 gap: 10px;
 width: 100vw;
