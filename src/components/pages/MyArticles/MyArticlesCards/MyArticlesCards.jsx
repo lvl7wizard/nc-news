@@ -28,7 +28,7 @@ const MyArticlesContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
 `;
 
 const MyArticleCards = () => {
