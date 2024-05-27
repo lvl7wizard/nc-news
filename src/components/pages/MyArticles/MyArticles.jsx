@@ -28,9 +28,9 @@ const MyArticles = () => {
       ) : (
         <>
         <p>
-          Click the buttons below to <span className="text-success">view</span>,{" "}
-          <span className="text-warning">edit</span>, or{" "}
-          <span className="text-danger">delete</span> your articles
+          Click the buttons below to <strong>view</strong>,{" "}
+          <strong>edit</strong>, or{" "}
+          <strong>delete</strong> your articles
         </p>        
         <MyArticleCards />
         </>
