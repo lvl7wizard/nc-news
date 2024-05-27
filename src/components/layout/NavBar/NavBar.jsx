@@ -72,28 +72,28 @@ const NavBar = () => {
             <NavDropdown.Item
               eventKey="1"
               as={NavLink}
-              to="http://localhost:5173/articles/topics/all?sort_by=created_at&order=desc"
+              to="/articles/topics/all?sort_by=created_at&order=desc"
             >
               All
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="2"
               as={NavLink}
-              to="http://localhost:5173/articles/topics/coding?sort_by=created_at&order=desc"
+              to="/articles/topics/coding?sort_by=created_at&order=desc"
             >
               Coding
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="3"
               as={NavLink}
-              to="http://localhost:5173/articles/topics/football?sort_by=created_at&order=desc"
+              to="/articles/topics/football?sort_by=created_at&order=desc"
             >
               Football
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="4"
               as={NavLink}
-              to="http://localhost:5173/articles/topics/cooking?sort_by=created_at&order=desc"
+              to="/articles/topics/cooking?sort_by=created_at&order=desc"
             >
               Cooking
             </NavDropdown.Item>
