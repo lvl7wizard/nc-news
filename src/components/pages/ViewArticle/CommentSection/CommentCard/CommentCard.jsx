@@ -3,9 +3,18 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faTrash, faAt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faTrash,
+  faAt,
+  faThumbsUp,
+  faThumbsDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { toRelativeTime } from "../../../../../utils/formatTimeStamp";
-import { deleteCommentById } from "../../../../../utils/apiRequest";
+import {
+  deleteCommentById,
+  patchCommentLikes,
+} from "../../../../../utils/apiRequest";
 import { UserContext } from "../../../../../contexts/User";
 import ErrorMessage from "../../../../modals/ErrorMessage";
 
@@ -21,10 +30,11 @@ const CommentCard = ({
   const { currentUser } = useContext(UserContext);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [commentVotes, setCommentVotes] = useState(comment.votes);
+  const [hasVotedPositive, setHasVotedPositive] = useState(false);
+  const [hasVotedNegative, setHasVotedNegative] = useState(false);
 
-  useEffect(() => {
-    console.log("showErrorModal state changed:", showErrorModal);
-  }, [showErrorModal]);
+  useEffect(() => {}, [showErrorModal]);
 
   const deleteComment = async () => {
     try {
@@ -34,7 +44,6 @@ const CommentCard = ({
       );
       setComments(updatedComments);
     } catch (error) {
-      console.error(error);
       setErrorMessage(
         `Error: ${
           error.response ? error.response.data.msg : error.message
@@ -50,11 +59,52 @@ const CommentCard = ({
     setDeleteFunction(() => deleteComment);
   };
 
+  const handleVote = (vote) => {
+    if (!currentUser) {
+      setErrorMessage("You must be logged in to vote on comments")
+      setShowErrorModal(true)
+      return;
+    }
+
+    // calculate positive vote change
+    if (vote === 1) {
+      if (hasVotedPositive) {
+        vote = -1;
+      } else if (hasVotedNegative) {
+        vote += 1;
+        setHasVotedNegative(false);
+      }
+      setHasVotedPositive(!hasVotedPositive);
+
+      // calculate negative vote change
+    } else if (vote === -1) {
+      if (hasVotedNegative) {
+        vote = 1;
+      } else if (hasVotedPositive) {
+        vote -= 1;
+        setHasVotedPositive(false);
+      }
+      setHasVotedNegative(!hasVotedNegative);
+    }
+    setCommentVotes((currentVotes) => {
+      return currentVotes + vote;
+    });
+    patchCommentLikes(comment.comment_id, vote).catch((error) => {
+      setErrorMessage(`Error: ${error.message}`);
+      setShowErrorModal(true);
+      setCommentVotes((currentVotes) => {
+        return currentVotes - vote;
+      });
+      setHasVotedPositive(false);
+      setHasVotedNegative(false);
+    });
+  };
+
   return (
     <>
       <ErrorMessage
         showModal={showErrorModal}
-        setShowErrorModal={setShowErrorModal}
+        setShowModal={setShowErrorModal}
         errorMessage={errorMessage}
       />
       <Card
@@ -91,10 +141,26 @@ const CommentCard = ({
                 <FontAwesomeIcon
                   icon={faHeart}
                   color="pink"
-                  aria-label="likes icon"
+                  aria-label="number of likes"
                   title="likes:"
                 />{" "}
-                {comment.votes}
+                {commentVotes}
+                <FontAwesomeIcon
+                  icon={faThumbsUp}
+                  onClick={() => handleVote(1)}
+                  color={hasVotedPositive ? "lightgreen" : "white"}
+                  aria-label="like comment button"
+                  title="like comment"
+                  className="ms-2"
+                />
+                <FontAwesomeIcon
+                  icon={faThumbsDown}
+                  onClick={() => handleVote(-1)}
+                  color={hasVotedNegative ? "red" : "white"}
+                  aria-label="dislike comment button"
+                  title="dislike comment"
+                  className="ms-1"
+                />
               </Card.Text>
             </Col>
             <Col xs={2} className="text-end">
@@ -102,7 +168,7 @@ const CommentCard = ({
                 comment.author === currentUser.username && (
                   <FontAwesomeIcon
                     icon={faTrash}
-                    color="red"
+                    color="grey"
                     aria-label="delete icon"
                     title="delete comment"
                     onClick={deleteOnClickHandler}
