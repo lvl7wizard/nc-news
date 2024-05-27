@@ -2,7 +2,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button"
 
 const ErrorMessage = ({showModal, setShowModal, errorMessage}) => {
-    return (
+  console.log(setShowModal)  
+  return (
         <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header
           closeButton
