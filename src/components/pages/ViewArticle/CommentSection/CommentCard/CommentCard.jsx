@@ -108,7 +108,7 @@ const CommentCard = ({
         errorMessage={errorMessage}
       />
       <Card
-        className="w-100 border-white border-opacity-50 bg-secondary bg-opacity-25 text-light"
+        className="w-100 border-white border-opacity-75 bg-dark bg-opacity-50 text-light"
         style={{ maxWidth: "1000px" }}
       >
         <Card.Body>
