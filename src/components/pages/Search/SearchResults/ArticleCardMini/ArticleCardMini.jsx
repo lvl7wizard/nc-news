@@ -32,7 +32,7 @@ const ArticleCardMini = ({ article }) => {
     <Link className="link" to={articleUrl}>
       <Card
         style={{ width: "22rem", textAlign: "center" }}
-        className={`border-white border-opacity-50 bg-secondary bg-opacity-25`}
+        className={`bg-dark bg-opacity-75 variant-dark`}
       >
         <Card.Header className={`h5 text-light`}>{article.title}</Card.Header>
         <Card.Img
@@ -86,7 +86,7 @@ const ArticleCardMini = ({ article }) => {
             </Card.Text>
           </Col>
         </Row>
-        <Card.Footer className={`text-black bg-secondary bg-opacity-50`}>
+        <Card.Footer className={`text-white bg-secondary bg-opacity-50`}>
           Posted: {toDaysMonthsYears(article.created_at)}
         </Card.Footer>
       </Card>
