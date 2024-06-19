@@ -77,12 +77,12 @@ const CommentForm = ({ article_id, comments, setComments }) => {
         errorMessage={errorMessage}
       />
       <Form
-        className="text-center bg-secondary p-3"
+        className="text-center bg-dark bg-opacity-75 text-light p-3"
         style={{ width: "100%", maxWidth: "500px" }}
         onSubmit={onSubmitHandler}
       >
         <Form.Group controlId="commentBody">
-          <Form.Label className="text-black">Leave a comment</Form.Label>
+          <Form.Label className="">Leave a comment</Form.Label>
           <Form.Control
             as="textarea"
             rows={4}
@@ -93,7 +93,7 @@ const CommentForm = ({ article_id, comments, setComments }) => {
             value={commentText}
             disabled={isLoading}
           />
-          <Form.Control.Feedback style={{backgroundColor:"black"}} type={feedbackPositive ? "valid" : "invalid"}>
+          <Form.Control.Feedback type={feedbackPositive ? "valid" : "invalid"}>
             {feedback}
           </Form.Control.Feedback>
         </Form.Group>
