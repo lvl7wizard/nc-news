@@ -67,7 +67,7 @@ const ArticleCardFull = ({ article }) => {
         errorMessage={errorMessage}
       />
       <Card
-        className="border-white border-opacity-50 bg-secondary bg-opacity-25 text-light"
+        className="bg-dark bg-opacity-75 text-light"
         style={{ maxWidth: "1000px", textAlign: "center" }}
       >
         <Card.Header className="h1">{title}</Card.Header>
@@ -137,7 +137,7 @@ const ArticleCardFull = ({ article }) => {
             onClick={() => handleVote("dislike")}
           />
         </ButtonContainer>
-        <Card.Footer className="text-black bg-secondary bg-opacity-50">
+        <Card.Footer className="bg-secondary">
           Posted: {toDaysMonthsYears(created_at)}
         </Card.Footer>
       </Card>
