@@ -108,101 +108,101 @@ const PostArticleForm = () => {
         const response = await postArticle(requestBody);
         // redirect on successful response
         navigate(`/articles/${response.data.article.article_id}`);
-        // navigation.navigate(`/articles/${response.data.article.article_id}`)
       } catch (error) {
         console.log(error);
-        // handle errors appropriately, update state if needed
       }
     }
   };
+
   return (
     <Container>
       <Row className="d-flex justify-content-center">
-        <Col style={{maxWidth:"800px"}}>
-          <Card className="shadow-lg">
+        <Col style={{ maxWidth: "800px" }}>
+          <Card className="shadow-lg bg-dark bg-opacity-75 text-light">
             <Card.Header
-              className="text-center pt-3 pb-2 rounded-top bg-secondary text-white border-bottom-0"
+              className="text-center pt-3 pb-2 rounded-top text-light border-bottom-0"
               style={{ textShadow: "2px 2px black" }}
             >
               <h2 className="mb-0">Post an Article</h2>
             </Card.Header>
-            <Card.Body className="text-dark rounded-bottom bg-secondary">
+            <Card.Body className="text-light rounded-bottom">
               <Form onSubmit={handleSubmit}>
                 <Row>
-                <Col md={6}>
-                <Form.Group className="mb-2" controlId="articleAuthor">
-                  <Form.Label className="text-black">Author:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={currentUser.username}
-                    disabled
-                    isValid={usernameValid}
-                    className="text-muted"
-                  />
-                </Form.Group>
-                </Col>
-                <Col md={6}>
-                <Form.Group className="mb-2" controlId="articleTitle">
-                  <Form.Label className="text-black">Title:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="article title"
-                    isValid={titleValid}
-                    isInvalid={titleInvalid}
-                    onChange={updateTitle}
-                    value={articleTitle}
-                  />
-                  <FormText id="articleTitleHelpBlock" className="text-dark">
-                    Title must be at least 6 letters long.
-                  </FormText>
-                </Form.Group>
-                </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-2" controlId="articleAuthor">
+                      <Form.Label className="text-light">Author:</Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={currentUser.username}
+                        disabled
+                        isValid={usernameValid}
+                        className="bg-dark text-light"
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-2" controlId="articleTitle">
+                      <Form.Label className="text-light">Title:</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="article title"
+                        isValid={titleValid}
+                        isInvalid={titleInvalid}
+                        onChange={updateTitle}
+                        value={articleTitle}
+                        className="bg-dark text-light"
+                      />
+                      <FormText id="articleTitleHelpBlock" className="text-white">
+                        Title must be at least 6 letters long.
+                      </FormText>
+                    </Form.Group>
+                  </Col>
                 </Row>
                 <Row>
-                <Col md={6}>
-                <Form.Group className="mb-2" controlId="topicSelect">
-                  <Form.Label className="text-black">Topic:</Form.Label>
-                  <Form.Select
-                    onChange={updateTopic}
-                    value={articleTopic}
-                    isValid={topicValid}
-                    isInvalid={topicInvalid}
-                    className={articleTopic === "" ? "text-muted" : ""}
-                  >
-                    <option disabled value="">
-                      Select a topic
-                    </option>
-                    <option>coding</option>
-                    <option>cooking</option>
-                    <option>football</option>
-                  </Form.Select>
-                </Form.Group>
-                </Col>
-                <Col md={6}>
-                <Form.Group className="mb-2" controlId="articleImageURL">
-                  <Form.Label className="text-black">Image:</Form.Label>
-                  <InputGroup>
-                    <Form.Control
-                      type="text"
-                      placeholder="image URL"
-                      isValid={imageValid}
-                      isInvalid={imageInvalid}
-                      onChange={updateImage}
-                      value={articleImage}
-                    />
-                    <Button variant="dark" onClick={useDefaultImage} id="useDefaultImageBtn">
-                      Use default
-                    </Button>
-                  </InputGroup>
-
-                  <FormText id="articleFormHelpBlock" className="text-dark">
-                    URL must be a valid http address ending in .jpg or .png.
-                  </FormText>
-                </Form.Group>
-                </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-2" controlId="topicSelect">
+                      <Form.Label className="text-light">Topic:</Form.Label>
+                      <Form.Select
+                        onChange={updateTopic}
+                        value={articleTopic}
+                        isValid={topicValid}
+                        isInvalid={topicInvalid}
+                        className={`bg-dark text-light ${articleTopic === "" ? "text-muted" : ""}`}
+                      >
+                        <option disabled value="">
+                          Select a topic
+                        </option>
+                        <option>coding</option>
+                        <option>cooking</option>
+                        <option>football</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-2" controlId="articleImageURL">
+                      <Form.Label className="text-light">Image:</Form.Label>
+                      <InputGroup>
+                        <Form.Control
+                          type="text"
+                          placeholder="image URL"
+                          isValid={imageValid}
+                          isInvalid={imageInvalid}
+                          onChange={updateImage}
+                          value={articleImage}
+                          className="bg-dark text-light"
+                        />
+                        <Button variant="light" onClick={useDefaultImage} id="useDefaultImageBtn">
+                          Use default
+                        </Button>
+                      </InputGroup>
+                      <FormText id="articleFormHelpBlock" className="text-white">
+                        URL must be a valid http address ending in .jpg or .png.
+                      </FormText>
+                    </Form.Group>
+                  </Col>
                 </Row>
                 <Form.Group className="mb-2" controlId="articleBody">
-                  <Form.Label className="text-black">Body:</Form.Label>
+                  <Form.Label className="text-light">Body:</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={4}
@@ -211,8 +211,9 @@ const PostArticleForm = () => {
                     isInvalid={bodyInvalid}
                     onChange={updateBody}
                     value={articleBody}
+                    className="bg-dark text-light"
                   />
-                  <FormText id="articleBodyHelpBlock" className="text-dark">
+                  <FormText id="articleBodyHelpBlock" className="text-white">
                     Body must be at least 20 letters long.
                   </FormText>
                 </Form.Group>
