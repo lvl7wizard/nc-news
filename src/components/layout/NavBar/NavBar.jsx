@@ -58,7 +58,7 @@ const NavBar = () => {
       collapseOnSelect
     >
       <StyledNavbarBrand>
-        <LogoImage src={planetIcon} />
+        <LogoImage src={planetIcon} alt="a cartoon of planet earth"/>
         <NCNewsText>NC News</NCNewsText>
       </StyledNavbarBrand>
       <Navbar.Toggle />
